@@ -1,15 +1,17 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const SECTIONS = [
   {
-    id: "home",
+    id: "/",
     label: "Lloyd Alba",
     subs: [] as { id: string; label: string }[],
   },
   {
-    id: "projects",
+    id: "/projects",
     label: "Projects",
     subs: [
       { id: "current", label: "Current" },
@@ -17,7 +19,7 @@ const SECTIONS = [
     ],
   },
   {
-    id: "about",
+    id: "/about",
     label: "About",
     subs: [
       { id: "experience", label: "Experience" },
@@ -29,9 +31,12 @@ const SECTIONS = [
 ];
 
 export default function Side() {
-  const [active, setActive] = useState("home");
+  const pathname = usePathname();
   const [activeSub, setActiveSub] = useState<string | null>(null);
   const [desktop, setDesktop] = useState(false);
+
+  const active = SECTIONS.some((s) => s.id === pathname) ? pathname : "/";
+  const activeSection = SECTIONS.find((s) => s.id === active) ?? SECTIONS[0];
 
   const stackRef = useRef<HTMLDivElement>(null);
   const activeRef = useRef<HTMLAnchorElement>(null);
@@ -40,44 +45,27 @@ export default function Side() {
   const subsRowRef = useRef<HTMLDivElement>(null);
   const subsActiveRef = useRef<HTMLAnchorElement>(null);
 
-  const sectionIds = SECTIONS.map((s) => s.id);
-  const subIds = SECTIONS.flatMap((s) => s.subs.map((sub) => sub.id));
-
-  /* Track the active section and subsection from scroll position —
-     deterministic, works for instant anchor jumps too */
+  /* scroll-spy for the current page's subsections */
   useEffect(() => {
-    let raf = 0;
+    const subs = activeSection.subs;
+    if (subs.length === 0) return;
 
+    let raf = 0;
     const update = () => {
       raf = 0;
       const y = window.scrollY + window.innerHeight * 0.425;
 
-      let section: string = sectionIds[0];
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (el && el.offsetTop <= y) section = id;
-        else break;
-      }
-
       let sub: string | null = null;
-      for (const id of subIds) {
-        const el = document.getElementById(id);
-        if (el && el.offsetTop <= y) sub = id;
+      for (const s of subs) {
+        const el = document.getElementById(s.id);
+        if (el && el.offsetTop <= y) sub = s.id;
         else break;
       }
-
-      /* once a section is active, its first subsection is active too —
-         no dead zone at the top of a section */
-      const sec = SECTIONS.find((s) => s.id === section) ?? SECTIONS[0];
-      if (sec.subs.length > 0) {
-        if (!sub || !sec.subs.some((s) => s.id === sub)) {
-          sub = sec.subs[0].id;
-        }
-      } else {
-        sub = null;
+      /* the first subsection is active from the top of the page */
+      if (!sub || !subs.some((s) => s.id === sub)) {
+        sub = subs[0].id;
       }
 
-      setActive((prev) => (prev === section ? prev : section));
       setActiveSub((prev) => (prev === sub ? prev : sub));
     };
 
@@ -93,9 +81,7 @@ export default function Side() {
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
-    // sectionIds/subIds are module-level constants derived from SECTIONS
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [activeSection]);
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 1024px)");
@@ -112,8 +98,7 @@ export default function Side() {
       row.style.transform = "translateX(0)";
       return;
     }
-    const center =
-      row.clientWidth / 2 - (el.offsetLeft + el.offsetWidth / 2);
+    const center = row.clientWidth / 2 - (el.offsetLeft + el.offsetWidth / 2);
     row.style.transform = `translateX(${center}px)`;
   };
 
@@ -136,24 +121,21 @@ export default function Side() {
     }
   }, [active, activeSub, desktop]);
 
-  const activeSection =
-    SECTIONS.find((s) => s.id === active) ?? SECTIONS[0];
-
   return (
     <aside className="side">
       {/* Mobile — horizontal tabs, active pinned center, names slide past */}
-      <nav className="tabs" aria-label="Sections">
+      <nav className="tabs" aria-label="Pages">
         <div className="tabs-row" ref={tabsRowRef}>
           {SECTIONS.map(({ id, label }) => (
-            <a
+            <Link
               key={id}
+              href={id}
               ref={active === id ? tabsActiveRef : undefined}
-              href={`#${id}`}
               className={active === id ? "tab on" : "tab"}
-              aria-current={active === id ? "true" : undefined}
+              aria-current={active === id ? "page" : undefined}
             >
               {label}
-            </a>
+            </Link>
           ))}
         </div>
         {activeSection.subs.length > 0 && (
@@ -173,17 +155,17 @@ export default function Side() {
       </nav>
 
       {/* Desktop — vertical stack, active pinned center */}
-      <nav className="stack" ref={stackRef} aria-label="Sections">
+      <nav className="stack" ref={stackRef} aria-label="Pages">
         {SECTIONS.map(({ id, label, subs }) => (
           <div key={id} className="group">
-            <a
+            <Link
+              href={id}
               ref={active === id ? activeRef : undefined}
-              href={`#${id}`}
               className={active === id ? "title on" : "title"}
-              aria-current={active === id ? "true" : undefined}
+              aria-current={active === id ? "page" : undefined}
             >
               {label}
-            </a>
+            </Link>
             {active === id && subs.length > 0 && (
               <div className="subs">
                 {subs.map((sub) => (
