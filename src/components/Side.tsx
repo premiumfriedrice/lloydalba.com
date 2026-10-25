@@ -78,8 +78,41 @@ export default function Side() {
       : "none";
   }, [active, desktop]);
 
+  const activeSection =
+    SECTIONS.find((s) => s.id === active) ?? SECTIONS[0];
+
   return (
     <aside className="side">
+      {/* Mobile — horizontal tabs bar */}
+      <nav className="tabs" aria-label="Sections">
+        <div className="tabs-row">
+          {SECTIONS.map(({ id, label }) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              className={active === id ? "tab on" : "tab"}
+              aria-current={active === id ? "true" : undefined}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+        {activeSection.subs.length > 0 && (
+          <div className="tabs-subs">
+            {activeSection.subs.map((sub) => (
+              <a
+                key={sub.id}
+                href={`#${sub.id}`}
+                className={activeSub === sub.id ? "sub on" : "sub"}
+              >
+                {sub.label}
+              </a>
+            ))}
+          </div>
+        )}
+      </nav>
+
+      {/* Desktop — vertical stack */}
       <nav
         className="stack"
         ref={stackRef}

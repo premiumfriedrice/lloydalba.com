@@ -56,55 +56,59 @@ a {
   margin: 0 auto;
 }
 
-/* Fixed side — big titles, active centered on screen, stack shifts, no motion */
+/* Mobile — horizontal persistent tabs bar at the top */
 .side {
   position: fixed;
-  top: 44px;
-  left: 20px;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 5;
+  background: #fff;
+  padding: 18px 20px 12px;
 }
 
-.side .stack {
-  position: relative;
-  display: grid;
-  gap: 16px;
+.side .tabs-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
 }
 
-.side .subs {
-  display: grid;
-  gap: 8px;
-  margin-top: 10px;
-  padding-left: 6px;
-}
-
-.side .sub {
-  display: block;
-  font-size: 15px;
+.side .tab {
+  font-size: 17px;
   font-weight: 300;
   line-height: 20px;
-  height: 20px;
   color: rgba(0, 0, 0, 0.35);
   text-decoration: none;
 }
 
-.side .sub.on {
+.side .tab.on {
   font-weight: 700;
   color: #000;
 }
 
-.side .title {
-  display: block;
-  font-size: clamp(24px, 3vw, 32px);
+.side .tabs-subs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.side .tabs-subs .sub {
+  font-size: 13px;
   font-weight: 300;
-  line-height: 44px;
-  height: 44px;
+  line-height: 16px;
   color: rgba(0, 0, 0, 0.35);
   text-decoration: none;
 }
 
-.side .title.on {
+.side .tabs-subs .sub.on {
   font-weight: 700;
   color: #000;
+}
+
+/* Desktop — vertical stack (hidden on mobile) */
+.side .stack {
+  display: none;
 }
 
 /* Fixed bottom-left credit block */
@@ -290,14 +294,64 @@ a {
   }
 }
 
-/* Desktop: side vertically centered on screen, credit at left frame */
+/* Desktop: vertical stack, side vertically centered on screen */
 @media (min-width: 1024px) {
   .side {
     top: 0;
     bottom: 0;
     left: 79px;
+    right: auto;
+    background: none;
+    padding: 0;
     display: flex;
     align-items: center;
+  }
+
+  .side .tabs {
+    display: none;
+  }
+
+  .side .stack {
+    display: grid;
+    position: relative;
+    gap: 16px;
+  }
+
+  .side .title {
+    display: block;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 300;
+    line-height: 44px;
+    height: 44px;
+    color: rgba(0, 0, 0, 0.35);
+    text-decoration: none;
+  }
+
+  .side .title.on {
+    font-weight: 700;
+    color: #000;
+  }
+
+  .side .subs {
+    display: grid;
+    gap: 8px;
+    margin-top: 10px;
+    padding-left: 6px;
+  }
+
+  .side .sub {
+    display: block;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 20px;
+    height: 20px;
+    color: rgba(0, 0, 0, 0.35);
+    text-decoration: none;
+  }
+
+  .side .sub.on {
+    font-weight: 700;
+    color: #000;
   }
 
   .credit {
