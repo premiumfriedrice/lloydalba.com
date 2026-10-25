@@ -82,6 +82,8 @@ export default function Side() {
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
+    // sectionIds/subIds are module-level constants derived from SECTIONS
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
