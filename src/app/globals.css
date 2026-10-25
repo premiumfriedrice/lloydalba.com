@@ -7,14 +7,9 @@
   --font-sans: var(--font-archivo), "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
-}
-
 html {
   background: #fff;
+  scroll-snap-type: y mandatory;
 }
 
 body {
@@ -47,7 +42,6 @@ a {
 .link {
   text-decoration: none;
   border-bottom: 1px solid #000;
-  transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 .link:hover {
@@ -55,18 +49,23 @@ a {
   border-bottom-color: transparent;
 }
 
-/* Layout — everything anchored left */
+/* Layout */
+.shell {
+  max-width: 1024px;
+  margin: 0 auto;
+}
 
-/* Fixed side — stack of titles, active pinned in place */
+/* Fixed side — stack of titles, active pinned in place, no motion */
 .side {
-  padding: 44px 20px 0;
+  position: fixed;
+  top: 44px;
+  left: 20px;
+  z-index: 5;
 }
 
 .side .stack {
   display: grid;
   gap: 4px;
-  transition: transform 0.35s ease;
-  will-change: transform;
 }
 
 .side .title {
@@ -77,7 +76,6 @@ a {
   height: 20px;
   color: rgba(0, 0, 0, 0.35);
   text-decoration: none;
-  transition: color 0.2s ease;
 }
 
 .side .title.on {
@@ -87,7 +85,10 @@ a {
 
 /* Fixed bottom-left credit block */
 .credit {
-  padding: 48px 20px 41px;
+  position: fixed;
+  bottom: 41px;
+  left: 20px;
+  z-index: 5;
 }
 
 .credit .label {
@@ -108,47 +109,70 @@ a {
 .content {
   max-width: 600px;
   margin: 0 auto;
-  padding: 48px 20px 0;
+  padding: 0 20px;
 }
 
-/* The statement — Rams H1 metrics */
+/* The statement — Rams H1 metrics, centered */
 .statement {
-  margin: 0;
+  margin: 0 auto;
   max-width: 480px;
   font-size: clamp(38px, 8.5vw, 72px);
   line-height: 1;
   letter-spacing: -0.04em;
   font-weight: 700;
+  text-align: center;
 }
 
 .statement + .line {
-  margin: 28px 0 0;
+  margin: 28px auto 0;
+  text-align: center;
 }
 
-/* Sections — generous spacing */
+/* Sections — one full viewport each, content vertically centered */
 .section {
-  scroll-margin-top: 64px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  padding: 128px 0;
 }
 
-.section + .section {
-  margin-top: 96px;
+.section > :first-child {
+  margin-top: auto;
 }
 
-/* Small bold group labels */
+.section > :last-child {
+  margin-bottom: auto;
+}
+
+/* Section titles — big and centered */
 .label {
-  margin: 64px 0 16px;
-  font-size: 12px;
+  margin: 64px 0 24px;
+  font-size: clamp(20px, 2.6vw, 28px);
   font-weight: 700;
-  line-height: 14px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-align: center;
 }
 
-.section > .label:first-child {
-  margin-top: 0;
+/* Light text lines */
+.line {
+  margin: 0 auto 12px;
+  max-width: 460px;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 24px;
 }
 
-/* Lists — open rows, no hairlines */
+.section > .line:first-child {
+  text-align: center;
+}
+
+/* Lists — open rows, no hairlines, block centered */
 .list {
-  margin: 0;
+  margin: 0 auto;
   max-width: 560px;
   padding: 0;
   list-style: none;
@@ -190,44 +214,13 @@ a {
   }
 }
 
-/* Desktop: pin side and credit to the left edge, content column left */
+/* Desktop: side and credit at the left frame positions */
 @media (min-width: 1024px) {
   .side {
-    position: fixed;
-    top: 44px;
     left: 79px;
-    z-index: 5;
-    padding: 0;
   }
 
   .credit {
-    position: fixed;
-    bottom: 41px;
     left: 80px;
-    z-index: 5;
-    padding: 0;
-  }
-
-  .content {
-    padding: 140px 24px 200px;
-  }
-
-  .section + .section {
-    margin-top: 160px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  .link,
-  .side .title {
-    transition: none;
-  }
-
-  .side .stack {
-    transition: none;
   }
 }
