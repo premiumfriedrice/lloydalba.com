@@ -1,43 +1,29 @@
-import { Github, Linkedin, Mail, FileText } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 const socials = [
-  {
-    href: "https://github.com/premiumfriedrice",
-    icon: Github,
-    label: "GitHub",
-  },
-  {
-    href: "https://www.linkedin.com/in/lloydalba/",
-    icon: Linkedin,
-    label: "LinkedIn",
-  },
-  {
-    href: "mailto:lloyddalba@gmail.com",
-    icon: Mail,
-    label: "Email",
-  },
-  {
-    href: "/documents/LloydAlba_Resume.pdf",
-    icon: FileText,
-    label: "Resume",
-  },
+  { href: "https://github.com/premiumfriedrice", icon: Github, label: "GitHub" },
+  { href: "https://www.linkedin.com/in/lloydalba/", icon: Linkedin, label: "LinkedIn" },
+  { href: "mailto:lloyddalba@gmail.com", icon: Mail, label: "Email" },
 ];
 
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="border-t border-white/[0.04] py-10 mt-20">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-        <p className="text-xs text-neutral-400 tracking-wide backdrop-blur-sm bg-black/20 rounded-md px-2 py-1">
-          &copy; {new Date().getFullYear()} Lloyd Alba
+    <footer className="border-t border-rule py-8">
+      <div className="max-w-2xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p className="text-xs text-muted">
+          © {year} Lloyd Alba. Built with Next.js & Tailwind.
         </p>
-        <div className="flex items-center gap-5">
+
+        <div className="flex items-center gap-4">
           {socials.map((s) => (
             <a
               key={s.label}
               href={s.href}
-              target={s.href.startsWith("/") ? undefined : "_blank"}
-              rel={s.href.startsWith("/") ? undefined : "noopener noreferrer"}
-              className="text-neutral-400 hover:text-[#c4b5fd] transition-colors"
+              target={s.label !== "Email" ? "_blank" : undefined}
+              rel={s.label !== "Email" ? "noopener noreferrer" : undefined}
+              className="text-muted hover:text-ink transition-colors"
               aria-label={s.label}
             >
               <s.icon size={16} strokeWidth={1.5} />
