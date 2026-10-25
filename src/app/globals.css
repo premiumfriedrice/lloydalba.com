@@ -9,7 +9,6 @@
 
 html {
   background: #fff;
-  scroll-snap-type: y proximity;
   overflow-x: clip;
 }
 
@@ -151,7 +150,7 @@ a {
   font-weight: 400;
 }
 
-/* Sections — one full viewport each, content vertically centered */
+/* Sections — one full viewport each on desktop, content vertically centered */
 .section {
   min-height: 100vh;
   min-height: 100dvh;
@@ -161,12 +160,15 @@ a {
   padding: 128px 0;
 }
 
-.section > :first-child {
-  margin-top: auto;
+.section > .inner {
+  margin: auto 0;
 }
 
-.section > :last-child {
-  margin-bottom: auto;
+/* Snapping is desktop-only — mobile scrolls freely */
+@media (min-width: 1024px) {
+  html {
+    scroll-snap-type: y proximity;
+  }
 }
 
 /* The final section ends flush with the fixed contact block (bottom: 41px) */

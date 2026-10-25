@@ -43,26 +43,45 @@ export default function Side() {
   const sectionIds = SECTIONS.map((s) => s.id);
   const subIds = SECTIONS.flatMap((s) => s.subs.map((sub) => sub.id));
 
+  /* Track the active section and subsection from scroll position —
+     deterministic, works for instant anchor jumps too */
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          if (sectionIds.includes(entry.target.id)) {
-            setActive(entry.target.id);
-          } else if (subIds.includes(entry.target.id)) {
-            setActiveSub(entry.target.id);
-          }
-        }
-      },
-      { rootMargin: "-40% 0px -55% 0px" }
-    );
-    for (const id of [...sectionIds, ...subIds]) {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    }
-    return () => observer.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    let raf = 0;
+
+    const update = () => {
+      raf = 0;
+      const y = window.scrollY + window.innerHeight * 0.425;
+
+      let section: string = sectionIds[0];
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= y) section = id;
+        else break;
+      }
+
+      let sub: string | null = null;
+      for (const id of subIds) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= y) sub = id;
+        else break;
+      }
+
+      setActive((prev) => (prev === section ? prev : section));
+      setActiveSub((prev) => (prev === sub ? prev : sub));
+    };
+
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
 
   useEffect(() => {

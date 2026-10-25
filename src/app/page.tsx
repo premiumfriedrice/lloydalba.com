@@ -68,6 +68,7 @@ export default function Home() {
       <Side />
       <main className="content">
         <section id="home" className="section">
+          <div className="inner">
           <p className="bio">
             I&apos;m a computer science student at Texas A&amp;M. I build AI
             agents, iOS apps, and tools that make engineers faster — and
@@ -84,9 +85,11 @@ export default function Home() {
               <ContactLinks />
             </p>
           </div>
+          </div>
         </section>
 
         <section id="projects" className="section">
+          <div className="inner">
           <p className="line">What I&apos;m building now, and what has shipped.</p>
 
           <div className="subsec" id="current">
@@ -98,9 +101,11 @@ export default function Home() {
             <p className="label">Past</p>
             <List items={past} />
           </div>
+          </div>
         </section>
 
         <section id="about" className="section">
+          <div className="inner">
           <div className="subsec" id="experience">
             <p className="label">Experience</p>
             <ul className="list">
@@ -162,6 +167,7 @@ export default function Home() {
             <p className="foot-label">Lloyd Alba</p>
             <p>© 2026 · College Station, Texas</p>
           </footer>
+          </div>
         </section>
       </main>
       <Credit />
