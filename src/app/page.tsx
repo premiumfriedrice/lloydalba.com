@@ -47,7 +47,7 @@ import type { Project } from "@/types";
 
 function List({ items }: { items: Project[] }) {
   return (
-    <ul className="list">
+    <ul className="projects">
       {items.map((project) => (
         <li key={project.slug}>
           <span className="k">{project.name}</span>
