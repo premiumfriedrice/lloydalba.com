@@ -1,25 +1,24 @@
 import Side from "@/components/Side";
 import Credit from "@/components/Credit";
 import { projects } from "@/lib/projects";
-import { experiences, achievements } from "@/lib/experience";
+import {
+  experiences,
+  education,
+  achievements,
+  skills,
+} from "@/lib/experience";
 import type { Project } from "@/types";
 
 function List({ items }: { items: Project[] }) {
   return (
     <ul className="list">
-      {items.map((project) => {
-        const year = project.startDate
-          ? new Date(project.startDate).getFullYear()
-          : null;
-
-        return (
-          <li key={project.slug}>
-            <span className="k">{project.name}</span>
-            <span className="v">{project.skills.slice(0, 3).join(" · ")}</span>
-            {year && <span className="n">{year}</span>}
-          </li>
-        );
-      })}
+      {items.map((project) => (
+        <li key={project.slug}>
+          <span className="k">{project.name}</span>
+          <span className="v">{project.skills.join(" · ")}</span>
+          {project.period && <span className="n">{project.period}</span>}
+        </li>
+      ))}
     </ul>
   );
 }
@@ -62,6 +61,20 @@ export default function Home() {
               </li>
             ))}
           </ul>
+
+          <p className="label">Education</p>
+          <ul className="list">
+            <li>
+              <span className="k">{education.school}</span>
+              <span className="v">{education.degree}</span>
+              <span className="n">{education.time}</span>
+            </li>
+          </ul>
+
+          <p className="label">Skills</p>
+          <p className="line">{skills.languages.join(" · ")}</p>
+          <p className="line">{skills.platforms.join(" · ")}</p>
+          <p className="line">{skills.ai.join(" · ")}</p>
 
           <p className="label">Recognition</p>
           <ul className="list">

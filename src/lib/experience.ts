@@ -2,46 +2,63 @@ import { Experience, Education, Achievement } from "@/types";
 
 export const experiences: Experience[] = [
   {
-    time: "Summer 2025",
-    position: "Software Engineer Intern, Platform",
-    company: "Arrive Logistics",
-    companyUrl: "https://www.arrivelogistics.com/",
+    time: "Oct. 2026 – Present",
+    position: "Agentic AI Engineer Intern",
+    company: "Fable Innovations",
     bullets: [
-      "Modernized a company-wide user management service by migrating critical infrastructure from .NET Core to .NET 8, implementing centralized exception handling and integrating New Relic telemetry.",
-      "Resolved CI/CD pipeline failures by building a fault-tolerant New Relic service-tagging system.",
-      "Optimized Azure resource governance by engineering reusable Terraform modules for resource tagging, ensuring compliance across cloud resources and reducing configuration drift.",
+      "Building agentic MSP for 4+ business clients on a skill-based architecture to automate IT service workflows.",
+      "Deployed on-prem LLM inference platform (vLLM) with per-user rate limits, eliminating external API spend.",
     ],
-    skills: ["Terraform", "HCL", ".NET", "New Relic", "CI/CD", "Azure DevOps"],
+    skills: ["Python", "vLLM", "LLM agents"],
   },
   {
-    time: "Summer 2024",
-    position: "Software Engineer Intern, Platform",
-    company: "Arrive Logistics",
-    companyUrl: "https://www.arrivelogistics.com/",
+    time: "May 2026 – Aug. 2026",
+    position: "AI Automation Intern",
+    company: "K2United",
     bullets: [
-      "Architected CI/CD pipelines as code, migrating three services from legacy GUI configurations to YAML-based pipelines to enforce DevOps best practices.",
-      "Standardized deployment workflows by engineering modular pipeline templates for diverse Git branching strategies, eliminating manual configuration effort for new services.",
-      "Mentored two interns on pipeline debugging and cloud deployment strategies, enabling the team to deliver project milestones two weeks ahead of schedule.",
+      "Saved sales reps 1–2 hrs per account by shipping outreach brief tool backed by 100k-row/day Databricks ETL.",
+      "Built AI enablement intake platform turning employee automation requests into tickets, 7 automations shipped.",
     ],
-    skills: ["YAML", "CI/CD", "Terminal", "Azure DevOps"],
+    skills: ["Databricks", "Python", "ETL"],
   },
   {
-    time: "Summer 2023",
-    position: "Software Engineer Intern, Platform",
+    time: "Jun. 2025 – Aug. 2025",
+    position: "Software Engineer Intern",
     company: "Arrive Logistics",
     companyUrl: "https://www.arrivelogistics.com/",
     bullets: [
-      "Engineered a Python-based CLI tool feature that automated high-touch manual workflows, reducing sprint overhead by 14% and generating $38,400 in annual operational savings.",
-      "Significantly reduced application setup time for Kubernetes deployment from 2 days to under 3 minutes.",
-      "Delivered a high-impact presentation about the project to 80+ engineers and Code2College board.",
+      "Fixed recurring failures across 16 CI/CD pipelines with New Relic tagging and Terraform tagging modules.",
+      "Migrated user management service to .NET 8 with New Relic, cutting error detection from days to minutes.",
     ],
-    skills: ["Python", "Automation", "CI/CD", "Terminal", "Azure DevOps"],
+    skills: ["Terraform", ".NET", "New Relic", "CI/CD"],
+  },
+  {
+    time: "Jun. 2024 – Aug. 2024",
+    position: "Software Engineer Intern",
+    company: "Arrive Logistics",
+    companyUrl: "https://www.arrivelogistics.com/",
+    bullets: [
+      "Migrated 3 services to YAML CI/CD pipelines and developed pipeline templates for 2 git branching strategies.",
+      "Delivered milestones two weeks early by mentoring two interns on pipeline debugging and cloud deployment.",
+    ],
+    skills: ["YAML", "CI/CD", "Azure DevOps"],
+  },
+  {
+    time: "Jun. 2023 – Aug. 2023",
+    position: "Code2College Software Engineer Intern",
+    company: "Arrive Logistics",
+    companyUrl: "https://www.arrivelogistics.com/",
+    bullets: [
+      "Cut sprint overhead 14% and saved $38,400/year by automating deployment workflows via a Python CLI feature.",
+      "Reduced setup time from 2 days to under 3 minutes for Kubernetes deployed applications by scaffold automation.",
+    ],
+    skills: ["Python", "Automation", "Kubernetes"],
   },
 ];
 
 export const education: Education = {
-  time: "Class of 2027",
-  degree: "B.Sc. in Computer Science",
+  time: "Anticipated Dec. 2027",
+  degree: "B.S. in Computer Science",
   school: "Texas A&M University",
   schoolUrl: "https://www.tamu.edu/",
 };
@@ -49,7 +66,7 @@ export const education: Education = {
 export const achievements: Achievement[] = [
   {
     title: "1st Place Overall",
-    event: "TAMUHack 2026 Hackathon (650+ Competitors)",
+    event: "TAMUHack 2026 (650+ competitors)",
   },
   {
     title: "1st Place Notion-API",
@@ -60,3 +77,26 @@ export const achievements: Achievement[] = [
     event: "TAMUHack 2025 Hackathon",
   },
 ];
+
+export const skills = {
+  languages: ["Python", "Swift", "TypeScript", "Go", "C++", "SQL"],
+  platforms: [
+    "AWS",
+    "Azure",
+    "Docker",
+    "Kubernetes",
+    "Terraform",
+    "CI/CD",
+    "React/Next.js",
+    "PostgreSQL/Supabase",
+  ],
+  ai: [
+    "LLM agent harnesses",
+    "RAG",
+    "LLM Evals",
+    "vLLM/LiteLLM",
+    "ARKit/CoreML",
+    "OpenCV",
+    "Databricks/Spark",
+  ],
+};

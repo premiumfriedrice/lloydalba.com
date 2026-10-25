@@ -2,106 +2,40 @@ import { Project } from "@/types";
 
 export const projects: Project[] = [
   {
-    slug: "pupil",
-    status: "current",
-    name: "Pupil",
+    slug: "apted",
+    name: "apted",
     description:
-      "Agentic AI framework that enables agents to shadow engineers during live workflows, learn patterns through observation, and autonomously execute learned tasks. Features intent token pipelines, adaptive maturity progression, and cost-aware compute tiers.",
-    skills: ["Python", "Playwright", "Claude API"],
-    githubRepo: "premiumfriedrice/pupil",
-    startDate: "2025-01-01",
-    featured: true,
+      "Resume tailoring Chrome extension with a custom LLM harness, LLM-as-judge validation, and PII scrubbing.",
+    skills: ["Next.js", "Supabase", "Fly.io", "Stripe", "LaTeX"],
+    period: "May 2026 – Present",
+    status: "current",
   },
   {
     slug: "aggiedine",
-    status: "current",
     name: "AggieDine",
     description:
-      "Social dining platform for Texas A&M students. Leading a team of 6 backend engineers with microservices architecture, AWS Cognito authentication, and independent scaling of core services.",
-    skills: ["Python", "AWS Cognito", "React Native"],
-    startDate: "2025-01-01",
-    featured: true,
-  },
-  {
-    slug: "ima",
-    status: "current",
-    name: "ima",
-    description:
-      "Fully featured habit & task tracking iOS app as an alternative to subscription-based productivity tools. Custom UI/UX design philosophy iterated through 5+ design revisions.",
-    skills: ["Swift", "SwiftUI"],
-    githubRepo: "premiumfriedrice/ima",
-    startDate: "2025-01-01",
-    featured: true,
-  },
-  {
-    slug: "ars",
-    status: "current",
-    name: "ARS",
-    description:
-      "Applicant recruitment stats platform for tracking and analyzing recruitment data.",
-    skills: ["TypeScript"],
-    githubRepo: "premiumfriedrice/ARS",
-    startDate: "2026-01-01",
-    featured: true,
-  },
-  {
-    slug: "cortex-ios",
+      "Social dining app for Texas A&M students — scale-to-zero AWS backend serving up to 70k students at $0 idle.",
+    skills: ["Python", "AWS", "React Native"],
+    period: "Jan. 2026 – May 2026",
     status: "past",
-    name: "Cortex",
-    description:
-      "Full SwiftUI iOS app for the Cortex project.",
-    skills: ["Swift", "SwiftUI"],
-    githubRepo: "premiumfriedrice/CortexiOSApp",
-    startDate: "2025-01-01",
-    featured: true,
   },
   {
-    slug: "wavepoint",
+    slug: "cortex",
+    name: "CORTEX",
+    description:
+      "AR + CV airport travel ecosystem — AR anchors to relocate set-down items, CV to detect bags on carousels.",
+    skills: ["Swift", "ARKit", "CoreML", "OpenCV", "Node.js"],
+    period: "Jan. 2026",
     status: "past",
-    name: "WavePoint",
-    description:
-      "Simple wave point project built with Swift.",
-    skills: ["Swift"],
-    githubRepo: "premiumfriedrice/WavePointProject",
-    startDate: "2025-01-01",
-    featured: true,
-  },
-  {
-    slug: "lloydalba-dev",
-    status: "current",
-    name: "lloydalba.dev",
-    description:
-      "My personal portfolio site. Built with Next.js, TypeScript, and Tailwind CSS. Features a thoughts feed, live GitHub data, and a status indicator.",
-    skills: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
-    githubRepo: "premiumfriedrice/lloydalba.dev",
-    image: "/images/PersonalWebsite.png",
-    startDate: "2024-01-01",
-    featured: true,
   },
   {
     slug: "findmoto",
-    status: "past",
     name: "findMoto",
     description:
-      "Facebook Marketplace webscraper tailored for finding best motorcycle deals.",
-    skills: ["Python", "Terminal", "Argparse"],
-    githubRepo: "amasud7/findMoto",
-    image: "/images/findMoto_demo.gif",
-    startDate: "2023-06-01",
-    featured: true,
-  },
-  {
-    slug: "surge-new",
+      "Selenium scraper that ranks Facebook Marketplace motorcycle listings by price, model year, and recency.",
+    skills: ["Python", "Selenium", "Notion API", "Cron"],
+    period: "Mar. 2025 – Jun. 2025",
     status: "past",
-    name: "Surge New",
-    description:
-      "Internal CLI Tool feature that streamlined project scaffolding by fully automating version control, REST-API .NET template app creation, and CI/CD pipelines. Achieved a 14% reduction in development time resulting in $38,400 annual savings in engineer salary costs.",
-    skills: ["Python", "Terminal", "CI/CD", "Azure DevOps", "Argparse"],
-    externalLink:
-      "https://drive.google.com/file/d/11D9j2wbfckiiUenRMl5at5TqRkMnPtzd/view?usp=sharing",
-    image: "/images/surge_new.png",
-    startDate: "2023-05-01",
-    featured: true,
   },
 ];
 

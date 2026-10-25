@@ -1,14 +1,10 @@
 export interface Project {
   slug: string;
   name: string;
-  description: string;
+  description?: string;
   skills: string[];
-  githubRepo?: string; // "owner/repo" format
-  externalLink?: string;
-  image?: string;
-  startDate?: string; // ISO date
+  period?: string; // e.g. "May 2026 – Present"
   status?: "current" | "past";
-  featured?: boolean;
 }
 
 export interface Experience {

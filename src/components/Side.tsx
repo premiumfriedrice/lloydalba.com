@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 
 const SECTIONS = [
-  { id: "home", label: "Home" },
+  { id: "home", label: "Lloyd Alba" },
   { id: "projects", label: "Projects" },
   { id: "about", label: "About" },
 ];
+
+const PITCH = 24; // row height + gap
 
 export default function Side() {
   const [active, setActive] = useState("home");
@@ -27,10 +29,18 @@ export default function Side() {
     return () => observer.disconnect();
   }, []);
 
+  const index = Math.max(
+    0,
+    SECTIONS.findIndex((s) => s.id === active)
+  );
+
   return (
     <aside className="side">
-      <p className="name">Lloyd Alba</p>
-      <nav className="titles" aria-label="Sections">
+      <nav
+        className="stack"
+        aria-label="Sections"
+        style={{ transform: `translateY(${(1 - index) * PITCH}px)` }}
+      >
         {SECTIONS.map(({ id, label }) => (
           <a
             key={id}
