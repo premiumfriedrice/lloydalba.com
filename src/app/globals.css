@@ -109,8 +109,10 @@ a {
   line-height: 20px;
 }
 
-/* Content column */
+/* Content column — centered */
 .content {
+  max-width: 600px;
+  margin: 0 auto;
   padding: 48px 20px 0;
 }
 
@@ -122,6 +124,10 @@ a {
   line-height: 1;
   letter-spacing: -0.04em;
   font-weight: 700;
+}
+
+.statement + .line {
+  margin: 28px 0 0;
 }
 
 /* Sections — generous spacing */
@@ -213,7 +219,7 @@ a {
   }
 
   .content {
-    padding: 140px 4vw 200px 240px;
+    padding: 140px 24px 200px;
   }
 
   .section + .section {

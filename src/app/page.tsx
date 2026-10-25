@@ -34,9 +34,15 @@ export default function Home() {
       <main className="content">
         <section id="home" className="section">
           <p className="statement">Computer science student</p>
+          <p className="line">
+            I study computer science at Texas A&amp;M. I build AI agents, iOS
+            apps, and tools that make engineers faster.
+          </p>
         </section>
 
         <section id="projects" className="section">
+          <p className="line">What I&apos;m building now, and what has shipped.</p>
+
           <p className="label">Current</p>
           <List items={current} />
 
