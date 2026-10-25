@@ -7,6 +7,12 @@
   --font-sans: var(--font-archivo), "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 html {
   background: #fff;
 }
@@ -33,7 +39,7 @@ b {
   font-weight: 700;
 }
 
-/* Links — Rams style: 1px black underline, red on hover */
+/* Links — 1px black underline, red on hover (credit block) */
 a {
   color: inherit;
 }
@@ -49,13 +55,9 @@ a {
   border-bottom-color: transparent;
 }
 
-/* Layout — centered 1024px frame like the Readymag canvas */
-.shell {
-  max-width: 1024px;
-  margin: 0 auto;
-}
+/* Layout — everything anchored left */
 
-/* Fixed side block — name / current page / nav */
+/* Fixed side block — name + section titles with active indicator */
 .side {
   padding: 44px 20px 0;
 }
@@ -68,23 +70,24 @@ a {
   line-height: 20px;
 }
 
-.side .page {
-  margin: 0;
-  font-size: 17px;
-  font-weight: 300;
-  line-height: 20px;
-}
-
-.side nav {
+.side .titles {
   margin-top: 28px;
   display: grid;
   gap: 4px;
 }
 
-.side nav a {
+.side .title {
   font-size: 17px;
   font-weight: 300;
   line-height: 20px;
+  color: rgba(0, 0, 0, 0.35);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.side .title.on {
+  font-weight: 700;
+  color: #000;
 }
 
 /* Fixed bottom-left credit block */
@@ -111,33 +114,38 @@ a {
   padding: 48px 20px 0;
 }
 
-/* Biography text — 28px / 30px / -1px with 700 lead-ins */
-.bio {
-  margin: 0 0 30px;
-  max-width: 417px;
-  font-size: clamp(21px, 5.5vw, 28px);
-  line-height: 1.071;
-  letter-spacing: -1px;
-  font-weight: 400;
+/* The statement — Rams H1 metrics */
+.statement {
+  margin: 0;
+  max-width: 480px;
+  font-size: clamp(38px, 8.5vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 700;
 }
 
-.line {
-  margin: 0 0 12px;
-  max-width: 460px;
-  font-size: 17px;
-  font-weight: 300;
-  line-height: 20px;
+/* Sections — generous spacing */
+.section {
+  scroll-margin-top: 64px;
 }
 
-/* Small bold group labels (like the Photography credit label) */
+.section + .section {
+  margin-top: 96px;
+}
+
+/* Small bold group labels */
 .label {
-  margin: 40px 0 12px;
+  margin: 64px 0 16px;
   font-size: 12px;
   font-weight: 700;
   line-height: 14px;
 }
 
-/* Ruled lists — 1px black hairlines */
+.section > .label:first-child {
+  margin-top: 0;
+}
+
+/* Ruled lists — 1px black hairlines, spaced rows */
 .list {
   margin: 0;
   max-width: 560px;
@@ -149,10 +157,10 @@ a {
   display: flex;
   align-items: baseline;
   gap: 24px;
-  padding: 18px 0;
+  padding: 24px 0;
   border-top: 1px solid #000;
   font-size: 17px;
-  line-height: 20px;
+  line-height: 24px;
 }
 
 .list li:last-child {
@@ -174,12 +182,24 @@ a {
   white-space: nowrap;
 }
 
-/* Desktop: pin the side and credit blocks, offset the content column */
+@media (max-width: 640px) {
+  .list li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .list .n {
+    white-space: normal;
+  }
+}
+
+/* Desktop: pin side and credit to the left edge, content column left */
 @media (min-width: 1024px) {
   .side {
     position: fixed;
     top: 44px;
-    left: calc(50vw - 433px);
+    left: 79px;
     z-index: 5;
     padding: 0;
   }
@@ -187,18 +207,27 @@ a {
   .credit {
     position: fixed;
     bottom: 41px;
-    left: calc(50vw - 432px);
+    left: 80px;
     z-index: 5;
     padding: 0;
   }
 
   .content {
-    padding: 140px 0 200px 371px;
+    padding: 140px 4vw 200px 240px;
+  }
+
+  .section + .section {
+    margin-top: 160px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .link {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .link,
+  .side .title {
     transition: none;
   }
 }
