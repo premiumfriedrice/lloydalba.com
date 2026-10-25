@@ -42,15 +42,15 @@ export default function Home() {
         <section id="projects" className="section">
           <p className="line">What I&apos;m building now, and what has shipped.</p>
 
-          <p className="label">Current</p>
+          <p className="label" id="current">Current</p>
           <List items={current} />
 
-          <p className="label">Past</p>
+          <p className="label" id="past">Past</p>
           <List items={past} />
         </section>
 
         <section id="about" className="section">
-          <p className="label">Experience</p>
+          <p className="label" id="experience">Experience</p>
           <ul className="list">
             {experiences.map((exp) => (
               <li key={exp.time + exp.position}>
@@ -62,7 +62,7 @@ export default function Home() {
             ))}
           </ul>
 
-          <p className="label">Education</p>
+          <p className="label" id="education">Education</p>
           <ul className="list">
             <li>
               <span className="k">{education.school}</span>
@@ -71,12 +71,14 @@ export default function Home() {
             </li>
           </ul>
 
-          <p className="label">Skills</p>
-          <p className="line">{skills.languages.join(" · ")}</p>
-          <p className="line">{skills.platforms.join(" · ")}</p>
-          <p className="line">{skills.ai.join(" · ")}</p>
+          <p className="label" id="skills">Skills</p>
+          <ul className="skills">
+            {skills.map((skill) => (
+              <li key={skill}>{skill}</li>
+            ))}
+          </ul>
 
-          <p className="label">Recognition</p>
+          <p className="label" id="recognition">Recognition</p>
           <ul className="list">
             {achievements.map((a) => (
               <li key={a.title}>

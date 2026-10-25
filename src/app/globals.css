@@ -65,8 +65,30 @@ a {
 }
 
 .side .stack {
+  position: relative;
   display: grid;
   gap: 16px;
+}
+
+.side .subs {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+  padding-left: 6px;
+}
+
+.side .sub {
+  display: block;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 20px;
+  height: 20px;
+  color: rgba(0, 0, 0, 0.35);
+  text-decoration: none;
+}
+
+.side .sub:hover {
+  color: #000;
 }
 
 .side .title {
@@ -152,6 +174,7 @@ a {
   font-size: 12px;
   font-weight: 700;
   line-height: 14px;
+  scroll-margin-top: 48px;
 }
 
 /* Light text lines */
@@ -161,6 +184,29 @@ a {
   font-size: 17px;
   font-weight: 300;
   line-height: 24px;
+}
+
+/* Skills — grid like the resume */
+.skills {
+  margin: 0;
+  max-width: 560px;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 24px;
+}
+
+.skills li {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 18px;
+}
+
+@media (min-width: 640px) {
+  .skills {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 /* Lists — open rows, no hairlines */
