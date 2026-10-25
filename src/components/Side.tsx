@@ -8,7 +8,7 @@ const SECTIONS = [
   { id: "about", label: "About" },
 ];
 
-const PITCH = 24; // row height + gap
+const PITCH = 60; // row height (44px) + gap (16px)
 
 export default function Side() {
   const [active, setActive] = useState("home");

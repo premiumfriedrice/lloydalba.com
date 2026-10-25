@@ -55,7 +55,7 @@ a {
   margin: 0 auto;
 }
 
-/* Fixed side — stack of titles, active pinned in place, no motion */
+/* Fixed side — big titles, active centered on screen, stack shifts, no motion */
 .side {
   position: fixed;
   top: 44px;
@@ -65,15 +65,15 @@ a {
 
 .side .stack {
   display: grid;
-  gap: 4px;
+  gap: 16px;
 }
 
 .side .title {
   display: block;
-  font-size: 17px;
+  font-size: clamp(24px, 3vw, 32px);
   font-weight: 300;
-  line-height: 20px;
-  height: 20px;
+  line-height: 44px;
+  height: 44px;
   color: rgba(0, 0, 0, 0.35);
   text-decoration: none;
 }
@@ -107,25 +107,23 @@ a {
 
 /* Content column — centered */
 .content {
-  max-width: 600px;
+  max-width: 560px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* The statement — Rams H1 metrics, centered */
+/* The statement — Rams H1 metrics */
 .statement {
-  margin: 0 auto;
+  margin: 0;
   max-width: 480px;
   font-size: clamp(38px, 8.5vw, 72px);
   line-height: 1;
   letter-spacing: -0.04em;
   font-weight: 700;
-  text-align: center;
 }
 
 .statement + .line {
-  margin: 28px auto 0;
-  text-align: center;
+  margin: 28px 0 0;
 }
 
 /* Sections — one full viewport each, content vertically centered */
@@ -147,32 +145,26 @@ a {
   margin-bottom: auto;
 }
 
-/* Section titles — big and centered */
+/* Section group labels — small, bold, left */
 .label {
-  margin: 64px 0 24px;
-  font-size: clamp(20px, 2.6vw, 28px);
+  margin: 64px 0 16px;
+  font-size: 12px;
   font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  text-align: center;
+  line-height: 14px;
 }
 
 /* Light text lines */
 .line {
-  margin: 0 auto 12px;
+  margin: 0 0 12px;
   max-width: 460px;
   font-size: 17px;
   font-weight: 300;
   line-height: 24px;
 }
 
-.section > .line:first-child {
-  text-align: center;
-}
-
-/* Lists — open rows, no hairlines, block centered */
+/* Lists — open rows, no hairlines */
 .list {
-  margin: 0 auto;
+  margin: 0;
   max-width: 560px;
   padding: 0;
   list-style: none;
@@ -214,10 +206,14 @@ a {
   }
 }
 
-/* Desktop: side and credit at the left frame positions */
+/* Desktop: side vertically centered on screen, credit at left frame */
 @media (min-width: 1024px) {
   .side {
+    top: 0;
+    bottom: 0;
     left: 79px;
+    display: flex;
+    align-items: center;
   }
 
   .credit {
