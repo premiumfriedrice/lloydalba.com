@@ -183,9 +183,10 @@ a {
   line-height: 24px;
 }
 
-/* Subsections in the page — anchor targets */
+/* Subsections in the page — anchor targets and snap targets */
 .subsec {
   scroll-margin-top: 48px;
+  scroll-snap-align: start;
 }
 
 .subsec + .subsec {
@@ -194,6 +195,28 @@ a {
 
 .subsec > .label {
   margin: 0 0 16px;
+}
+
+/* Footer — the final stop */
+.footer {
+  scroll-snap-align: start;
+  padding: 96px 20px 64px;
+  text-align: center;
+}
+
+.footer .foot-label {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.55);
 }
 
 /* Skills — grid like the resume */
