@@ -30,24 +30,34 @@ const SECTIONS = [
 
 export default function Side() {
   const [active, setActive] = useState("home");
+  const [activeSub, setActiveSub] = useState<string | null>(null);
   const [desktop, setDesktop] = useState(false);
   const stackRef = useRef<HTMLDivElement>(null);
   const activeRef = useRef<HTMLAnchorElement>(null);
+
+  const sectionIds = SECTIONS.map((s) => s.id);
+  const subIds = SECTIONS.flatMap((s) => s.subs.map((sub) => sub.id));
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) setActive(entry.target.id);
+          if (!entry.isIntersecting) continue;
+          if (sectionIds.includes(entry.target.id)) {
+            setActive(entry.target.id);
+          } else if (subIds.includes(entry.target.id)) {
+            setActiveSub(entry.target.id);
+          }
         }
       },
       { rootMargin: "-40% 0px -55% 0px" }
     );
-    for (const { id } of SECTIONS) {
+    for (const id of [...sectionIds, ...subIds]) {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     }
     return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -88,7 +98,11 @@ export default function Side() {
             {active === id && subs.length > 0 && (
               <div className="subs">
                 {subs.map((sub) => (
-                  <a key={sub.id} href={`#${sub.id}`} className="sub">
+                  <a
+                    key={sub.id}
+                    href={`#${sub.id}`}
+                    className={activeSub === sub.id ? "sub on" : "sub"}
+                  >
                     {sub.label}
                   </a>
                 ))}

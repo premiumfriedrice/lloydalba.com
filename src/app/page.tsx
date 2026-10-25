@@ -42,51 +42,63 @@ export default function Home() {
         <section id="projects" className="section">
           <p className="line">What I&apos;m building now, and what has shipped.</p>
 
-          <p className="label" id="current">Current</p>
-          <List items={current} />
+          <div className="subsec" id="current">
+            <p className="label">Current</p>
+            <List items={current} />
+          </div>
 
-          <p className="label" id="past">Past</p>
-          <List items={past} />
+          <div className="subsec" id="past">
+            <p className="label">Past</p>
+            <List items={past} />
+          </div>
         </section>
 
         <section id="about" className="section">
-          <p className="label" id="experience">Experience</p>
-          <ul className="list">
-            {experiences.map((exp) => (
-              <li key={exp.time + exp.position}>
-                <span className="k">{exp.time}</span>
-                <span className="v">
-                  {exp.position} · {exp.company}
-                </span>
+          <div className="subsec" id="experience">
+            <p className="label">Experience</p>
+            <ul className="list">
+              {experiences.map((exp) => (
+                <li key={exp.time + exp.position}>
+                  <span className="k">{exp.time}</span>
+                  <span className="v">
+                    {exp.position} · {exp.company}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="subsec" id="education">
+            <p className="label">Education</p>
+            <ul className="list">
+              <li>
+                <span className="k">{education.school}</span>
+                <span className="v">{education.degree}</span>
+                <span className="n">{education.time}</span>
               </li>
-            ))}
-          </ul>
+            </ul>
+          </div>
 
-          <p className="label" id="education">Education</p>
-          <ul className="list">
-            <li>
-              <span className="k">{education.school}</span>
-              <span className="v">{education.degree}</span>
-              <span className="n">{education.time}</span>
-            </li>
-          </ul>
+          <div className="subsec" id="skills">
+            <p className="label">Skills</p>
+            <ul className="skills">
+              {skills.map((skill) => (
+                <li key={skill}>{skill}</li>
+              ))}
+            </ul>
+          </div>
 
-          <p className="label" id="skills">Skills</p>
-          <ul className="skills">
-            {skills.map((skill) => (
-              <li key={skill}>{skill}</li>
-            ))}
-          </ul>
-
-          <p className="label" id="recognition">Recognition</p>
-          <ul className="list">
-            {achievements.map((a) => (
-              <li key={a.title}>
-                <span className="k">{a.title}</span>
-                <span className="v">{a.event}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="subsec" id="recognition">
+            <p className="label">Recognition</p>
+            <ul className="list">
+              {achievements.map((a) => (
+                <li key={a.title}>
+                  <span className="k">{a.title}</span>
+                  <span className="v">{a.event}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </section>
       </main>
       <Credit />

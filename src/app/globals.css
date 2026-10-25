@@ -87,7 +87,8 @@ a {
   text-decoration: none;
 }
 
-.side .sub:hover {
+.side .sub.on {
+  font-weight: 700;
   color: #000;
 }
 
@@ -184,6 +185,19 @@ a {
   font-size: 17px;
   font-weight: 300;
   line-height: 24px;
+}
+
+/* Subsections in the page — anchor targets */
+.subsec {
+  scroll-margin-top: 48px;
+}
+
+.subsec + .subsec {
+  margin-top: 64px;
+}
+
+.subsec > .label {
+  margin: 0 0 16px;
 }
 
 /* Skills — grid like the resume */
