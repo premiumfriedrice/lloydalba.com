@@ -7,8 +7,10 @@ const siteLinks = [
 ];
 
 const toc = [
-  { href: "#projects", label: "Projects" },
+  { href: "#projects", label: "What I build" },
+  { href: "#experience", label: "Where I've worked" },
   { href: "#about", label: "About" },
+  { href: "#recognition", label: "Recognition" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -25,8 +27,8 @@ export default function Rail() {
         </ul>
       </nav>
       <ol aria-label="On this page" className="toc">
-        {toc.map((link) => (
-          <li key={link.href}>
+        {toc.map((link, i) => (
+          <li key={link.href} style={{ ["--i" as string]: i }}>
             <a href={link.href}>{link.label}</a>
           </li>
         ))}

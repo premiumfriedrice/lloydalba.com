@@ -8,6 +8,7 @@ export default function Objects() {
       {projects.map((project) => {
         const href = project.externalLink ?? `/projects/${project.slug}`;
         const label = project.skills.slice(0, 3).join(", ");
+        const initials = project.name.slice(0, 2).toUpperCase();
 
         return (
           <Link
@@ -17,7 +18,7 @@ export default function Objects() {
             rel={project.externalLink ? "noopener noreferrer" : undefined}
             className="object"
           >
-            <div className="relative w-full aspect-[4/3] mb-1.5 overflow-hidden">
+            <span className="thumb">
               {project.image ? (
                 <Image
                   src={project.image}
@@ -28,9 +29,9 @@ export default function Objects() {
                   unoptimized={project.image.endsWith(".gif")}
                 />
               ) : (
-                <div className="w-full h-full bg-well" />
+                <span aria-hidden="true">{initials}</span>
               )}
-            </div>
+            </span>
             <strong>{project.name}</strong>
             <span>{label}</span>
           </Link>

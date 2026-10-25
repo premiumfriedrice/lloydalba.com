@@ -7,20 +7,18 @@ import "./globals.css";
 const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-dm-sans",
-  weight: ["400", "500", "600"],
 });
 
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
   variable: "--font-eb-garamond",
-  weight: ["400", "500"],
   style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
   title: "Lloyd Alba - Software Engineer",
   description:
-    "Software engineer portfolio. Projects, experience, and thoughts.",
+    "Software engineer building products and systems — AI, iOS, and tooling that makes engineers faster.",
   icons: {
     icon: "/fighter.png",
   },

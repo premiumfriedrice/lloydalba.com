@@ -5,7 +5,16 @@ export default function Rules() {
       <dd>Agentic AI, iOS craft, developer tooling</dd>
 
       <dt>Currently</dt>
-      <dd>Building side projects and exploring LLM workflows</dd>
+      <dd>
+        Building side projects and exploring LLM workflows, finishing a computer
+        science degree at Texas A&amp;M
+      </dd>
+
+      <dt>Experience</dt>
+      <dd>Three summers on the platform team at Arrive Logistics</dd>
+
+      <dt>Education</dt>
+      <dd>B.Sc. in Computer Science, Texas A&amp;M University, Class of 2027</dd>
 
       <dt>Location</dt>
       <dd>Texas, US</dd>

@@ -170,6 +170,19 @@ button {
   list-style: none;
 }
 
+@keyframes rail-in {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+    filter: blur(3px);
+  }
+}
+
+.toc > li {
+  animation: rail-in 0.5s var(--ease) backwards;
+  animation-delay: calc(var(--i, 0) * 32ms + 40ms);
+}
+
 .title {
   margin: 0;
   font-size: 14px;
@@ -187,6 +200,61 @@ button {
   font-size: 14px;
   line-height: 20.5px;
   text-wrap: balance;
+}
+
+/* Masthead thumbnail strip */
+.masthead-strip {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin: 22px 0 0;
+  padding: 10px 0;
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.masthead-strip a {
+  display: block;
+}
+
+.masthead-strip img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.4s var(--ease);
+}
+
+.masthead-strip a:hover img {
+  transform: translateY(-3px);
+}
+
+.masthead-line {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-muted);
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.masthead-line li + li::before {
+  content: "·";
+  margin: 0 8px;
+  color: var(--color-faint);
+}
+
+.masthead-line a {
+  color: inherit;
+}
+
+.masthead-line a:hover {
+  color: var(--color-ink);
+}
+
+.lede {
+  margin-top: 28px;
 }
 
 .pull {
@@ -246,6 +314,7 @@ button {
   font-variant-numeric: lining-nums tabular-nums;
 }
 
+/* Objects grid */
 .objects {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -265,13 +334,24 @@ button {
   text-decoration: none;
 }
 
-.object img {
-  display: block;
+.object .thumb {
+  position: relative;
+  display: grid;
+  place-items: center;
   width: 100%;
-  height: auto;
   aspect-ratio: 4 / 3;
   margin-bottom: 6px;
+  background: var(--color-well);
+  color: var(--color-muted);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 20px;
+  overflow: hidden;
   transition: transform 0.4s var(--ease);
+}
+
+.object:hover .thumb {
+  transform: translateY(-3px);
 }
 
 .object strong {
@@ -279,10 +359,7 @@ button {
   font-weight: 500;
 }
 
-.object:hover img {
-  transform: translateY(-3px);
-}
-
+/* Rules (definition list) */
 .rules {
   display: grid;
   grid-template-columns: 132px 1fr;
@@ -310,6 +387,64 @@ button {
   color: var(--color-text-2);
 }
 
+/* Table */
+.table {
+  width: 100%;
+  margin: 24px 0 28px;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.table td,
+.table th {
+  padding: 9px 16px 9px 0;
+  border-top: 1px solid var(--color-rule);
+  text-align: left;
+  vertical-align: top;
+}
+
+.table tr:last-child td,
+.table tr:last-child th {
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.table th {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.table td {
+  color: var(--color-text-2);
+}
+
+.table td:last-child {
+  padding-right: 0;
+}
+
+/* Said (list) */
+.said {
+  margin: 24px 0 28px;
+  padding: 0;
+  list-style: none;
+}
+
+.said li {
+  display: grid;
+  gap: 2px;
+  padding: 11px 0;
+  border-top: 1px solid var(--color-rule);
+}
+
+.said li:last-child {
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.said q {
+  color: var(--color-muted);
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+/* Colophon */
 .colophon {
   margin-top: 72px;
   padding-top: 18px;
@@ -385,5 +520,11 @@ button {
     gap: 36px;
     font-size: 13px;
     line-height: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toc > li {
+    animation: none;
   }
 }
