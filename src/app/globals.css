@@ -2,36 +2,47 @@
 
 @theme inline {
   --color-ground: #fafafa;
-  --color-ink: #111111;
-  --color-muted: #8b8b8b;
-  --color-rule: #e7e7e7;
+  --color-ink: #000000;
+  --color-muted: #7a7a7a;
+  --color-rule: #dadada;
   --color-red: #e4391b;
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
   --bg: #fafafa;
-  --ink: #111;
-  --muted: #8b8b8b;
-  --rule: #e7e7e7;
-  --red: #e4391b;
-  /* dial is a physical object — constant across color schemes */
-  --face: #fff;
-  --rim: #d7d7d7;
-  --bezel: #ededec;
-  --tick-minor: #cfcfcf;
-  --tick-major: #9c9c9c;
-  --label-off: #9a9a9a;
-  --label-on: #111;
+  --ink: #000000;
+  --muted: #7a7a7a;
+  --rule: #dadada;
+  /* dial — light */
+  --face: #ffffff;
+  --rim: #dadada;
+  --bezel: #dadada;
+  --tick-minor: #bdbdbd;
+  --tick-major: #5a5a5a;
+  --hub: #5a5a5a;
+  --needle: #e4391b;
+  --label-off: #7a7a7a;
+  --label-on: #000000;
   --dial-r: min(34vw, 170px);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #161616;
-    --ink: #f3f3f3;
-    --muted: #8f8f8f;
-    --rule: #2a2a2a;
+    --bg: #141414;
+    --ink: #f2f2f2;
+    --muted: #8d8d8d;
+    --rule: #2c2c2c;
+    /* dial — dark */
+    --face: #1c1c1c;
+    --rim: #2c2c2c;
+    --bezel: #2c2c2c;
+    --tick-minor: #3e3e3e;
+    --tick-major: #a0a0a0;
+    --hub: #a0a0a0;
+    --needle: #ff5a3a;
+    --label-off: #8d8d8d;
+    --label-on: #f2f2f2;
   }
 }
 
@@ -53,14 +64,14 @@ body {
 }
 
 ::selection {
-  background: #111;
+  background: #000;
   color: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
   ::selection {
-    background: #f3f3f3;
-    color: #161616;
+    background: #f2f2f2;
+    color: #141414;
   }
 }
 
@@ -280,7 +291,7 @@ h2 {
   width: 2px;
   margin-left: -1px;
   height: calc(var(--dial-r) * 0.5);
-  background: var(--red);
+  background: var(--needle);
   border-radius: 1px;
   pointer-events: none;
 }
@@ -293,7 +304,7 @@ h2 {
   height: 7px;
   margin: -3.5px 0 0 -3.5px;
   border-radius: 50%;
-  background: var(--label-on);
+  background: var(--hub);
   pointer-events: none;
 }
 
