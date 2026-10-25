@@ -32,10 +32,11 @@ export default function Home() {
       <Side />
       <main className="content">
         <section id="home" className="section">
-          <p className="statement">Computer science student</p>
-          <p className="line">
-            I study computer science at Texas A&amp;M. I build AI agents, iOS
-            apps, and tools that make engineers faster.
+          <p className="bio">
+            I&apos;m a computer science student at Texas A&amp;M. I build AI
+            agents, iOS apps, and tools that make engineers faster — and
+            right now I&apos;m an agentic AI engineering intern at Fable
+            Innovations.
           </p>
         </section>
 

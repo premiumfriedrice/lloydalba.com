@@ -136,18 +136,14 @@ a {
   padding: 0 20px;
 }
 
-/* The statement — Rams H1 metrics */
-.statement {
+/* Home bio — the mid-size text about who I am */
+.bio {
   margin: 0;
   max-width: 480px;
-  font-size: clamp(38px, 8.5vw, 72px);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  font-weight: 700;
-}
-
-.statement + .line {
-  margin: 28px 0 0;
+  font-size: clamp(21px, 5.5vw, 28px);
+  line-height: 1.3;
+  letter-spacing: -1px;
+  font-weight: 400;
 }
 
 /* Sections — one full viewport each, content vertically centered */
