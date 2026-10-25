@@ -1,20 +1,18 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, EB_Garamond } from "next/font/google";
+import { DM_Sans, EB_Garamond } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-bricolage",
+  variable: "--font-dm-sans",
   weight: ["400", "500", "600"],
 });
 
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
-  variable: "--font-garamond",
+  variable: "--font-eb-garamond",
   weight: ["400", "500"],
   style: ["normal", "italic"],
 });
@@ -22,7 +20,7 @@ const ebGaramond = EB_Garamond({
 export const metadata: Metadata = {
   title: "Lloyd Alba - Software Engineer",
   description:
-    "Software engineer portfolio. Built with Next.js, TypeScript, and a healthy obsession for clean systems.",
+    "Software engineer portfolio. Projects, experience, and thoughts.",
   icons: {
     icon: "/fighter.png",
   },
@@ -36,13 +34,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${bricolage.variable} ${ebGaramond.variable} font-sans antialiased bg-ground text-ink min-h-screen`}
+        className={`${dmSans.variable} ${ebGaramond.variable} font-sans antialiased`}
       >
-        <div className="relative z-10 flex flex-col min-h-screen">
-          <Nav />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
+        {children}
         <Analytics />
         <SpeedInsights />
       </body>
