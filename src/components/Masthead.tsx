@@ -1,52 +1,43 @@
-import Link from "next/link";
-import { Github, Linkedin, Mail } from "lucide-react";
-import { projects } from "@/lib/projects";
-
-const socials = [
-  { href: "https://github.com/premiumfriedrice", icon: Github, label: "GitHub" },
-  { href: "https://www.linkedin.com/in/lloydalba/", icon: Linkedin, label: "LinkedIn" },
-  { href: "mailto:lloyddalba@gmail.com", icon: Mail, label: "Email" },
+const links = [
+  {
+    label: "GitHub",
+    href: "https://github.com/premiumfriedrice",
+    external: true,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/lloydalba/",
+    external: true,
+  },
+  {
+    label: "Email",
+    href: "mailto:lloyddalba@gmail.com",
+    external: false,
+  },
+  {
+    label: "Resume",
+    href: "/documents/LloydAlba_Resume.pdf",
+    external: true,
+  },
 ];
 
 export default function Masthead() {
   return (
     <header className="masthead">
-      <div className="title-row">
-        <h1 className="title">
-          Lloyd Alba<span> · software engineer</span>
-        </h1>
-        <ul className="social">
-          {socials.map((s) => (
-            <li key={s.label}>
-              <a
-                href={s.href}
-                target={s.label !== "Email" ? "_blank" : undefined}
-                rel={s.label !== "Email" ? "noopener noreferrer" : undefined}
-                aria-label={s.label}
-              >
-                <s.icon size={14} />
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <p className="statement">
-        I build products and systems — mostly <em>AI, iOS, and tooling that
-        makes engineers faster</em>.
-      </p>
-      <ul className="masthead-line">
-        <li>lloydalba.com</li>
-        <li>
-          <Link href="/projects">{projects.length} selected projects</Link>
-        </li>
-        <li>
-          <a href="https://www.linkedin.com/in/lloydalba/">by Lloyd Alba</a>
-        </li>
-        <li>Class of 2027 · Texas A&amp;M</li>
-        <li>
-          <a href="#contact">Contact ↓</a>
-        </li>
-      </ul>
+      <h1 className="title">Lloyd Alba</h1>
+      <nav className="pills" aria-label="Contact">
+        {links.map((link) => (
+          <a
+            key={link.label}
+            className="pill"
+            href={link.href}
+            target={link.external ? "_blank" : undefined}
+            rel={link.external ? "noopener noreferrer" : undefined}
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
     </header>
   );
 }

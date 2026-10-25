@@ -6,7 +6,7 @@ const siteLinks = [
   { href: "/about", label: "About" },
 ];
 
-const toc = [
+const defaultToc = [
   { href: "#projects", label: "What I build" },
   { href: "#experience", label: "Where I've worked" },
   { href: "#about", label: "About" },
@@ -14,7 +14,11 @@ const toc = [
   { href: "#contact", label: "Contact" },
 ];
 
-export default function Rail() {
+export default function Rail({
+  toc = defaultToc,
+}: {
+  toc?: { href: string; label: string }[];
+}) {
   return (
     <aside className="rail">
       <nav aria-label="Site">

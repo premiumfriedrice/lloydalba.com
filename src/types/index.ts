@@ -7,6 +7,7 @@ export interface Project {
   externalLink?: string;
   image?: string;
   startDate?: string; // ISO date
+  status?: "current" | "past";
   featured?: boolean;
 }
 

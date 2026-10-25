@@ -3,6 +3,7 @@ import { Project } from "@/types";
 export const projects: Project[] = [
   {
     slug: "pupil",
+    status: "current",
     name: "Pupil",
     description:
       "Agentic AI framework that enables agents to shadow engineers during live workflows, learn patterns through observation, and autonomously execute learned tasks. Features intent token pipelines, adaptive maturity progression, and cost-aware compute tiers.",
@@ -13,6 +14,7 @@ export const projects: Project[] = [
   },
   {
     slug: "aggiedine",
+    status: "current",
     name: "AggieDine",
     description:
       "Social dining platform for Texas A&M students. Leading a team of 6 backend engineers with microservices architecture, AWS Cognito authentication, and independent scaling of core services.",
@@ -22,6 +24,7 @@ export const projects: Project[] = [
   },
   {
     slug: "ima",
+    status: "current",
     name: "ima",
     description:
       "Fully featured habit & task tracking iOS app as an alternative to subscription-based productivity tools. Custom UI/UX design philosophy iterated through 5+ design revisions.",
@@ -32,6 +35,7 @@ export const projects: Project[] = [
   },
   {
     slug: "ars",
+    status: "current",
     name: "ARS",
     description:
       "Applicant recruitment stats platform for tracking and analyzing recruitment data.",
@@ -42,6 +46,7 @@ export const projects: Project[] = [
   },
   {
     slug: "cortex-ios",
+    status: "past",
     name: "Cortex",
     description:
       "Full SwiftUI iOS app for the Cortex project.",
@@ -52,6 +57,7 @@ export const projects: Project[] = [
   },
   {
     slug: "wavepoint",
+    status: "past",
     name: "WavePoint",
     description:
       "Simple wave point project built with Swift.",
@@ -62,6 +68,7 @@ export const projects: Project[] = [
   },
   {
     slug: "lloydalba-dev",
+    status: "current",
     name: "lloydalba.dev",
     description:
       "My personal portfolio site. Built with Next.js, TypeScript, and Tailwind CSS. Features a thoughts feed, live GitHub data, and a status indicator.",
@@ -73,6 +80,7 @@ export const projects: Project[] = [
   },
   {
     slug: "findmoto",
+    status: "past",
     name: "findMoto",
     description:
       "Facebook Marketplace webscraper tailored for finding best motorcycle deals.",
@@ -84,6 +92,7 @@ export const projects: Project[] = [
   },
   {
     slug: "surge-new",
+    status: "past",
     name: "Surge New",
     description:
       "Internal CLI Tool feature that streamlined project scaffolding by fully automating version control, REST-API .NET template app creation, and CI/CD pipelines. Achieved a 14% reduction in development time resulting in $38,400 annual savings in engineer salary costs.",
