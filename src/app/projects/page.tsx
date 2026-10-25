@@ -53,17 +53,6 @@ export default function ProjectsIndexPage() {
       <main className="column">
         <TopBar />
 
-        <header className="masthead">
-          <div className="title-row">
-            <h1 className="title">
-              Projects<span> · Lloyd Alba</span>
-            </h1>
-          </div>
-          <p className="statement">
-            Selected work — what I&apos;m building now, and what has shipped.
-          </p>
-        </header>
-
         <Section id="current">
           <p>Active projects I&apos;m building and maintaining.</p>
           <table className="table">

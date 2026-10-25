@@ -10,16 +10,6 @@ export default function AboutPage() {
       <main className="column">
         <TopBar />
 
-        <header className="masthead">
-          <h1 className="title">
-            About<span> · Lloyd Alba</span>
-          </h1>
-          <p className="statement">
-            A refreshed about page is on the way. In the meantime, you can view
-            my work on the homepage or download my resume.
-          </p>
-        </header>
-
         <p>
           <a
             href="/documents/LloydAlba_Resume.pdf"
