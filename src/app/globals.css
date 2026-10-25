@@ -197,11 +197,9 @@ a {
   margin: 0 0 16px;
 }
 
-/* Footer — the final stop */
+/* Footer — end of the scrollable content */
 .footer {
-  scroll-snap-align: start;
-  padding: 96px 20px 64px;
-  text-align: center;
+  margin-top: 96px;
 }
 
 .footer .foot-label {

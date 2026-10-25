@@ -100,12 +100,13 @@ export default function Home() {
               ))}
             </ul>
           </div>
+
+          <footer className="footer">
+            <p className="foot-label">Lloyd Alba</p>
+            <p>© 2026 · College Station, Texas</p>
+          </footer>
         </section>
       </main>
-      <footer className="footer">
-        <p className="foot-label">Lloyd Alba</p>
-        <p>© 2026 · College Station, Texas</p>
-      </footer>
       <Credit />
     </div>
   );
