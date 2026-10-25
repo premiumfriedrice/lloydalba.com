@@ -76,7 +76,7 @@ export default function DialSite() {
       setLabelSel(i);
       window.scrollTo(0, 0);
     }
-    history.replaceState(null, "", `#${SECTIONS[i]}`);
+    history.replaceState(null, "", i === 0 ? "/" : `#${SECTIONS[i]}`);
   }, []);
 
   /* shortest-path turn to section i */
@@ -377,7 +377,7 @@ export default function DialSite() {
                 turnTo(i);
               }}
             >
-              {name}
+              {i === 0 ? "Lloyd" : name}
             </button>
           ))}
         </div>

@@ -297,6 +297,22 @@ h2 {
   pointer-events: none;
 }
 
+/* Wide screens: dock the dial top-left (fully visible) and widen the body */
+@media (min-width: 1100px) {
+  .dial {
+    left: 2.5rem;
+    top: 2.5rem;
+    bottom: auto;
+    margin-left: 0;
+  }
+
+  main {
+    margin: 0 3rem 0 calc(var(--dial-r) * 2 + 5.5rem);
+    max-width: min(56rem, calc(100vw - var(--dial-r) * 2 - 8.5rem));
+    padding: 4.5rem 0 6rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .sec {
     animation: none;
