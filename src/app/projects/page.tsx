@@ -64,14 +64,14 @@ export default function ProjectsIndexPage() {
           </p>
         </header>
 
-        <Section index="01" title="Current" id="current">
+        <Section id="current">
           <p>Active projects I&apos;m building and maintaining.</p>
           <table className="table">
             <tbody>{rows(current)}</tbody>
           </table>
         </Section>
 
-        <Section index="02" title="Past" id="past">
+        <Section id="past">
           <p>Shipped and archived.</p>
           <table className="table">
             <tbody>{rows(past)}</tbody>

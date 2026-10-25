@@ -31,7 +31,7 @@ export default function Home() {
           </p>
         </div>
 
-        <Section index="01" title="What I build" id="projects">
+        <Section id="projects">
           <p>
             Selected work. Each project solves a real problem, teaches me
             something new, or both.
@@ -39,7 +39,7 @@ export default function Home() {
           <Objects />
         </Section>
 
-        <Section index="02" title="Where I've worked" id="experience">
+        <Section id="experience">
           <p>
             Three summers on the same platform team, each one deeper than the
             last.
@@ -47,17 +47,17 @@ export default function Home() {
           <ExperienceTable />
         </Section>
 
-        <Section index="03" title="About" id="about">
+        <Section id="about">
           <p>The short version. A longer about page is coming.</p>
           <Rules />
         </Section>
 
-        <Section index="04" title="Recognition" id="recognition">
+        <Section id="recognition">
           <p>Competitions and hackathons.</p>
           <Recognition />
         </Section>
 
-        <Section index="05" title="Contact" id="contact">
+        <Section id="contact">
           <p>
             Open to interesting projects, collaborations, and conversations
             about tools that make building software more humane.
