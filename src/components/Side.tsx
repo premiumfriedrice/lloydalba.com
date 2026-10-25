@@ -66,6 +66,17 @@ export default function Side() {
         else break;
       }
 
+      /* once a section is active, its first subsection is active too —
+         no dead zone at the top of a section */
+      const sec = SECTIONS.find((s) => s.id === section) ?? SECTIONS[0];
+      if (sec.subs.length > 0) {
+        if (!sub || !sec.subs.some((s) => s.id === sub)) {
+          sub = sec.subs[0].id;
+        }
+      } else {
+        sub = null;
+      }
+
       setActive((prev) => (prev === section ? prev : section));
       setActiveSub((prev) => (prev === sub ? prev : sub));
     };
