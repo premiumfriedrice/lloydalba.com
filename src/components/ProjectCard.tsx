@@ -1,118 +1,58 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { Project, GitHubRepoData } from "@/types";
-import { formatDistanceToNow } from "date-fns";
+import type { Project } from "@/types";
 
-interface Props {
+interface ProjectCardProps {
   project: Project;
-  githubData?: GitHubRepoData | null;
-  isActive?: boolean;
 }
 
-export default function ProjectCard({ project, githubData, isActive }: Props) {
-
-  const totalBytes = githubData?.languages
-    ? Object.values(githubData.languages).reduce((a, b) => a + b, 0)
-    : 0;
-
-  const langColors: Record<string, string> = {
-    TypeScript: "#3178c6",
-    JavaScript: "#f1e05a",
-    Python: "#3572A5",
-    "C++": "#f34b7d",
-    CSS: "#563d7c",
-    HTML: "#e34c26",
-    HCL: "#844FBA",
-    Shell: "#89e051",
-    Svelte: "#ff3e00",
-  };
+export default function ProjectCard({ project }: ProjectCardProps) {
+  const href = project.externalLink ?? `/projects/${project.slug}`;
+  const year = project.startDate
+    ? new Date(project.startDate).getFullYear()
+    : undefined;
 
   return (
-    <Link href={`/projects/${project.slug}`} className="block group">
-      <div
-        className={`relative backdrop-blur-sm bg-black/20 border p-6 md:p-8 transition-all h-full ${
-          isActive
-            ? "card-active"
-            : "border-white/[0.06] card-hover"
-        }`}
-      >
-        {isActive && (
-          <div className="absolute top-4 right-4 flex items-center gap-2 text-[11px] text-emerald-400 tracking-wider uppercase">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
-            </span>
-            Active
-          </div>
-        )}
-
-        <div className="flex items-start justify-between mb-3">
-          <h3 className="text-white font-bold text-lg tracking-tight group-hover:text-[#c4b5fd] transition-colors">
+    <Link
+      href={href}
+      target={project.externalLink ? "_blank" : undefined}
+      rel={project.externalLink ? "noopener noreferrer" : undefined}
+      className="group block no-underline"
+    >
+      <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-rule bg-well mb-3">
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt={project.name}
+            fill
+            className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,0.75,0.2,1)] group-hover:-translate-y-1"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center text-muted text-xs">
             {project.name}
-          </h3>
-          {!isActive && (
-            <ArrowUpRight
-              size={16}
-              className="text-neutral-400 group-hover:text-[#c4b5fd] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all mt-1 flex-shrink-0"
-            />
-          )}
-        </div>
-
-        <p className="text-sm leading-relaxed line-clamp-2 text-neutral-400 mb-4">
-          {project.description}
-        </p>
-
-        {githubData?.pushed_at && (
-          <p className="text-[11px] text-neutral-400 tracking-wide mb-4">
-            pushed{" "}
-            {formatDistanceToNow(new Date(githubData.pushed_at), {
-              addSuffix: true,
-            })}
-          </p>
-        )}
-
-        {githubData?.languages && totalBytes > 0 && (
-          <div className="mb-4">
-            <div className="flex h-[3px] overflow-hidden bg-white/[0.03]">
-              {Object.entries(githubData.languages).map(([lang, bytes]) => (
-                <div
-                  key={lang}
-                  style={{
-                    width: `${(bytes / totalBytes) * 100}%`,
-                    backgroundColor: langColors[lang] || "#52525b",
-                  }}
-                />
-              ))}
-            </div>
-            <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
-              {Object.entries(githubData.languages)
-                .slice(0, 3)
-                .map(([lang, bytes]) => (
-                  <span
-                    key={lang}
-                    className="flex items-center gap-1.5 text-[11px] text-neutral-400"
-                  >
-                    <span
-                      className="inline-block w-1.5 h-1.5 rounded-full"
-                      style={{ backgroundColor: langColors[lang] || "#52525b" }}
-                    />
-                    {lang}
-                  </span>
-                ))}
-            </div>
           </div>
         )}
+      </div>
 
-        <div className="flex flex-wrap gap-1.5">
-          {project.skills.map((skill) => (
-            <span
-              key={skill}
-              className="text-[11px] px-2 py-0.5 border border-white/[0.06] text-neutral-400 tracking-wide"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
+      <div className="flex items-baseline justify-between gap-3 mb-1">
+        <h3 className="text-sm font-medium text-ink truncate">{project.name}</h3>
+        {year && (
+          <span className="text-xs text-faint tabular-nums">{year}</span>
+        )}
+      </div>
+
+      <p className="text-sm text-muted line-clamp-2 mb-2">{project.description}</p>
+
+      <div className="flex flex-wrap gap-1.5">
+        {project.skills.slice(0, 4).map((skill) => (
+          <span
+            key={skill}
+            className="text-[11px] text-muted bg-rule/60 px-1.5 py-0.5 rounded"
+          >
+            {skill}
+          </span>
+        ))}
       </div>
     </Link>
   );
