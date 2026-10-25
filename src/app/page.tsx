@@ -57,16 +57,6 @@ export default function Home() {
           <Recognition />
         </Section>
 
-        <Section id="contact">
-          <p>
-            Open to interesting projects, collaborations, and conversations
-            about tools that make building software more humane.
-          </p>
-          <p>
-            <a href="mailto:lloyddalba@gmail.com">lloyddalba@gmail.com</a>
-          </p>
-        </Section>
-
         <Colophon />
       </main>
     </div>

@@ -11,7 +11,6 @@ const defaultToc = [
   { href: "#experience", label: "Where I've worked" },
   { href: "#about", label: "About" },
   { href: "#recognition", label: "Recognition" },
-  { href: "#contact", label: "Contact" },
 ];
 
 export default function Rail({
