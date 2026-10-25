@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { DM_Sans, EB_Garamond } from "next/font/google";
+import { Inter, EB_Garamond } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
+  variable: "--font-inter",
 });
 
 const ebGaramond = EB_Garamond({
@@ -31,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dmSans.variable} ${ebGaramond.variable} antialiased`}>
+      <body className={`${inter.variable} ${ebGaramond.variable} antialiased`}>
         {children}
         <Analytics />
         <SpeedInsights />
