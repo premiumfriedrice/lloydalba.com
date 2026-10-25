@@ -165,6 +165,11 @@ a {
   margin-bottom: auto;
 }
 
+/* The final section ends flush with the fixed contact block (bottom: 41px) */
+.content > .section:last-of-type {
+  padding-bottom: 41px;
+}
+
 /* Section group labels — small, bold, left */
 .label {
   margin: 64px 0 16px;
