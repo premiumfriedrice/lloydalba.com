@@ -10,6 +10,7 @@
 html {
   background: #fff;
   scroll-snap-type: y mandatory;
+  overscroll-behavior-y: none;
 }
 
 body {
