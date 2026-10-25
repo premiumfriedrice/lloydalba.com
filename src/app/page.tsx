@@ -1,5 +1,41 @@
 import Side from "@/components/Side";
 import Credit from "@/components/Credit";
+
+const CONTACT_EMAIL = "lloyddalba@gmail.com";
+const CONTACT_LINKS = [
+  {
+    label: "GitHub",
+    href: "https://github.com/premiumfriedrice",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/lloydalba/",
+  },
+  {
+    label: "Resume",
+    href: "/documents/LloydAlba_Resume.pdf",
+  },
+];
+
+function ContactLinks() {
+  return (
+    <>
+      {CONTACT_LINKS.map((link, i) => (
+        <span key={link.label}>
+          {i > 0 && " · "}
+          <a
+            className="link"
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {link.label}
+          </a>
+        </span>
+      ))}
+    </>
+  );
+}
 import { projects } from "@/lib/projects";
 import {
   experiences,
@@ -38,6 +74,16 @@ export default function Home() {
             right now I&apos;m an agentic AI engineering intern at Fable
             Innovations.
           </p>
+          <div className="home-contact">
+            <p className="line">
+              <a className="link" href={`mailto:${CONTACT_EMAIL}`}>
+                {CONTACT_EMAIL}
+              </a>
+            </p>
+            <p className="line">
+              <ContactLinks />
+            </p>
+          </div>
         </section>
 
         <section id="projects" className="section">
@@ -102,6 +148,17 @@ export default function Home() {
           </div>
 
           <footer className="footer">
+            <div className="footer-contact">
+              <p className="foot-label">Contact</p>
+              <p className="line">
+                <a className="link" href={`mailto:${CONTACT_EMAIL}`}>
+                  {CONTACT_EMAIL}
+                </a>
+              </p>
+              <p className="line">
+                <ContactLinks />
+              </p>
+            </div>
             <p className="foot-label">Lloyd Alba</p>
             <p>© 2026 · College Station, Texas</p>
           </footer>

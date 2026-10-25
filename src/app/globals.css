@@ -9,8 +9,8 @@
 
 html {
   background: #fff;
-  scroll-snap-type: y mandatory;
-  overscroll-behavior-y: none;
+  scroll-snap-type: y proximity;
+  overflow-x: clip;
 }
 
 body {
@@ -21,6 +21,8 @@ body {
   font-size: 17px;
   line-height: 20px;
   font-weight: 400;
+  overflow-x: clip;
+  overscroll-behavior-y: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -68,9 +70,10 @@ a {
 }
 
 .side .tabs-row {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
   gap: 18px;
+  overflow: hidden;
 }
 
 .side .tab {
@@ -87,10 +90,11 @@ a {
 }
 
 .side .tabs-subs {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
   gap: 14px;
   margin-top: 8px;
+  overflow: hidden;
 }
 
 .side .tabs-subs .sub {
@@ -111,12 +115,9 @@ a {
   display: none;
 }
 
-/* Fixed bottom-left credit block */
+/* Fixed bottom-left credit block — desktop only */
 .credit {
-  position: fixed;
-  bottom: 41px;
-  left: 20px;
-  z-index: 5;
+  display: none;
 }
 
 .credit .label {
@@ -155,7 +156,6 @@ a {
   min-height: 100vh;
   min-height: 100dvh;
   scroll-snap-align: start;
-  scroll-snap-stop: always;
   display: flex;
   flex-direction: column;
   padding: 128px 0;
@@ -210,6 +210,15 @@ a {
    Recognition subsection still covers the scroll-spy band at page bottom */
 .footer {
   margin-top: 42vh;
+}
+
+/* Mobile-only contact placements */
+.home-contact {
+  margin-top: 32px;
+}
+
+.footer-contact {
+  margin-bottom: 32px;
 }
 
 .footer .foot-label {
@@ -355,6 +364,15 @@ a {
   }
 
   .credit {
+    display: block;
+    position: fixed;
+    bottom: 41px;
     left: 80px;
+    z-index: 5;
+  }
+
+  .home-contact,
+  .footer-contact {
+    display: none;
   }
 }
