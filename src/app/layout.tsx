@@ -1,24 +1,18 @@
 import type { Metadata } from "next";
-import { Inter, EB_Garamond } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
-const inter = Inter({
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-const ebGaramond = EB_Garamond({
-  subsets: ["latin"],
-  variable: "--font-eb-garamond",
-  style: ["normal", "italic"],
+  variable: "--font-archivo",
 });
 
 export const metadata: Metadata = {
-  title: "Lloyd Alba - Software Engineer",
+  title: "Lloyd Alba",
   description:
-    "Software engineer building products and systems — AI agents, iOS, and tooling that makes engineers faster.",
+    "Lloyd Alba — software engineer. AI agents, iOS, and tooling that makes engineers faster.",
   icons: {
     icon: "/fighter.png",
   },
@@ -31,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${ebGaramond.variable} antialiased`}>
+      <body className={`${archivo.variable} antialiased`}>
         {children}
         <Analytics />
         <SpeedInsights />

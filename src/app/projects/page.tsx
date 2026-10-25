@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Rail from "@/components/Rail";
-import TopBar from "@/components/TopBar";
-import Section from "@/components/Section";
-import Colophon from "@/components/Colophon";
+import Side from "@/components/Side";
+import Credit from "@/components/Credit";
 import { projects } from "@/lib/projects";
 import type { Project } from "@/types";
 
@@ -13,29 +11,36 @@ export const metadata: Metadata = {
     "Selected projects — what I'm building now, and what has shipped.",
 };
 
-function rows(list: Project[]) {
-  return list.map((project) => {
-    const href = project.externalLink ?? `/projects/${project.slug}`;
-    const year = project.startDate
-      ? new Date(project.startDate).getFullYear()
-      : null;
+function List({ items }: { items: Project[] }) {
+  return (
+    <ul className="list">
+      {items.map((project) => {
+        const href = project.externalLink ?? `/projects/${project.slug}`;
+        const year = project.startDate
+          ? new Date(project.startDate).getFullYear()
+          : null;
 
-    return (
-      <tr key={project.slug}>
-        <th scope="row">
-          <Link
-            href={href}
-            target={project.externalLink ? "_blank" : undefined}
-            rel={project.externalLink ? "noopener noreferrer" : undefined}
-          >
-            {project.name}
-          </Link>
-        </th>
-        <td>{project.description}</td>
-        <td className="num">{year}</td>
-      </tr>
-    );
-  });
+        return (
+          <li key={project.slug}>
+            <span className="k">
+              <Link
+                href={href}
+                target={project.externalLink ? "_blank" : undefined}
+                rel={
+                  project.externalLink ? "noopener noreferrer" : undefined
+                }
+                className="link"
+              >
+                {project.name}
+              </Link>
+            </span>
+            <span className="v">{project.description}</span>
+            {year && <span className="n">{year}</span>}
+          </li>
+        );
+      })}
+    </ul>
+  );
 }
 
 export default function ProjectsIndexPage() {
@@ -43,32 +48,21 @@ export default function ProjectsIndexPage() {
   const past = projects.filter((p) => p.status !== "current");
 
   return (
-    <div className="page">
-      <Rail
-        toc={[
-          { href: "#current", label: "Current" },
-          { href: "#past", label: "Past" },
-        ]}
-      />
-      <main className="column">
-        <TopBar />
+    <div className="shell">
+      <Side page="Projects" />
+      <main className="content">
+        <p className="bio">
+          <strong>Projects</strong> — what I&apos;m building now, and what has
+          shipped.
+        </p>
 
-        <Section id="current">
-          <p>Active projects I&apos;m building and maintaining.</p>
-          <table className="table">
-            <tbody>{rows(current)}</tbody>
-          </table>
-        </Section>
+        <p className="label">Current</p>
+        <List items={current} />
 
-        <Section id="past">
-          <p>Shipped and archived.</p>
-          <table className="table">
-            <tbody>{rows(past)}</tbody>
-          </table>
-        </Section>
-
-        <Colophon />
+        <p className="label">Past</p>
+        <List items={past} />
       </main>
+      <Credit />
     </div>
   );
 }
