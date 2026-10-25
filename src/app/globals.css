@@ -164,6 +164,13 @@ a {
   margin: auto 0;
 }
 
+/* Hairline separators between the big sections */
+.section + .section::before {
+  content: "";
+  height: 1px;
+  background: #ebebeb;
+}
+
 /* Snapping is desktop-only — mobile scrolls freely */
 @media (min-width: 1024px) {
   html {
