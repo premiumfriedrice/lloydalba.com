@@ -10,6 +10,7 @@
 html {
   background: #fff;
   overflow-x: clip;
+  overscroll-behavior-y: none;
 }
 
 body {
@@ -150,10 +151,10 @@ a {
   font-weight: 400;
 }
 
-/* Sections — one full viewport each on desktop, content vertically centered */
+/* Sections — one stable viewport each, content vertically centered.
+   100vh (not dvh) so iOS doesn't resize sections as the URL bar animates */
 .section {
   min-height: 100vh;
-  min-height: 100dvh;
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
