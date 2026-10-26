@@ -9,6 +9,7 @@
 
 html {
   background: #fff;
+  scroll-snap-type: y mandatory;
   overflow-x: clip;
 }
 
@@ -51,11 +52,7 @@ a {
   border-bottom-color: transparent;
 }
 
-/* Layout */
-.shell {
-  max-width: 1024px;
-  margin: 0 auto;
-}
+/* Layout — full-bleed sections */
 
 /* Mobile — horizontal persistent tabs bar at the top */
 .side {
@@ -133,10 +130,11 @@ a {
   line-height: 20px;
 }
 
-/* Content column — centered */
-.content {
+/* Content column — centered inside each section/slide */
+.inner {
+  width: 100%;
   max-width: 560px;
-  margin: 0 auto;
+  margin: auto;
   padding: 0 20px;
 }
 
@@ -150,35 +148,55 @@ a {
   font-weight: 400;
 }
 
-/* Sections — one full viewport each on desktop, content vertically centered */
+/* Sections — one locked viewport each, color shifts per section */
 .section {
   min-height: 100vh;
   min-height: 100dvh;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
   display: flex;
   flex-direction: column;
   padding: 128px 0;
 }
 
-.section > .inner {
-  margin: auto 0;
+.section--home {
+  background: #ffffff;
 }
 
-/* Super-light hairline separators between subsections */
-.subsec + .subsec {
-  border-top: 1px solid #ebebeb;
+.section--projects {
+  background: #f5f3ef;
 }
 
-/* Snapping is desktop-only — mobile scrolls freely */
-@media (min-width: 1024px) {
-  html {
-    scroll-snap-type: y proximity;
-  }
+.section--about {
+  background: #eae7e1;
 }
 
-/* The final section ends flush with the fixed contact block (bottom: 41px) */
-.content > .section:last-of-type {
-  padding-bottom: 41px;
+/* Horizontal decks — one full-width slide per subsection */
+.deck {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.deck::-webkit-scrollbar {
+  display: none;
+}
+
+.panel {
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.panel + .panel {
+  border-left: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 /* Section group labels — small, bold, left */
@@ -199,24 +217,14 @@ a {
   line-height: 24px;
 }
 
-/* Subsections in the page — anchor targets and snap targets */
-.subsec {
-  scroll-margin-top: 48px;
-  scroll-snap-align: start;
-}
-
-.subsec + .subsec {
-  margin-top: 64px;
-}
-
+/* Subsection labels inside slides */
 .subsec > .label {
   margin: 0 0 16px;
 }
 
-/* Footer — end of the scrollable content, tall enough that the
-   Recognition subsection still covers the scroll-spy band at page bottom */
+/* Footer — end of the About section's last slide */
 .footer {
-  margin-top: 42vh;
+  margin-top: 96px;
 }
 
 /* Mobile-only contact placements */
@@ -317,7 +325,7 @@ a {
 }
 
 .projects li + li {
-  border-top: 1px solid #ebebeb;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .projects .k {
