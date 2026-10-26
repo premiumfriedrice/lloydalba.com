@@ -164,11 +164,9 @@ a {
   margin: auto 0;
 }
 
-/* Hairline separators between the big sections */
-.section + .section::before {
-  content: "";
-  height: 1px;
-  background: #ebebeb;
+/* Super-light hairline separators between subsections */
+.subsec + .subsec {
+  border-top: 1px solid #ebebeb;
 }
 
 /* Snapping is desktop-only — mobile scrolls freely */
