@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Side from "@/components/Side";
-import Credit from "@/components/Credit";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -28,11 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${archivo.variable} antialiased`}>
-        <div className="shell">
-          <Side />
-          {children}
-          <Credit />
-        </div>
+        {children}
         <Analytics />
         <SpeedInsights />
       </body>

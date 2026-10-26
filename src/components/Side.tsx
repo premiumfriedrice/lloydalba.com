@@ -40,8 +40,11 @@ export default function Side() {
   const subsRowRef = useRef<HTMLDivElement>(null);
   const subsActiveRef = useRef<HTMLAnchorElement>(null);
 
-  /* Vertical scroll sets the active section; the active section's
-     horizontal deck position sets the active subsection */
+  const sectionIds = SECTIONS.map((s) => s.id);
+  const subIds = SECTIONS.flatMap((s) => s.subs.map((sub) => sub.id));
+
+  /* Track the active section and subsection from scroll position —
+     deterministic, works for instant anchor jumps too */
   useEffect(() => {
     let raf = 0;
 
@@ -49,26 +52,29 @@ export default function Side() {
       raf = 0;
       const y = window.scrollY + window.innerHeight * 0.425;
 
-      let section = SECTIONS[0].id;
-      for (const s of SECTIONS) {
-        const el = document.getElementById(s.id);
-        if (el && el.offsetTop <= y) section = s.id;
+      let section: string = sectionIds[0];
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= y) section = id;
         else break;
       }
 
-      const sec = SECTIONS.find((s) => s.id === section) ?? SECTIONS[0];
-
       let sub: string | null = null;
+      for (const id of subIds) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= y) sub = id;
+        else break;
+      }
+
+      /* once a section is active, its first subsection is active too —
+         no dead zone at the top of a section */
+      const sec = SECTIONS.find((s) => s.id === section) ?? SECTIONS[0];
       if (sec.subs.length > 0) {
-        sub = sec.subs[0].id;
-        const deck = document
-          .getElementById(section)
-          ?.querySelector<HTMLElement>("[data-deck]");
-        if (deck && deck.clientWidth > 0) {
-          const idx = Math.round(deck.scrollLeft / deck.clientWidth);
-          const s = sec.subs[Math.min(idx, sec.subs.length - 1)];
-          if (s) sub = s.id;
+        if (!sub || !sec.subs.some((s) => s.id === sub)) {
+          sub = sec.subs[0].id;
         }
+      } else {
+        sub = null;
       }
 
       setActive((prev) => (prev === section ? prev : section));
@@ -82,18 +88,13 @@ export default function Side() {
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-    const decks = Array.from(
-      document.querySelectorAll<HTMLElement>("[data-deck]")
-    );
-    decks.forEach((d) =>
-      d.addEventListener("scroll", onScroll, { passive: true })
-    );
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
-      decks.forEach((d) => d.removeEventListener("scroll", onScroll));
       if (raf) cancelAnimationFrame(raf);
     };
+    // sectionIds/subIds are module-level constants derived from SECTIONS
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -111,7 +112,8 @@ export default function Side() {
       row.style.transform = "translateX(0)";
       return;
     }
-    const center = row.clientWidth / 2 - (el.offsetLeft + el.offsetWidth / 2);
+    const center =
+      row.clientWidth / 2 - (el.offsetLeft + el.offsetWidth / 2);
     row.style.transform = `translateX(${center}px)`;
   };
 
@@ -134,6 +136,9 @@ export default function Side() {
     }
   }, [active, activeSub, desktop]);
 
+  const activeSection =
+    SECTIONS.find((s) => s.id === active) ?? SECTIONS[0];
+
   return (
     <aside className="side">
       {/* Mobile — horizontal tabs, active pinned center, names slide past */}
@@ -151,9 +156,9 @@ export default function Side() {
             </a>
           ))}
         </div>
-        {SECTIONS.find((s) => s.id === active)?.subs.length ? (
+        {activeSection.subs.length > 0 && (
           <div className="tabs-subs" ref={subsRowRef}>
-            {(SECTIONS.find((s) => s.id === active)?.subs ?? []).map((sub) => (
+            {activeSection.subs.map((sub) => (
               <a
                 key={sub.id}
                 ref={activeSub === sub.id ? subsActiveRef : undefined}
@@ -164,7 +169,7 @@ export default function Side() {
               </a>
             ))}
           </div>
-        ) : null}
+        )}
       </nav>
 
       {/* Desktop — vertical stack, active pinned center */}

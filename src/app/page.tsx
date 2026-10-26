@@ -1,4 +1,41 @@
-import ContactLinks, { CONTACT_EMAIL } from "@/components/ContactLinks";
+import Side from "@/components/Side";
+import Credit from "@/components/Credit";
+
+const CONTACT_EMAIL = "lloyddalba@gmail.com";
+const CONTACT_LINKS = [
+  {
+    label: "GitHub",
+    href: "https://github.com/premiumfriedrice",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/lloydalba/",
+  },
+  {
+    label: "Resume",
+    href: "/documents/LloydAlba_Resume.pdf",
+  },
+];
+
+function ContactLinks() {
+  return (
+    <>
+      {CONTACT_LINKS.map((link, i) => (
+        <span key={link.label}>
+          {i > 0 && " · "}
+          <a
+            className="link"
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {link.label}
+          </a>
+        </span>
+      ))}
+    </>
+  );
+}
 import { projects } from "@/lib/projects";
 import {
   experiences,
@@ -27,14 +64,16 @@ export default function Home() {
   const past = projects.filter((p) => p.status !== "current");
 
   return (
-    <main>
-      {/* Lloyd Alba */}
-      <section id="home" className="section section--home">
-        <div className="inner">
+    <div className="shell">
+      <Side />
+      <main className="content">
+        <section id="home" className="section">
+          <div className="inner">
           <p className="bio">
             I&apos;m a computer science student at Texas A&amp;M. I build AI
-            agents, iOS apps, and tools that make engineers faster — and right
-            now I&apos;m an agentic AI engineering intern at Fable Innovations.
+            agents, iOS apps, and tools that make engineers faster — and
+            right now I&apos;m an agentic AI engineering intern at Fable
+            Innovations.
           </p>
           <div className="home-contact">
             <p className="line">
@@ -46,102 +85,92 @@ export default function Home() {
               <ContactLinks />
             </p>
           </div>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* Projects — scroll horizontally to explore */}
-      <section id="projects" className="section section--projects">
-        <div className="deck" data-deck>
-          <div className="panel subsec" id="current">
-            <div className="inner">
-              <p className="label">Current</p>
-              <List items={current} />
-            </div>
+        <section id="projects" className="section">
+          <div className="inner">
+          <p className="line">What I&apos;m building now, and what has shipped.</p>
+
+          <div className="subsec" id="current">
+            <p className="label">Current</p>
+            <List items={current} />
           </div>
 
-          <div className="panel subsec" id="past">
-            <div className="inner">
-              <p className="label">Past</p>
-              <List items={past} />
-            </div>
+          <div className="subsec" id="past">
+            <p className="label">Past</p>
+            <List items={past} />
           </div>
-        </div>
-      </section>
-
-      {/* About — scroll horizontally to explore */}
-      <section id="about" className="section section--about">
-        <div className="deck" data-deck>
-          <div className="panel subsec" id="experience">
-            <div className="inner">
-              <p className="label">Experience</p>
-              <ul className="list">
-                {experiences.map((exp) => (
-                  <li key={exp.time + exp.position}>
-                    <span className="k">{exp.time}</span>
-                    <span className="v">
-                      {exp.position} · {exp.company}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
+        </section>
 
-          <div className="panel subsec" id="education">
-            <div className="inner">
-              <p className="label">Education</p>
-              <ul className="list">
-                <li>
-                  <span className="k">{education.school}</span>
-                  <span className="v">{education.degree}</span>
-                  <span className="n">{education.time}</span>
+        <section id="about" className="section">
+          <div className="inner">
+          <div className="subsec" id="experience">
+            <p className="label">Experience</p>
+            <ul className="list">
+              {experiences.map((exp) => (
+                <li key={exp.time + exp.position}>
+                  <span className="k">{exp.time}</span>
+                  <span className="v">
+                    {exp.position} · {exp.company}
+                  </span>
                 </li>
-              </ul>
-            </div>
+              ))}
+            </ul>
           </div>
 
-          <div className="panel subsec" id="skills">
-            <div className="inner">
-              <p className="label">Skills</p>
-              <ul className="skills">
-                {skills.map((skill) => (
-                  <li key={skill}>{skill}</li>
-                ))}
-              </ul>
-            </div>
+          <div className="subsec" id="education">
+            <p className="label">Education</p>
+            <ul className="list">
+              <li>
+                <span className="k">{education.school}</span>
+                <span className="v">{education.degree}</span>
+                <span className="n">{education.time}</span>
+              </li>
+            </ul>
           </div>
 
-          <div className="panel subsec" id="recognition">
-            <div className="inner">
-              <p className="label">Recognition</p>
-              <ul className="list">
-                {achievements.map((a) => (
-                  <li key={a.title}>
-                    <span className="k">{a.title}</span>
-                    <span className="v">{a.event}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <footer className="footer">
-                <div className="footer-contact">
-                  <p className="foot-label">Contact</p>
-                  <p className="line">
-                    <a className="link" href={`mailto:${CONTACT_EMAIL}`}>
-                      {CONTACT_EMAIL}
-                    </a>
-                  </p>
-                  <p className="line">
-                    <ContactLinks />
-                  </p>
-                </div>
-                <p className="foot-label">Lloyd Alba</p>
-                <p>© 2026 · College Station, Texas</p>
-              </footer>
-            </div>
+          <div className="subsec" id="skills">
+            <p className="label">Skills</p>
+            <ul className="skills">
+              {skills.map((skill) => (
+                <li key={skill}>{skill}</li>
+              ))}
+            </ul>
           </div>
-        </div>
-      </section>
-    </main>
+
+          <div className="subsec" id="recognition">
+            <p className="label">Recognition</p>
+            <ul className="list">
+              {achievements.map((a) => (
+                <li key={a.title}>
+                  <span className="k">{a.title}</span>
+                  <span className="v">{a.event}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <footer className="footer">
+            <div className="footer-contact">
+              <p className="foot-label">Contact</p>
+              <p className="line">
+                <a className="link" href={`mailto:${CONTACT_EMAIL}`}>
+                  {CONTACT_EMAIL}
+                </a>
+              </p>
+              <p className="line">
+                <ContactLinks />
+              </p>
+            </div>
+            <p className="foot-label">Lloyd Alba</p>
+            <p>© 2026 · College Station, Texas</p>
+          </footer>
+          </div>
+        </section>
+      </main>
+      <Credit />
+    </div>
   );
 }
