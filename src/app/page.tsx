@@ -36,8 +36,8 @@ export default function Home() {
             </ul>
           </div>
           <p className="statement">
-            I build <em>AI agents, iOS apps, and tools that make engineers
-            faster</em>.
+            Jack of all trades in software. But what I really love is
+            <em>automating things until the work disappears</em>.
           </p>
         </header>
 
