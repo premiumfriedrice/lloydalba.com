@@ -1,4 +1,4 @@
-if(typeof Promise.withResolvers!=="function"){Object.defineProperty(Promise,"withResolvers",{value:function(){var e,t;var r=new this(function(r,n){e=r;t=n});return{promise:r,resolve:e,reject:t}},writable:true,enumerable:false,configurable:true})}/**
+if(typeof Promise.withResolvers!=="function"){Object.defineProperty(Promise,"withResolvers",{value:function(){var e,t;var r=new this(function(r,n){e=r;t=n});return{promise:r,resolve:e,reject:t}},writable:true,enumerable:false,configurable:true})}if(typeof Promise.try!=="function"){Object.defineProperty(Promise,"try",{value:function(e){try{return this.resolve(e())}catch(t){return this.reject(t)}},writable:true,enumerable:false,configurable:true})}/**
  * @licstart The following is the entire license notice for the
  * JavaScript code in this page
  *

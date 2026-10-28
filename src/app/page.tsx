@@ -36,8 +36,9 @@ export default function Home() {
             </ul>
           </div>
           <p className="statement">
-            Jack of all trades in software. But what I really love is
-            <em>automating things until the work disappears</em>.
+            My name is Lloyd. I study Computer Science at Texas A&amp;M
+            University. I love designing things such as websites and mobile
+            apps, and I like building software automations.
           </p>
         </header>
 

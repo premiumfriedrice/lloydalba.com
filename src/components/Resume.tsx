@@ -2,13 +2,14 @@
 
 import dynamic from "next/dynamic";
 
-/* iOS < 17.4 lacks Promise.withResolvers, which pdf.js requires */
+/* iOS < 18 lacks Promise.withResolvers and Promise.try, which pdf.js 6 requires */
 type ResolversPolyfill = {
   withResolvers?: () => {
     promise: Promise<unknown>;
     resolve: (value: unknown) => void;
     reject: (reason: unknown) => void;
   };
+  try?: (impl: () => unknown) => Promise<unknown>;
 };
 
 const P = Promise as unknown as ResolversPolyfill;
@@ -21,6 +22,15 @@ if (typeof P.withResolvers !== "function") {
       reject = rej;
     });
     return { promise, resolve, reject };
+  };
+}
+if (typeof P.try !== "function") {
+  P.try = function (impl: () => unknown) {
+    try {
+      return Promise.resolve(impl());
+    } catch (error) {
+      return Promise.reject(error);
+    }
   };
 }
 
