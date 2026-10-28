@@ -35,6 +35,8 @@ export default function ResumeView() {
         <Document
           file="/documents/LloydAlba_Resume.pdf"
           onLoadSuccess={(pdf) => setNumPages(pdf.numPages)}
+          loading="Loading resume…"
+          error="The resume could not load on this browser."
         >
           {Array.from({ length: numPages }, (_, i) => (
             <Page key={i + 1} pageNumber={i + 1} width={width} />

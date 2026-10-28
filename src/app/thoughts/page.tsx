@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Rail, TopNav } from "@/components/Nav";
 import { getAllThoughts } from "@/lib/thoughts";
 
 export const metadata: Metadata = {
   title: "Thoughts — Lloyd Alba",
-  description: "Notes on building things and taking them apart.",
+  description: "Some stuff I need to write down and let others see.",
 };
 
 export default function ThoughtsPage() {
@@ -24,19 +23,25 @@ export default function ThoughtsPage() {
             </h1>
           </div>
           <p className="statement">
-            Notes on <em>building things and taking them apart</em>.
+            Some stuff I need to write down and <em>let others see</em>.
           </p>
         </header>
 
         {thoughts.length > 0 ? (
-          <ul className="rows">
+          <div className="faq">
             {thoughts.map((thought) => (
-              <li key={thought.slug}>
-                <Link href={`/thoughts/${thought.slug}`}>{thought.title}</Link>
-                <span className="note">{thought.date}</span>
-              </li>
+              <details key={thought.slug}>
+                <summary>
+                  <span className="s-title">{thought.title}</span>
+                  <span className="s-note">{thought.date}</span>
+                </summary>
+                <div
+                  className="thought"
+                  dangerouslySetInnerHTML={{ __html: thought.html }}
+                />
+              </details>
             ))}
-          </ul>
+          </div>
         ) : (
           <p className="statement">Nothing here yet.</p>
         )}
