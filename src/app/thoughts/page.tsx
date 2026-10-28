@@ -39,10 +39,6 @@ export default function ThoughtsPage() {
             </li>
           ))}
         </ul>
-
-        <footer className="colophon">
-          <p>© 2026 Lloyd Alba · College Station, Texas</p>
-        </footer>
       </main>
     </div>
   );

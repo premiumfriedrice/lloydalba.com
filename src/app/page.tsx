@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { Rail, TopNav } from "@/components/Nav";
 
@@ -39,16 +38,6 @@ export default function Home() {
             I build <em>AI agents, iOS apps, and tools that make engineers
             faster</em>.
           </p>
-          <ul className="masthead-line">
-            <li>lloydalba.com</li>
-            <li>
-              <Link href="/thoughts">Thoughts</Link>
-            </li>
-            <li>College Station, Texas</li>
-            <li>
-              <a href="#resume">Resume ↓</a>
-            </li>
-          </ul>
         </header>
 
         <div className="lede">
@@ -85,10 +74,6 @@ export default function Home() {
             Lloyd Alba — Resume (PDF)
           </a>
         </p>
-
-        <footer className="colophon">
-          <p>© 2026 Lloyd Alba · College Station, Texas</p>
-        </footer>
       </main>
     </div>
   );
