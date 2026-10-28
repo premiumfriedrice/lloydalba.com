@@ -62,18 +62,14 @@ export default function Home() {
           </p>
         </div>
 
-        <p className="label" id="resume">
-          Resume
-        </p>
-        <p>
-          <a
-            href="/documents/LloydAlba_Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Lloyd Alba — Resume (PDF)
-          </a>
-        </p>
+        <p className="label">Resume</p>
+        <div className="film">
+          <iframe
+            src="/documents/LloydAlba_Resume.pdf"
+            title="Resume — Lloyd Alba"
+            loading="lazy"
+          />
+        </div>
       </main>
     </div>
   );
