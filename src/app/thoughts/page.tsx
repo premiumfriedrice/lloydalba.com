@@ -23,7 +23,7 @@ export default function ThoughtsPage() {
             </h1>
           </div>
           <p className="statement">
-            Some stuff I need to write down and <em>let others see</em>.
+            Some stuff I need to write down and let others see.
           </p>
         </header>
 

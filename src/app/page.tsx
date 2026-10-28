@@ -38,7 +38,7 @@ export default function Home() {
           <p className="statement">
             My name is Lloyd. I study Computer Science at Texas A&amp;M
             University. I love designing things such as websites and mobile
-            apps, and I like building software automations.
+            apps, and I like being lazy, so I love building software automations.
           </p>
         </header>
 
