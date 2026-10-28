@@ -1,5 +1,6 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 import { Rail, TopNav } from "@/components/Nav";
+import Resume from "@/components/Resume";
 
 const socials = [
   { href: "https://github.com/premiumfriedrice", icon: Github, label: "GitHub" },
@@ -40,35 +41,9 @@ export default function Home() {
           </p>
         </header>
 
-        <div className="lede">
-          <p>
-            <a href="mailto:lloyddalba@gmail.com">lloyddalba@gmail.com</a>
-            {" · "}
-            <a
-              href="https://github.com/premiumfriedrice"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-            </a>
-            {" · "}
-            <a
-              href="https://www.linkedin.com/in/lloydalba/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-            </a>
-          </p>
-        </div>
-
         <p className="label">Resume</p>
         <div className="film">
-          <iframe
-            src="/documents/LloydAlba_Resume.pdf"
-            title="Resume — Lloyd Alba"
-            loading="lazy"
-          />
+          <Resume />
         </div>
       </main>
     </div>

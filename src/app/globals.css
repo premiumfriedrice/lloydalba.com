@@ -22,3 +22,16 @@
 /* Resume — embedded document */
 .film{margin:8px 0 0;border-radius:12px;overflow:hidden;background:#fff;box-shadow:var(--card-shadow)}
 .film iframe{display:block;width:100%;height:700px;border:0;background:#fff}
+
+/* Resume — pdf.js pages */
+.resume-loading{height:700px;background:var(--well)}
+.film .react-pdf__Page{background:#fff}
+.film .react-pdf__Page + .react-pdf__Page{margin-top:12px}
+
+/* Thought body */
+.thought{margin-top:28px}
+.thought p{margin:0 0 12px}
+.thought h2,.thought h3{margin:24px 0 8px;font-size:14px;font-weight:550}
+.thought ul,.thought ol{margin:0 0 12px;padding-left:1.5rem}
+.thought code{font-family:var(--font-mono);font-size:12.5px;padding:1px 5px;background:var(--well);border-radius:4px}
+.thought blockquote{margin:12px 0;padding-left:12px;border-left:2px solid var(--rule);color:var(--text-2)}

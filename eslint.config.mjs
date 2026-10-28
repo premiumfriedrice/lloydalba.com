@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Minified vendor files served as static assets:
+    "public/pdf.worker.min.mjs",
   ]),
 ]);
 
