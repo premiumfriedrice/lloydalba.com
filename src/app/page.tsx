@@ -1,27 +1,95 @@
-import ContactLinks, { CONTACT_EMAIL } from "@/components/ContactLinks";
+import Link from "next/link";
+import { Github, Linkedin, Mail } from "lucide-react";
+import { Rail, TopNav } from "@/components/Nav";
+
+const socials = [
+  { href: "https://github.com/premiumfriedrice", icon: Github, label: "GitHub" },
+  { href: "https://www.linkedin.com/in/lloydalba/", icon: Linkedin, label: "LinkedIn" },
+  { href: "mailto:lloyddalba@gmail.com", icon: Mail, label: "Email" },
+];
 
 export default function Home() {
   return (
-    <main className="content">
-      <section className="section">
-        <div className="inner">
-          <p className="bio">
-            I&apos;m a computer science student at Texas A&amp;M. I build AI
-            agents, iOS apps, and tools that make engineers faster — and right
-            now I&apos;m an agentic AI engineering intern at Fable Innovations.
-          </p>
-          <div className="home-contact">
-            <p className="line">
-              <a className="link" href={`mailto:${CONTACT_EMAIL}`}>
-                {CONTACT_EMAIL}
-              </a>
-            </p>
-            <p className="line">
-              <ContactLinks />
-            </p>
+    <div className="page">
+      <Rail current="home" />
+      <main className="column">
+        <TopNav current="home" />
+
+        <header className="masthead">
+          <div className="title-row">
+            <h1 className="title">
+              Lloyd Alba<span> · software engineer</span>
+            </h1>
+            <ul className="social">
+              {socials.map((s) => (
+                <li key={s.label}>
+                  <a
+                    href={s.href}
+                    target={s.label !== "Email" ? "_blank" : undefined}
+                    rel={s.label !== "Email" ? "noopener noreferrer" : undefined}
+                    aria-label={s.label}
+                  >
+                    <s.icon size={14} />
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
+          <p className="statement">
+            I build <em>AI agents, iOS apps, and tools that make engineers
+            faster</em>.
+          </p>
+          <ul className="masthead-line">
+            <li>lloydalba.com</li>
+            <li>
+              <Link href="/thoughts">Thoughts</Link>
+            </li>
+            <li>College Station, Texas</li>
+            <li>
+              <a href="#resume">Resume ↓</a>
+            </li>
+          </ul>
+        </header>
+
+        <div className="lede">
+          <p>
+            <a href="mailto:lloyddalba@gmail.com">lloyddalba@gmail.com</a>
+            {" · "}
+            <a
+              href="https://github.com/premiumfriedrice"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+            {" · "}
+            <a
+              href="https://www.linkedin.com/in/lloydalba/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
+          </p>
         </div>
-      </section>
-    </main>
+
+        <p className="label" id="resume">
+          Resume
+        </p>
+        <p>
+          <a
+            href="/documents/LloydAlba_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Lloyd Alba — Resume (PDF)
+          </a>
+        </p>
+
+        <footer className="colophon">
+          <p>© 2026 Lloyd Alba · College Station, Texas</p>
+        </footer>
+      </main>
+    </div>
   );
 }
