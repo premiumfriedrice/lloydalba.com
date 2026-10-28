@@ -19,7 +19,7 @@ export default function ThoughtsPage() {
         <header className="masthead">
           <div className="title-row">
             <h1 className="title">
-              Thoughts<span> · Lloyd Alba</span>
+              Thoughts<span> · {thoughts.length}</span>
             </h1>
           </div>
           <p className="statement">
