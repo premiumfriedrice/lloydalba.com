@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Rail, TopNav } from "@/components/Nav";
 import { getAllThoughts } from "@/lib/thoughts";
 
@@ -33,12 +34,21 @@ export default function ThoughtsPage() {
               <details key={thought.slug}>
                 <summary>
                   <span className="s-title">{thought.title}</span>
-                  <span className="s-note">{thought.date}</span>
+                  <span className="s-note">
+                    {thought.date} · {thought.readTime}
+                  </span>
                 </summary>
-                <div
-                  className="thought"
-                  dangerouslySetInnerHTML={{ __html: thought.html }}
-                />
+                <Link
+                  href={`/thoughts/${thought.slug}`}
+                  className="preview"
+                  aria-label={`Read ${thought.title}`}
+                >
+                  <div
+                    className="thought preview-body"
+                    dangerouslySetInnerHTML={{ __html: thought.html }}
+                  />
+                  <span className="preview-more">Read →</span>
+                </Link>
               </details>
             ))}
           </div>

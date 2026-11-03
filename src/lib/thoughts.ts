@@ -9,6 +9,18 @@ export interface Thought {
   title: string;
   date: string;
   html: string;
+  readTime: string;
+}
+
+const WORDS_PER_MINUTE = 220;
+
+function readTimeFor(markdown: string): string {
+  const words = markdown
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/[#>*_`\[\]()!-]/g, " ")
+    .split(/\s+/)
+    .filter(Boolean).length;
+  return `${Math.max(1, Math.round(words / WORDS_PER_MINUTE))} min read`;
 }
 
 const thoughtsDir = path.join(process.cwd(), "content", "thoughts");
@@ -27,9 +39,10 @@ export function getAllThoughts(): Thought[] {
 
       return {
         slug,
-        title: data.title ?? slug,
+        title: data.title || slug,
         date: data.date ?? "",
         html: processed.toString(),
+        readTime: readTimeFor(content),
       };
     })
     .sort((a, b) => b.slug.localeCompare(a.slug));
