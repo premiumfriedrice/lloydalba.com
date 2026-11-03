@@ -61,3 +61,27 @@
 .post-meta{margin:6px 0 0;color:var(--muted);font-size:12.5px;font-variant-numeric:tabular-nums}
 .post-body{margin-top:28px;color:var(--ink)}
 @media (max-width:639px){.faq summary{flex-wrap:wrap;row-gap:2px}.faq summary .s-title{flex:1 1 0;min-width:0}.faq summary:after{order:1}.faq summary .s-note{order:2;flex-basis:100%;margin-left:0}}
+
+/* Thought media */
+.thought figure{margin:24px 0}
+.thought img,.thought video{display:block;max-width:100%;height:auto;border-radius:8px;background:var(--well)}
+.thought p img,.thought p video{display:inline-block;vertical-align:middle}
+.thought figure img{margin:0 auto}
+.thought figure video,.thought figure .embed{width:100%}
+.thought .embed{position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:var(--well)}
+.thought .embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.thought figcaption{margin-top:8px;color:var(--muted);font-size:12.5px;line-height:18px;text-align:center}
+.thought hr{margin:28px 0;border:0;border-top:1px solid var(--rule)}
+.thought a{color:inherit;text-decoration:underline;text-decoration-color:var(--faint);text-underline-offset:2px}
+.thought a:hover{text-decoration-color:var(--ink)}
+.thought del{color:var(--muted)}
+.thought pre{margin:0 0 12px;padding:12px 14px;overflow-x:auto;background:var(--well);border-radius:8px;font-size:12.5px;line-height:18px}
+.thought pre code{padding:0;background:none}
+.thought table{width:100%;margin:0 0 12px;border-collapse:collapse;font-size:13px}
+.thought th,.thought td{padding:7px 0;text-align:left;border-bottom:1px solid var(--rule)}
+.thought th{font-weight:550}
+.thought input[type=checkbox]{margin:0 6px 0 0}
+.thought ul:has(input[type=checkbox]){list-style:none;padding-left:0}
+
+/* The list preview stays text: media lives on the post page */
+.faq .preview-body figure,.faq .preview-body img,.faq .preview-body video,.faq .preview-body .embed,.faq .preview-body table,.faq .preview-body pre{display:none}
