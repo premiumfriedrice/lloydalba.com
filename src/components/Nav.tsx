@@ -17,8 +17,8 @@ export function Rail({
 }) {
   return (
     <aside className="rail">
-      <nav aria-label="Site" className="rail-nav">
-        <ShrimpIndicator />
+      <ShrimpIndicator />
+      <nav aria-label="Site">
         <ul className="nav">
           {LINKS.map((link) => (
             <li key={link.id}>
