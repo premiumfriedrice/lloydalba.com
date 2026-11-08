@@ -190,5 +190,12 @@
 .shrimp .ant-4{animation-name:shrimp-sway-back;animation-duration:3.1s;animation-delay:-2s}
 @keyframes shrimp-sway{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
 @keyframes shrimp-sway-back{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
-@media (prefers-reduced-motion:reduce){.shrimp .ant{animation:none}.shrimp[data-moving]{transition:none}}
+.shrimp .leg{transform-box:fill-box;transform-origin:50% 50%;animation:shrimp-paddle 1.5s ease-in-out infinite}
+.shrimp .leg-e{animation-delay:-.3s}
+.shrimp .leg-a{animation-name:shrimp-step;animation-duration:2.4s}
+.shrimp .leg-b{animation-name:shrimp-step;animation-duration:2.4s;animation-delay:-.8s}
+.shrimp .leg-c{animation-name:shrimp-step;animation-duration:2.4s;animation-delay:-1.6s}
+@keyframes shrimp-paddle{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(10deg)}}
+@keyframes shrimp-step{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+@media (prefers-reduced-motion:reduce){.shrimp .ant,.shrimp .leg{animation:none}.shrimp[data-moving]{transition:none}}
 @media print{.shrimp{display:none}}
