@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ShrimpIndicator } from "@/components/ShrimpIndicator";
 
 const LINKS = [
   { href: "/", label: "Lloyd Alba", id: "home" },
@@ -16,7 +17,8 @@ export function Rail({
 }) {
   return (
     <aside className="rail">
-      <nav aria-label="Site">
+      <nav aria-label="Site" className="rail-nav">
+        <ShrimpIndicator />
         <ul className="nav">
           {LINKS.map((link) => (
             <li key={link.id}>

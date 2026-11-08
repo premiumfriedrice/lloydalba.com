@@ -178,3 +178,16 @@
 .diagram[data-theme=dark] svg [fill="#8f8f8f"],.diagram[data-theme=dark] svg [fill="#8f8f8f"] text{fill:#a3a3a3}
 .diagram[data-theme=dark] svg [fill="#bdbdbd"],.diagram[data-theme=dark] svg [fill="#bdbdbd"] text{fill:#737373}
 @media print{.diagram-toggle{display:none}}
+
+/* Shrimp — active-page marker in the side nav; slides between pages, antennae sway */
+.rail-nav{position:relative}
+.shrimp{position:absolute;top:0;left:-44px;width:32px;height:20px;display:flex;align-items:center;color:var(--ink);pointer-events:none;visibility:hidden}
+.shrimp[data-ready]{visibility:visible}
+.shrimp[data-moving]{transition:transform .55s var(--ease)}
+.shrimp svg{display:block;width:32px;height:auto}
+.shrimp .ant{transform-box:fill-box;animation:shrimp-sway 2.6s ease-in-out infinite}
+.shrimp .ant-a{transform-origin:0% 100%}
+.shrimp .ant-b{transform-origin:0% 0%;animation-duration:3.3s;animation-delay:-1.1s}
+@keyframes shrimp-sway{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+@media (prefers-reduced-motion:reduce){.shrimp .ant{animation:none}.shrimp[data-moving]{transition:none}}
+@media print{.shrimp{display:none}}
