@@ -36,6 +36,8 @@ export interface ResumeJson {
 const projectUrl = (slug: string) => `${SITE_URL}/projects/${slug}`;
 const writingUrl = (slug: string) => `${SITE_URL}/writings/${slug}`;
 const host = SITE_URL.replace(/^https?:\/\//, "");
+/** Root-relative markdown links become absolute so the file reads correctly off-site. */
+const absolutize = (markdown: string) => markdown.replace(/\]\(\//g, `](${SITE_URL}/`);
 
 export function resumeJson({ resume, projects, writings }: ExportInput): ResumeJson {
   return {
@@ -43,7 +45,7 @@ export function resumeJson({ resume, projects, writings }: ExportInput): ResumeJ
     title: resume.title,
     email: resume.email,
     links: resume.links,
-    summary: resume.summary,
+    summary: absolutize(resume.summary),
     education: resume.education,
     skills: resume.skills,
     experience: resume.experience,
@@ -81,7 +83,7 @@ export function resumeMarkdown({ resume, projects, writings }: ExportInput): str
     ].join(" · "),
     "",
     "## Summary",
-    resume.summary,
+    absolutize(resume.summary),
     "",
     "## Education",
     `**${ed.school}**, ${ed.location}`,

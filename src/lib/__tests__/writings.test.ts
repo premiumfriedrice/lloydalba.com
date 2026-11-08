@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { toISODate, sortWritings, type Writing } from "@/lib/writings";
+import { toISODate, normalizeDate, sortWritings, type Writing } from "@/lib/writings";
 
 const w = (slug: string, date: string): Writing => ({
   slug,
@@ -13,8 +13,21 @@ const w = (slug: string, date: string): Writing => ({
 
 describe("toISODate", () => {
   it("parses the site's date format", () => expect(toISODate("Nov 5, 2026")).toBe("2026-11-05"));
+  it("does not shift the day on UTC-positive build hosts", () => {
+    // Run under TZ=Asia/Tokyo this fails for a toISOString()-based implementation.
+    expect(toISODate("Jan 1, 2026")).toBe("2026-01-01");
+    expect(toISODate("Dec 31, 2026")).toBe("2026-12-31");
+  });
   it("returns empty for garbage", () => expect(toISODate("soon")).toBe(""));
   it("returns empty for empty", () => expect(toISODate("")).toBe(""));
+});
+
+describe("normalizeDate", () => {
+  it("turns an unquoted ISO frontmatter date (a Date object) into the site's string form", () =>
+    expect(normalizeDate(new Date(Date.UTC(2026, 10, 5)))).toEqual({ date: "Nov 5, 2026", dateISO: "2026-11-05" }));
+  it("passes strings through", () =>
+    expect(normalizeDate("Nov 5, 2026")).toEqual({ date: "Nov 5, 2026", dateISO: "2026-11-05" }));
+  it("handles missing", () => expect(normalizeDate(undefined)).toEqual({ date: "", dateISO: "" }));
 });
 
 describe("sortWritings", () => {

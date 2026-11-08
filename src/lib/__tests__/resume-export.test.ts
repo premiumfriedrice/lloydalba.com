@@ -44,6 +44,7 @@ describe("resumeJson", () => {
       url: "https://www.lloydalba.com/writings/2026-11-05-x",
     });
     expect(JSON.stringify(j)).not.toMatch(/512-|Round Rock|location":"(?!College)/);
+    expect(j.summary).toContain("](https://www.lloydalba.com/writings/");
   });
 });
 
@@ -57,6 +58,8 @@ describe("resumeMarkdown", () => {
     expect(md).toContain("- 2026-11-05 · X · https://www.lloydalba.com/writings/2026-11-05-x");
     expect(md.split("\n")[0]).toBe("# Lloyd Alba");
     expect(md.split("\n")[1]).toBe("software engineer");
+    expect(md).toContain("](https://www.lloydalba.com/writings/2026-11-05-on-prem-inference-what-we-built)");
+    expect(md).not.toContain("](/writings/");
     expect(md).not.toMatch(/Round Rock/);
   });
 });

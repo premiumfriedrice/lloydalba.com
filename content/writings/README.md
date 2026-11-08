@@ -4,9 +4,12 @@ Drop a markdown file in this folder to publish a writing. It shows up on the
 Writing list (title, date, read time, a faded preview) and gets its own page
 styled like the docs on skills.wheresryan.sh/anatomy.
 
-- Filename: `YYYY-MM-DD-your-title.md`, with a two-digit month and day so posts sort correctly.
-  The filename becomes the URL: `/writings/YYYY-MM-DD-your-title`.
-- Frontmatter: `title` and `date`.
+- Filename: `YYYY-MM-DD-your-title.md`, two-digit month and day. The filename becomes
+  the URL: `/writings/YYYY-MM-DD-your-title`. Posts sort by `date`, newest first; the
+  filename only breaks ties.
+- Frontmatter: `title` and `date`. Write the date as `Nov 3, 2026`. An unquoted
+  `2026-11-03` also works (it is shown as `Nov 3, 2026`); a date that does not parse
+  still publishes but sorts last.
 - Commit and push; Vercel publishes it.
 
 This README is not published.

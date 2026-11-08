@@ -31,10 +31,31 @@ function readTimeFor(markdown: string): string {
   return `${Math.max(1, Math.round(minutes))} min read`;
 }
 
-/** "Nov 5, 2026" → "2026-11-05"; anything unparseable → "". */
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const pad = (n: number) => String(n).padStart(2, "0");
+
+/** "Nov 5, 2026" → "2026-11-05"; anything unparseable → "". Uses local date parts so the build host's timezone cannot shift the day. */
 export function toISODate(date: string): string {
   const t = new Date(date);
-  return isNaN(t.getTime()) ? "" : t.toISOString().slice(0, 10);
+  if (isNaN(t.getTime())) return "";
+  return `${t.getFullYear()}-${pad(t.getMonth() + 1)}-${pad(t.getDate())}`;
+}
+
+/**
+ * Frontmatter `date` as written. A quoted or prose date ("Nov 5, 2026") is a string;
+ * an unquoted ISO date (2026-11-05) is parsed by YAML into a Date at UTC midnight.
+ * Both become the site's "Mon D, YYYY" string plus an ISO day.
+ */
+export function normalizeDate(value: unknown): { date: string; dateISO: string } {
+  if (value instanceof Date) {
+    if (isNaN(value.getTime())) return { date: "", dateISO: "" };
+    const y = value.getUTCFullYear();
+    const m = value.getUTCMonth();
+    const d = value.getUTCDate();
+    return { date: `${MONTHS[m]} ${d}, ${y}`, dateISO: `${y}-${pad(m + 1)}-${pad(d)}` };
+  }
+  const date = value == null ? "" : String(value);
+  return { date, dateISO: toISODate(date) };
 }
 
 /** Newest first; undated last; ties broken by slug descending. */
@@ -64,8 +85,7 @@ export function getAllWritings(): Writing[] {
       return {
         slug,
         title: data.title || slug,
-        date: data.date ?? "",
-        dateISO: toISODate(String(data.date ?? "")),
+        ...normalizeDate(data.date),
         html,
         toc,
         readTime: readTimeFor(content),
