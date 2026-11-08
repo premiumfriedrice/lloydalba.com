@@ -2,7 +2,7 @@
 title: "Building a Production-Grade MVP of an On-Prem LLM Inference Server"
 date: Nov 5, 2026
 diagram: 2026-11-05-on-prem-inference-what-we-built.svg
-diagramCaption: The four layers on one box, from a request to the dashboard
+diagramCaption: The four layers, from a request to the dashboard
 diagramTheme: dark
 ---
 
@@ -14,7 +14,7 @@ The purpose of this server is to allow a team of 12 engineers to have access to 
 
 ## Why we built it
 
-Everyone on the team was either paying for their own API access or not using inference at all. We wanted one shared endpoint that any OpenAI-compatible client could point at, that only people we handed a key to could use, and that we could actually see into. One box, one GPU, no monthly bill.
+Everyone on the team was either paying for their own API access or not using inference at all. We wanted one shared endpoint that any OpenAI-compatible client could point at, that only people we handed a key to could use, and that we could actually see into. Everything runs on a single GPU machine with no monthly bill.
 
 ## The layers
 
@@ -27,11 +27,11 @@ The whole thing is four layers. Each one is its own service, all running on the 
 
 ## Design decisions
 
-**One box, one definition file.** We want a clean and repeatable way to run software without polluting the OS, so containers fit the job. One file contains all 8 services, wired together, and it restarts them if they crash or the box reboots.[^secrets]
+**Everything in containers.** We want a clean and repeatable way to run software without polluting the OS, so containers fit the job. One file contains all 8 services, wired together, and it restarts them if they crash or the box reboots.[^secrets]
 
 **Engineers never talk to the engine directly.** The gateway is the only thing that knows the engine's password. There are three different keys in play: the engine's one password, an admin key that creates and revokes keys (never goes to an app), and the app keys that engineers actually use. Each app key has its own rate limit, budget, and model list.[^keys]
 
-**One door in.** At first the proxy only listened on the private network address, so you had to be on the mesh to use it. My boss and I then set up port forwarding so the endpoint can be reached from outside, but only over HTTPS through the proxy, and only with a key. Everything else (SSH, the engine, the dashboard) still only answers on the private network, and the firewall's default deny backs that up. This is what makes "anyone with a key, nothing else exposed" actually true.
+**Only the endpoint is public.** At first the proxy only listened on the private network address, so you had to be on the mesh to use it. My boss and I then set up port forwarding so the endpoint can be reached from outside, but only over HTTPS through the proxy, and only with a key. Everything else (SSH, the engine, the dashboard) still only answers on the private network, and the firewall's default deny backs that up. This is what makes "anyone with a key, nothing else exposed" actually true.
 
 **Our own certificate authority.** One sentence version: we made a small internal CA and use it to sign the server's cert, so engineers trust the CA once and get warning-free HTTPS after that.[^ca]
 

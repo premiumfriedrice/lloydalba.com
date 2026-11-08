@@ -21,7 +21,7 @@ Three pieces work together: a web app, a Chrome extension, and a small service t
 
 Open a job on LinkedIn, Greenhouse, Lever, Workday, or Ashby and the extension's drawer slides in. It scrapes the job description off the page, sends it to the web app, and the web app tailors a resume from my master copy. The drawer shows the PDF, lets me drag it into the application's file input, and fills the contact fields from my profile. Each application I submit gets tracked with an outcome (applied, interview, offer, rejected), and the web app shows them as a funnel.
 
-One sentence version: one master resume in, one tailored PDF out, in about thirty seconds.
+One sentence version: my master resume goes in, a tailored PDF comes out, in about thirty seconds.
 
 ## How it's built
 
