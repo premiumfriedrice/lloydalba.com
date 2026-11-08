@@ -139,3 +139,17 @@
 .diagram svg{display:block;width:100%;height:auto}
 .diagram-cap{margin:8px 0 0;color:var(--muted);font-size:12px}
 @media print{.diagram{box-shadow:none;border:1px solid var(--rule);break-inside:avoid;border-radius:6px}}
+
+/* Resume — hairline blocks with bullets */
+.cv-block{margin:0}
+.cv-head{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-top:1px solid var(--rule)}
+.cv-head strong{font-weight:550}
+.cv-head strong a{text-decoration:none}
+.cv-head strong a:hover{text-decoration:underline}
+.cv-head .t{color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums;font-size:13px;line-height:20.5px}
+.cv-bullets{margin:0 0 14px;padding-left:18px;list-style:disc;color:var(--text-2)}
+.cv-bullets li::marker{color:var(--faint)}
+.cv-bullets li{margin:2px 0}
+.foot{margin:30px 0 0;color:var(--muted);font-size:13px;line-height:20px}
+.foot a{color:var(--ink)}
+@media (max-width:639px){.cv-head{flex-direction:column;gap:0}}

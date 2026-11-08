@@ -4,6 +4,7 @@ const LINKS = [
   { href: "/", label: "Lloyd Alba", id: "home" },
   { href: "/projects", label: "Projects", id: "projects" },
   { href: "/writings", label: "Writing", id: "writings" },
+  { href: "/resume", label: "Resume", id: "resume" },
 ];
 
 export function Rail({
