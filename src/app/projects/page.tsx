@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Rail, TopNav } from "@/components/Nav";
 import { getAllProjects } from "@/lib/projects";
+import { PeekList } from "@/components/PeekList";
 
 export const metadata: Metadata = {
   title: "Projects — Lloyd Alba",
@@ -26,17 +26,15 @@ export default function ProjectsPage() {
         </header>
 
         {projects.length > 0 ? (
-          <ul className="index">
-            {projects.map((project) => (
-              <li key={project.slug}>
-                <span className="k">
-                  <Link href={`/projects/${project.slug}`}>{project.title}</Link>
-                </span>
-                <span className="v" dangerouslySetInnerHTML={{ __html: project.taglineHtml }} />
-                <span className="n">{project.period}</span>
-              </li>
-            ))}
-          </ul>
+          <PeekList
+            items={projects.map((p) => ({
+              href: `/projects/${p.slug}`,
+              title: p.title,
+              note: p.period,
+              subHtml: p.taglineHtml,
+              html: p.html,
+            }))}
+          />
         ) : (
           <p className="statement">Nothing here yet.</p>
         )}

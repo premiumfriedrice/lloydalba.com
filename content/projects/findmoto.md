@@ -1,6 +1,6 @@
 ---
 title: findMoto
-tagline: "Scraper that ranks Marketplace motorcycle listings into Notion. *1st*, Notion API Challenge."
+tagline: "Scraper that ranks Marketplace motorcycle listings into Notion. 1st, Notion API Challenge."
 period: Mar. 2025 – Jun. 2025
 start: "2025-03"
 end: "2025-06"

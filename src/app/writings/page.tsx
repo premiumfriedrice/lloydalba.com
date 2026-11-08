@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Rail, TopNav } from "@/components/Nav";
 import { getAllWritings } from "@/lib/writings";
+import { PeekList } from "@/components/PeekList";
 
 export const metadata: Metadata = {
   title: "Writing — Lloyd Alba",
@@ -29,29 +29,14 @@ export default function WritingsPage() {
         </header>
 
         {writings.length > 0 ? (
-          <div className="faq">
-            {writings.map((writing) => (
-              <details key={writing.slug}>
-                <summary>
-                  <span className="s-title">{writing.title}</span>
-                  <span className="s-note">
-                    {writing.date} · {writing.readTime}
-                  </span>
-                </summary>
-                <Link
-                  href={`/writings/${writing.slug}`}
-                  className="preview"
-                  aria-label={`Read ${writing.title}`}
-                >
-                  <div
-                    className="writing preview-body"
-                    dangerouslySetInnerHTML={{ __html: writing.html }}
-                  />
-                  <span className="preview-more">Read →</span>
-                </Link>
-              </details>
-            ))}
-          </div>
+          <PeekList
+            items={writings.map((w) => ({
+              href: `/writings/${w.slug}`,
+              title: w.title,
+              note: `${w.date} · ${w.readTime}`,
+              html: w.html,
+            }))}
+          />
         ) : (
           <p className="statement">Nothing here yet.</p>
         )}

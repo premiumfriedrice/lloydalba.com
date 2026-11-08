@@ -1,6 +1,6 @@
 ---
 title: AggieDine
-tagline: "Social dining app for Texas A&M. Scale-to-zero backend, *$0 idle*, 70k students."
+tagline: "Social dining app for Texas A&M. Scale-to-zero backend, $0 idle, 70k students."
 period: Jan. 2026 – May 2026
 start: "2026-01"
 end: "2026-05"

@@ -6,6 +6,7 @@ import { getAllProjects } from "@/lib/projects";
 import { getAllWritings } from "@/lib/writings";
 import { homeLists } from "@/lib/home";
 import { renderInlineMarkdown } from "@/lib/markdown";
+import { PeekList } from "@/components/PeekList";
 
 export default function Home() {
   const { projects, writings } = homeLists(getAllProjects(), getAllWritings());
@@ -35,16 +36,14 @@ export default function Home() {
               <span>Recent projects</span>
               <Link href="/projects">all projects →</Link>
             </p>
-            <ul className="index">
-              {projects.map((project) => (
-                <li key={project.slug}>
-                  <span className="k">
-                    <Link href={`/projects/${project.slug}`}>{project.title}</Link>
-                  </span>
-                  <span className="v" dangerouslySetInnerHTML={{ __html: project.taglineHtml }} />
-                </li>
-              ))}
-            </ul>
+            <PeekList
+              items={projects.map((p) => ({
+                href: `/projects/${p.slug}`,
+                title: p.title,
+                subHtml: p.taglineHtml,
+                html: p.html,
+              }))}
+            />
           </>
         )}
 
@@ -54,16 +53,14 @@ export default function Home() {
               <span>Recent writing</span>
               <Link href="/writings">all writing →</Link>
             </p>
-            <ul className="index">
-              {writings.map((writing) => (
-                <li key={writing.slug}>
-                  <span className="k t">{writing.date}</span>
-                  <span className="v">
-                    <Link href={`/writings/${writing.slug}`}>{writing.title}</Link>
-                  </span>
-                </li>
-              ))}
-            </ul>
+            <PeekList
+              items={writings.map((w) => ({
+                href: `/writings/${w.slug}`,
+                title: w.title,
+                note: w.date,
+                html: w.html,
+              }))}
+            />
           </>
         )}
 

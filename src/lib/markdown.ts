@@ -360,3 +360,8 @@ export function renderInlineMarkdown(markdown: string): string {
   const html = String(inlineProcessor.processSync(markdown)).trim();
   return html.replace(/^<p>([\s\S]*)<\/p>$/, "$1");
 }
+
+/** Post HTML for a hover preview inside a row link: nested <a> is invalid, so links become spans. */
+export function peekHtml(html: string): string {
+  return html.replace(/<a\b[^>]*>/g, "<span>").replace(/<\/a>/g, "</span>");
+}

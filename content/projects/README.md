@@ -15,7 +15,7 @@ This README is not published.
 
     ---
     title: apted
-    tagline: "One line for the lists. Put the one number that matters in *italics*."
+    tagline: "One plain line for the lists."
     period: May 2026 – Present
     start: "2026-05"        # YYYY-MM, used for sorting (quote it)
     end: "2026-08"          # YYYY-MM, or leave out when still running

@@ -1,6 +1,6 @@
 ---
 title: apted
-tagline: "Tailors my resume to the job page I'm on and drops the PDF into the application. *10 min → 30 s.*"
+tagline: "Tailors my resume to the job page I'm on and drops the PDF into the application. 10 min → 30 s."
 period: May 2026 – Present
 start: "2026-05"
 stack: [Next.js, TypeScript, Postgres, LaTeX, Chrome extension]

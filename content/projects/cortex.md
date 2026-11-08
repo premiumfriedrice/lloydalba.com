@@ -1,6 +1,6 @@
 ---
 title: CORTEX
-tagline: "AR + computer vision airport ecosystem. *1st overall* at TAMUhack 2026."
+tagline: "AR + computer vision airport ecosystem. 1st overall at TAMUhack 2026."
 period: Jan. 2026
 start: "2026-01"
 end: "2026-01"
