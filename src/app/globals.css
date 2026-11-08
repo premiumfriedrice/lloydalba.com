@@ -184,11 +184,11 @@
 .shrimp[data-ready]{visibility:visible}
 .shrimp[data-moving]{transition:transform .5s var(--ease)}
 .shrimp svg{display:block;width:34px;height:auto;overflow:visible}
-.shrimp .ant{transform-box:fill-box;animation:shrimp-sway 2.8s ease-in-out infinite}
-.shrimp .ant-1{transform-origin:0% 100%}
-.shrimp .ant-2{transform-origin:0% 0%;animation-duration:3.4s;animation-delay:-1.2s}
-.shrimp .ant-3{transform-origin:100% 100%;animation-duration:3.9s;animation-delay:-.6s}
-.shrimp .ant-4{transform-origin:100% 100%;animation-duration:3.1s;animation-delay:-2s}
+.shrimp .ant{transform-box:fill-box;transform-origin:50% 50%;animation:shrimp-sway 2.8s ease-in-out infinite}
+.shrimp .ant-2{animation-duration:3.4s;animation-delay:-1.2s}
+.shrimp .ant-3{animation-name:shrimp-sway-back;animation-duration:3.9s;animation-delay:-.6s}
+.shrimp .ant-4{animation-name:shrimp-sway-back;animation-duration:3.1s;animation-delay:-2s}
 @keyframes shrimp-sway{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+@keyframes shrimp-sway-back{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
 @media (prefers-reduced-motion:reduce){.shrimp .ant{animation:none}.shrimp[data-moving]{transition:none}}
 @media print{.shrimp{display:none}}

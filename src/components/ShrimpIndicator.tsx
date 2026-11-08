@@ -3,7 +3,9 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { Shrimp } from "@/components/Shrimp";
 
-const KEY = "shrimp-y";
+const KEY = "shrimp";
+
+type Saved = { y: number; page: string };
 
 /** The section being read (from the page's side links), else the current page in the nav. */
 function activeLink(rail: HTMLElement): HTMLElement | null {
@@ -11,6 +13,27 @@ function activeLink(rail: HTMLElement): HTMLElement | null {
     rail.querySelector<HTMLElement>('.toc a[aria-current="location"]') ??
     rail.querySelector<HTMLElement>('.nav a[aria-current="page"]')
   );
+}
+
+/** Where the shrimp should sit, relative to the rail, to line up with the active link. */
+function targetY(el: HTMLElement): number | null {
+  const rail = el.parentElement;
+  const link = rail && activeLink(rail);
+  if (!rail || !link) return null;
+  const r = link.getBoundingClientRect();
+  return Math.round(r.top + r.height / 2 - rail.getBoundingClientRect().top - el.offsetHeight / 2);
+}
+
+/** The nav item for this page, e.g. "/projects" on /projects and on /projects/apted. */
+function navPage(el: HTMLElement): string {
+  return el.parentElement?.querySelector('.nav a[aria-current="page"]')?.getAttribute("href") ?? "";
+}
+
+function place(el: HTMLElement, y: number) {
+  el.style.transform = `translateY(${y}px)`;
+  try {
+    sessionStorage.setItem(KEY, JSON.stringify({ y, page: navPage(el) } satisfies Saved));
+  } catch {}
 }
 
 /**
@@ -21,42 +44,29 @@ function activeLink(rail: HTMLElement): HTMLElement | null {
 export function ShrimpIndicator() {
   const ref = useRef<HTMLDivElement>(null);
 
-  const targetY = () => {
-    const el = ref.current;
-    const rail = el?.parentElement;
-    const link = rail && activeLink(rail);
-    if (!el || !rail || !link) return null;
-    const r = link.getBoundingClientRect();
-    return Math.round(r.top + r.height / 2 - rail.getBoundingClientRect().top - el.offsetHeight / 2);
-  };
-
-  const place = (y: number) => {
-    if (ref.current) ref.current.style.transform = `translateY(${y}px)`;
-    try {
-      sessionStorage.setItem(KEY, String(y));
-    } catch {}
-  };
-
-  // First placement: start where the previous page left the shrimp, then slide.
+  // First placement: if the last page was under a different nav item, start where the
+  // shrimp was and slide over. Within the same nav item (a project and the Projects
+  // list, say) it is already home, so it just appears.
   useLayoutEffect(() => {
     const el = ref.current;
-    const target = targetY();
+    const target = el && targetY(el);
     if (!el || target === null) return;
-    let prev = NaN;
+    let prev: Saved | null = null;
     try {
-      prev = Number(sessionStorage.getItem(KEY) ?? NaN);
+      prev = JSON.parse(sessionStorage.getItem(KEY) ?? "null") as Saved | null;
     } catch {}
     el.dataset.ready = "";
-    if (Number.isNaN(prev) || prev === target) {
-      place(target);
-      el.dataset.moving = "";
-      return;
+    if (!prev || typeof prev.y !== "number" || prev.page === navPage(el) || prev.y === target) {
+      place(el, target);
+      // Turn sliding on only after this position has been painted, or the browser animates the placement itself.
+      const frame = requestAnimationFrame(() => (el.dataset.moving = ""));
+      return () => cancelAnimationFrame(frame);
     }
-    el.style.transform = `translateY(${prev}px)`;
+    el.style.transform = `translateY(${prev.y}px)`;
     const frame = requestAnimationFrame(() =>
       requestAnimationFrame(() => {
         el.dataset.moving = "";
-        place(target);
+        place(el, target);
       }),
     );
     return () => cancelAnimationFrame(frame);
@@ -68,8 +78,10 @@ export function ShrimpIndicator() {
     if (!rail) return;
     const timers = new Set<number>();
     const follow = () => {
-      const y = targetY();
-      if (y !== null && ref.current?.dataset.moving !== undefined) place(y);
+      const el = ref.current;
+      if (!el || el.dataset.moving === undefined) return;
+      const y = targetY(el);
+      if (y !== null) place(el, y);
     };
     const schedule = () => {
       requestAnimationFrame(follow);
