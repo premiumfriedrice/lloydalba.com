@@ -91,8 +91,9 @@ export const resume: Resume = {
       end: null,
       period: "Oct. 2026 – Present",
       bullets: [
-        "Building agentic MSP for 4+ business clients on a skill-based architecture to automate IT service workflows.",
-        "Deployed on-prem LLM inference platform (vLLM) with per-user rate limits, eliminating external API spend.",
+        "Deployed on-prem vLLM inference server (FP8 Qwen3-8B) serving 16 engineers’ workloads at zero marginal cost.",
+        "Secured with per-app API keys, VPN-only access, ufw, and Caddy TLS via internal CA; no public exposure.",
+        "Built OpenTelemetry pipeline and FastAPI/PostgreSQL dashboard for latency, GPU health, and per-key usage.",
       ],
     },
     {

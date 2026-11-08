@@ -4,9 +4,11 @@ import { resume } from "@/lib/resume";
 const all = JSON.stringify(resume);
 
 describe("resume data", () => {
-  it("has five jobs with two bullets each", () => {
+  it("has five jobs, three bullets for the current one and two for the rest", () => {
     expect(resume.experience).toHaveLength(5);
-    for (const e of resume.experience) expect(e.bullets).toHaveLength(2);
+    expect(resume.experience[0].bullets).toHaveLength(3);
+    expect(resume.experience[0].bullets[0]).toMatch(/^Deployed on-prem vLLM inference server/);
+    for (const e of resume.experience.slice(1)) expect(e.bullets).toHaveLength(2);
   });
   it("current role has end null and YYYY-MM start", () => {
     expect(resume.experience[0]).toMatchObject({ company: "Fable Innovations", start: "2026-10", end: null });

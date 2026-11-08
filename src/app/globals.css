@@ -22,6 +22,8 @@
 /* Resume — embedded document */
 .film{margin:8px 0 0;border-radius:12px;overflow:hidden;background:#fff;box-shadow:var(--card-shadow)}
 .film iframe{display:block;width:100%;height:700px;border:0;background:#fff}
+.film img{display:block;width:100%;height:auto}
+.film a{display:block}
 
 /* Resume — pdf.js pages */
 .resume-loading{height:700px;background:var(--well)}
