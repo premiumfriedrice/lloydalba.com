@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const LINKS = [
   { href: "/", label: "Lloyd Alba", id: "home" },
-  { href: "/thoughts", label: "Thoughts", id: "thoughts" },
+  { href: "/writings", label: "Writing", id: "writings" },
 ];
 
 export function Rail({

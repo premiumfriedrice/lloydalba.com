@@ -9,7 +9,7 @@ const Chevron = () => (
   </svg>
 );
 
-/** "On this page" list for a thought, with the section you're reading marked. */
+/** "On this page" list for a writing, with the section you're reading marked. */
 export function PostToc({ toc }: { toc: TocEntry[] }) {
   const [here, setHere] = useState<{ section: string | null; sub: string | null }>({
     section: null,

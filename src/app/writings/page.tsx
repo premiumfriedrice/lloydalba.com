@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Rail, TopNav } from "@/components/Nav";
-import { getAllThoughts } from "@/lib/thoughts";
+import { getAllWritings } from "@/lib/writings";
 
 export const metadata: Metadata = {
-  title: "Thoughts — Lloyd Alba",
+  title: "Writing — Lloyd Alba",
   description: "Some stuff I need to write down and let others see.",
 };
 
-export default function ThoughtsPage() {
-  const thoughts = getAllThoughts();
+export default function WritingsPage() {
+  const writings = getAllWritings();
 
   return (
     <div className="page">
-      <Rail current="thoughts" />
+      <Rail current="writings" />
       <main className="column">
-        <TopNav current="thoughts" />
+        <TopNav current="writings" />
 
         <header className="masthead">
           <div className="title-row">
             <h1 className="title">
-              Thoughts<span> · {thoughts.length}</span>
+              Writing<span> · {writings.length}</span>
             </h1>
           </div>
           <p className="statement">
@@ -28,24 +28,24 @@ export default function ThoughtsPage() {
           </p>
         </header>
 
-        {thoughts.length > 0 ? (
+        {writings.length > 0 ? (
           <div className="faq">
-            {thoughts.map((thought) => (
-              <details key={thought.slug}>
+            {writings.map((writing) => (
+              <details key={writing.slug}>
                 <summary>
-                  <span className="s-title">{thought.title}</span>
+                  <span className="s-title">{writing.title}</span>
                   <span className="s-note">
-                    {thought.date} · {thought.readTime}
+                    {writing.date} · {writing.readTime}
                   </span>
                 </summary>
                 <Link
-                  href={`/thoughts/${thought.slug}`}
+                  href={`/writings/${writing.slug}`}
                   className="preview"
-                  aria-label={`Read ${thought.title}`}
+                  aria-label={`Read ${writing.title}`}
                 >
                   <div
-                    className="thought preview-body"
-                    dangerouslySetInnerHTML={{ __html: thought.html }}
+                    className="writing preview-body"
+                    dangerouslySetInnerHTML={{ __html: writing.html }}
                   />
                   <span className="preview-more">Read →</span>
                 </Link>
