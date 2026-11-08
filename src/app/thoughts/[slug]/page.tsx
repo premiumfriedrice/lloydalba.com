@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Rail, TopNav } from "@/components/Nav";
+import { PostToc } from "@/components/PostToc";
+import { CodeCopy } from "@/components/CodeCopy";
+import { PrintLink } from "@/components/PrintLink";
 import { getAllThoughts, getThoughtBySlug } from "@/lib/thoughts";
 
 export const dynamicParams = false;
@@ -31,23 +33,30 @@ export default async function ThoughtPage({
 
   return (
     <div className="page">
-      <Rail current="thoughts" />
+      <Rail current="thoughts">
+        <PostToc toc={thought.toc} />
+      </Rail>
       <main className="column">
         <TopNav current="thoughts" />
 
-        <article className="post">
-          <Link href="/thoughts" className="post-back">
-            ← Thoughts
-          </Link>
-          <h1 className="post-title">{thought.title}</h1>
-          <p className="post-meta">
-            {thought.date} · {thought.readTime}
-          </p>
-          <div
-            className="thought post-body"
-            dangerouslySetInnerHTML={{ __html: thought.html }}
-          />
-        </article>
+        <header className="masthead">
+          <div className="title-row">
+            <h1 className="title">{thought.title}</h1>
+          </div>
+          <ul className="masthead-line">
+            {thought.date && <li>{thought.date}</li>}
+            <li>{thought.readTime}</li>
+            <li className="print-only-hide">
+              <PrintLink />
+            </li>
+          </ul>
+        </header>
+
+        <article
+          className="thought post-body"
+          dangerouslySetInnerHTML={{ __html: thought.html }}
+        />
+        <CodeCopy />
       </main>
     </div>
   );

@@ -30,8 +30,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} ${ebGaramond.variable} antialiased`}>
+    <html lang="en" className={`${inter.variable} ${ebGaramond.variable}`}>
+      <body className="antialiased">
         {children}
         <Analytics />
         <SpeedInsights />

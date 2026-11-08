@@ -5,7 +5,13 @@ const LINKS = [
   { href: "/thoughts", label: "Thoughts", id: "thoughts" },
 ];
 
-export function Rail({ current }: { current: string }) {
+export function Rail({
+  current,
+  children,
+}: {
+  current: string;
+  children?: React.ReactNode;
+}) {
   return (
     <aside className="rail">
       <nav aria-label="Site">
@@ -22,6 +28,7 @@ export function Rail({ current }: { current: string }) {
           ))}
         </ul>
       </nav>
+      {children}
     </aside>
   );
 }

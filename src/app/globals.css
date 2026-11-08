@@ -28,13 +28,6 @@
 .film .react-pdf__Page{background:#fff}
 .film .react-pdf__Page + .react-pdf__Page{margin-top:12px}
 
-/* Thought body */
-.thought{margin-top:28px}
-.thought p{margin:0 0 12px}
-.thought h2,.thought h3{margin:24px 0 8px;font-size:14px;font-weight:550}
-.thought ul,.thought ol{margin:0 0 12px;padding-left:1.5rem}
-.thought code{font-family:var(--font-mono);font-size:12.5px;padding:1px 5px;background:var(--well);border-radius:4px}
-.thought blockquote{margin:12px 0;padding-left:12px;border-left:2px solid var(--rule);color:var(--text-2)}
 
 /* Thoughts — expandable rows (anatomy faq pattern) */
 .faq .s-title{font-weight:500}
@@ -49,39 +42,79 @@
 /* Thoughts — expanded preview: first four lines, then fade */
 .faq .preview{display:block;margin:0 0 14px;color:inherit;text-decoration:none}
 .faq .preview-body{margin:2px 0 0;max-height:82px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,#000 26px,transparent 82px);mask-image:linear-gradient(to bottom,#000 26px,transparent 82px);-webkit-mask-size:100% 82px;mask-size:100% 82px;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
-.faq .preview-body h1,.faq .preview-body h2,.faq .preview-body h3{margin:0 0 6px;font-size:14px;font-weight:550}
 .faq summary .s-note{margin-left:auto}
 .faq .preview-more{display:inline-block;margin-top:6px;color:var(--muted);font-size:12.5px;transition:color .2s var(--ease)}
 .faq .preview:hover .preview-more{color:var(--ink)}
 
-/* Thought — full post page */
-.post-back{display:inline-block;color:var(--muted);font-size:12.5px;text-decoration:none;transition:color .2s var(--ease)}
-.post-back:hover{color:var(--ink)}
-.post-title{margin:20px 0 0;font-size:24px;line-height:30px;font-weight:550;letter-spacing:-0.01em;text-wrap:balance}
-.post-meta{margin:6px 0 0;color:var(--muted);font-size:12.5px;font-variant-numeric:tabular-nums}
-.post-body{margin-top:28px;color:var(--ink)}
 @media (max-width:639px){.faq summary{flex-wrap:wrap;row-gap:2px}.faq summary .s-title{flex:1 1 0;min-width:0}.faq summary:after{order:1}.faq summary .s-note{order:2;flex-basis:100%;margin-left:0}}
 
-/* Thought media */
-.thought figure{margin:24px 0}
-.thought img,.thought video{display:block;max-width:100%;height:auto;border-radius:8px;background:var(--well)}
-.thought p img,.thought p video{display:inline-block;vertical-align:middle}
-.thought figure img{margin:0 auto}
-.thought figure video,.thought figure .embed{width:100%}
-.thought .embed{position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:var(--well)}
-.thought .embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.thought figcaption{margin-top:8px;color:var(--muted);font-size:12.5px;line-height:18px;text-align:center}
-.thought hr{margin:28px 0;border:0;border-top:1px solid var(--rule)}
-.thought a{color:inherit;text-decoration:underline;text-decoration-color:var(--faint);text-underline-offset:2px}
-.thought a:hover{text-decoration-color:var(--ink)}
-.thought del{color:var(--muted)}
-.thought pre{margin:0 0 12px;padding:12px 14px;overflow-x:auto;background:var(--well);border-radius:8px;font-size:12.5px;line-height:18px}
-.thought pre code{padding:0;background:none}
-.thought table{width:100%;margin:0 0 12px;border-collapse:collapse;font-size:13px}
-.thought th,.thought td{padding:7px 0;text-align:left;border-bottom:1px solid var(--rule)}
-.thought th{font-weight:550}
-.thought input[type=checkbox]{margin:0 6px 0 0}
-.thought ul:has(input[type=checkbox]){list-style:none;padding-left:0}
+/* Thought posts — markdown rendered in the Anatomy doc system (src/lib/markdown.ts) */
+.post-body{display:block}
+.post-body .lede>:last-child{margin-bottom:0}
+.post-body .section-head h2{margin:0}
+.post-body h3,.post-body h4{margin:28px 0 10px;font-size:14px;line-height:20.5px;font-weight:550;scroll-margin-top:48px}
+.post-body ul{margin:0 0 12px;padding-left:1.25rem;list-style:disc}
+.post-body ol:not(.notes){margin:0 0 12px;padding-left:1.25rem;list-style:decimal}
+.post-body li{margin:0 0 4px}
+.post-body li::marker{color:var(--faint)}
+.post-body ul:has(> li > input[type=checkbox]){list-style:none;padding-left:0}
+.post-body input[type=checkbox]{margin:0 6px 0 0;accent-color:var(--ink)}
+.post-body del{color:var(--muted)}
+.post-body hr{margin:36px 0;border:0;border-top:1px solid var(--rule)}
+.post-body .code[data-multi]:not([data-head])>.copy{top:8px;transform:none}
+.post-body .code pre code{padding:0;background:none;border-radius:0;font-size:inherit}
+.code .hljs-comment,.code .hljs-meta,.code .hljs-keyword,.code .hljs-built_in,.code .hljs-attr,.code .hljs-literal,.code .hljs-selector-tag,.code .hljs-variable{color:var(--muted)}
+.code .hljs-string,.code .hljs-number,.code .hljs-title,.code .hljs-symbol{color:var(--text-2)}
+.code .hljs-comment{font-style:italic}
 
-/* The list preview stays text: media lives on the post page */
-.faq .preview-body figure,.faq .preview-body img,.faq .preview-body video,.faq .preview-body .embed,.faq .preview-body table,.faq .preview-body pre{display:none}
+/* Thought media */
+.post-body figure{margin:24px 0}
+.post-body img,.post-body video{display:block;max-width:100%;height:auto;border-radius:12px;background:var(--well);box-shadow:var(--card-shadow)}
+.post-body p img,.post-body p video{display:inline-block;vertical-align:middle}
+.post-body figure img{margin:0 auto}
+.post-body figure video,.post-body figure .embed{width:100%}
+.post-body .embed{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:var(--well);box-shadow:var(--card-shadow)}
+.post-body .embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.post-body figcaption{margin-top:10px;color:var(--muted);font-size:12px;line-height:17px;text-align:center}
+
+/* The list preview stays plain text: media, code and notes live on the post page */
+.faq .preview-body .section-head h2{margin:0}
+.faq .preview-body h3,.faq .preview-body h4{margin:0 0 6px;font-size:14px;font-weight:550}
+.faq .preview-body figure,.faq .preview-body img,.faq .preview-body video,.faq .preview-body .embed,.faq .preview-body table,.faq .preview-body .code,.faq .preview-body .side,.faq .preview-body .ref,.faq .preview-body .notes,.faq .preview-body .pull{display:none}
+.faq .preview-body .section{margin-top:0}
+.faq .preview-body .lede{margin-top:0}
+.side code,.notes code{font-size:11px;padding:0 4px}
+.post-body .side{margin-bottom:22px}
+.post-body .side>span:first-child{top:1px}
+.notes{gap:16px}
+.post-body .code:not([data-head]){padding-right:16px}
+.post-body .code>.copy{background:#fff}
+.post-body .code>.copy:hover{background:var(--well)}
+
+/* Thought posts — print / export to PDF. Same format, narrower column, notes stay in the margin. */
+@page{size:letter;margin:0.55in 0.5in 0.6in}
+@media print{
+  :root{--column:468px;--margin:150px;--gap:26px}
+  html,body{background:#fff;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{display:block;padding:0;overflow:visible}
+  .column{width:var(--column);max-width:none;margin:0;padding:0}
+  .rail,.top,.print-only-hide,.copy,.notes{display:none !important}
+  .masthead-line li:has(.print-link){display:none}
+  .side{display:block;float:right;clear:right;position:relative;width:var(--margin);margin:2px calc(-1 * (var(--margin) + var(--gap))) 18px 0;color:var(--muted);font-size:11px;line-height:16px;font-style:normal;font-weight:400;break-inside:avoid}
+  .side>span:first-child{position:absolute;left:-12px;top:1px;font-size:9px;line-height:14px;font-variant-numeric:tabular-nums}
+  .side code{font-size:10px}
+  .section{margin-top:44px}
+  .section-head,.post-body h3,.post-body h4{break-after:avoid}
+  .post-body p,.post-body li{orphans:3;widows:3}
+  .code{box-shadow:none;border:1px solid var(--rule);background:#fff;break-inside:avoid;padding-right:16px}
+  .code pre{white-space:pre-wrap;overflow-wrap:anywhere;overflow:visible}
+  .code-head{margin-right:0;break-after:avoid}
+  .code[data-head]{break-inside:auto}
+  .post-body figure,.post-body img,.post-body video,.post-body table{break-inside:avoid}
+  .post-body .embed{display:none}
+  .post-body img{box-shadow:none;border:1px solid var(--rule)}
+  .pull{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+  .post-body a{text-decoration:underline;text-decoration-color:var(--faint)}
+  .post-body a.ref{text-decoration:none}
+}
