@@ -48,15 +48,6 @@ The whole thing is four layers. Each one is its own service, all running on the 
 - Pull keys out of the response, not the terminal. Copy-pasting cost me more keys than anything else.[^burned]
 - Monitoring bugs are plumbing bugs. Every blank dashboard had a boring cause: wrong encoding, compressed payloads, a blocked port, a missing route.
 
-## Still to do
-
-- bring the stack up on boot
-- nightly backup of the database, the secrets file, and the certs
-- move the CA key off the server
-- internal DNS record instead of hosts entries on every laptop
-- load test and tune context length / per-key rate limits
-- bigger models, which needs a bigger card
-
 [^fit]: I ran into an issue where the full-precision model couldn't run because it needed about 16 GB for the weights alone (the whole card), so I downsized to the 8-bit quantized version (~9 GB) and it was able to run properly. This generation of GPU runs 8-bit natively.
 
 [^secrets]: My first real bug was the secrets file. I wrapped the generator commands in a sudo wrapper with single quotes, so the commands didn't expand and the literal command text ended up in the file. That's what caused the unauthorized errors later: the containers got the literal string, while sourcing the file in my shell ran the command and made a different random key every time. Running it as a normal user (no sudo wrapper) fixed it.

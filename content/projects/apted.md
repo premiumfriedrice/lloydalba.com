@@ -55,7 +55,6 @@ One sentence version: my master resume goes in, a tailored PDF comes out, in abo
 
 - Tailoring a resume went from about ten minutes of hand editing to about thirty seconds.
 - Every saved version carries its outcome, so later tailoring runs can lean on the versions that actually got interviews, and the application funnel is real data instead of a spreadsheet.
-- Still to do: API key management in settings, more render templates.
 
 [^rank]: Relevance started as plain keyword overlap between the job description and each saved version. I left an embeddings-based ranker behind the same function signature for when overlap gets too brittle.
 
