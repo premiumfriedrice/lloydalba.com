@@ -1,40 +1,38 @@
-<svg viewBox="0 0 520 206" xmlns="http://www.w3.org/2000/svg" font-family="inherit">
+<svg viewBox="0 0 520 212" xmlns="http://www.w3.org/2000/svg" font-family="inherit">
   <defs>
-    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <marker id="arrow-cortex" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M0 0.5L7 4L0 7.5" fill="none" stroke="#8f8f8f" stroke-width="1.2"/>
     </marker>
   </defs>
   <g fill="#fff" stroke="#525252" stroke-width="1">
-    <rect x="8" y="86" width="100" height="34" rx="3"/>
-    <rect x="176" y="8" width="112" height="34" rx="3"/>
-    <rect x="176" y="86" width="112" height="34" rx="3"/>
-    <rect x="176" y="164" width="112" height="34" rx="3" stroke-dasharray="3 3"/>
-    <rect x="368" y="47" width="144" height="34" rx="3" stroke-dasharray="3 3"/>
-    <rect x="368" y="125" width="144" height="34" rx="3" stroke-dasharray="3 3"/>
+    <rect x="6" y="87" width="104" height="38" rx="3"/>
+    <rect x="160" y="8" width="128" height="38" rx="3"/>
+    <rect x="160" y="87" width="128" height="38" rx="3"/>
+    <rect x="160" y="166" width="128" height="38" rx="3" stroke-dasharray="3 3"/>
+    <rect x="336" y="48" width="178" height="38" rx="3" stroke-dasharray="3 3"/>
+    <rect x="336" y="127" width="178" height="38" rx="3" stroke-dasharray="3 3"/>
   </g>
   <g fill="#171717" font-size="12" text-anchor="middle">
-    <text x="58" y="101">iOS app</text>
-    <text x="232" y="23">AR relocation</text>
-    <text x="232" y="101">Bag photos</text>
-    <text x="232" y="179">Flight data</text>
-    <text x="440" y="62">Backend API</text>
-    <text x="440" y="140">Bag detection</text>
+    <text x="58" y="103">iOS app</text>
+    <text x="224" y="24">AR relocation</text>
+    <text x="224" y="103">Bag photos</text>
+    <text x="224" y="182">Flight data</text>
+    <text x="425" y="64">Backend API</text>
+    <text x="425" y="143">Bag detection</text>
   </g>
   <g fill="#8f8f8f" font-size="10.5" text-anchor="middle">
-    <text x="58" y="114">SwiftUI · MapKit</text>
-    <text x="232" y="36">RealityKit anchor</text>
-    <text x="232" y="114">compressed on device</text>
-    <text x="232" y="192">AviationStack</text>
-    <text x="440" y="75">Vercel · status, lost</text>
-    <text x="440" y="153">CV, per the resume</text>
+    <text x="58" y="116">SwiftUI · MapKit</text>
+    <text x="224" y="37">RealityKit anchor</text>
+    <text x="224" y="116">compressed first</text>
+    <text x="224" y="195">AviationStack</text>
+    <text x="425" y="77">uploads · polled every 5 s</text>
+    <text x="425" y="156">CV, per the resume</text>
   </g>
-  <g fill="none" stroke="#8f8f8f" stroke-width="1" marker-end="url(#arrow)">
-    <path d="M108 95L176 32"/>
-    <path d="M108 103H176"/>
-    <path d="M108 111L176 174"/>
-    <path d="M288 97L368 70"/>
-    <path d="M440 81V125"/>
+  <g fill="none" stroke="#8f8f8f" stroke-width="1" marker-end="url(#arrow-cortex)">
+    <path d="M110 98L160 33"/>
+    <path d="M110 106H160"/>
+    <path d="M110 114L160 179"/>
+    <path d="M288 100L336 75"/>
+    <path d="M425 86V127"/>
   </g>
-  <path d="M108 99Q300 60 368 56" fill="none" stroke="#8f8f8f" stroke-width="1" stroke-dasharray="2 3" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
-  <text x="300" y="66" fill="#8f8f8f" font-size="9" text-anchor="middle">poll every 5 s</text>
 </svg>
