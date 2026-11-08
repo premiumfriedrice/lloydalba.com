@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Rail, TopNav } from "@/components/Nav";
 import { PostToc } from "@/components/PostToc";
@@ -43,6 +44,9 @@ export default async function ProjectPage({
         <TopNav current="projects" />
 
         <header className="masthead">
+          <Link href="/projects" className="back">
+            ← Projects
+          </Link>
           <div className="title-row">
             <h1 className="title">{project.title}</h1>
           </div>
