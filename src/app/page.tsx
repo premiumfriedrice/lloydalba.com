@@ -1,16 +1,15 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import Link from "next/link";
 import { Rail, TopNav } from "@/components/Nav";
+import { Socials } from "@/components/Socials";
 import { resume } from "@/lib/resume";
-
-const { education, skills, experience } = resume;
-
-const socials = [
-  { href: "https://github.com/premiumfriedrice", icon: Github, label: "GitHub" },
-  { href: "https://www.linkedin.com/in/lloydalba/", icon: Linkedin, label: "LinkedIn" },
-  { href: "mailto:lloyddalba@gmail.com", icon: Mail, label: "Email" },
-];
+import { getAllProjects } from "@/lib/projects";
+import { getAllWritings } from "@/lib/writings";
+import { homeLists } from "@/lib/home";
+import { renderInlineMarkdown } from "@/lib/markdown";
 
 export default function Home() {
+  const { projects, writings } = homeLists(getAllProjects(), getAllWritings());
+
   return (
     <div className="page">
       <Rail current="home" />
@@ -20,68 +19,58 @@ export default function Home() {
         <header className="masthead">
           <div className="title-row">
             <h1 className="title">
-              Lloyd Alba<span> · software engineer</span>
+              {resume.name}<span> · {resume.title}</span>
             </h1>
-            <ul className="social">
-              {socials.map((s) => (
-                <li key={s.label}>
-                  <a
-                    href={s.href}
-                    target={s.label !== "Email" ? "_blank" : undefined}
-                    rel={s.label !== "Email" ? "noopener noreferrer" : undefined}
-                    aria-label={s.label}
-                  >
-                    <s.icon size={14} />
-                  </a>
+            <Socials />
+          </div>
+          <p
+            className="statement"
+            dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(resume.summary) }}
+          />
+        </header>
+
+        {projects.length > 0 && (
+          <>
+            <p className="label index-label">
+              <span>Recent projects</span>
+              <Link href="/projects">all projects →</Link>
+            </p>
+            <ul className="index">
+              {projects.map((project) => (
+                <li key={project.slug}>
+                  <span className="k">
+                    <Link href={`/projects/${project.slug}`}>{project.title}</Link>
+                  </span>
+                  <span className="v" dangerouslySetInnerHTML={{ __html: project.taglineHtml }} />
                 </li>
               ))}
             </ul>
-          </div>
-          <p className="statement">
-            My name is Lloyd. I study Computer Science at Texas A&amp;M
-            University. I love designing things such as websites and mobile
-            apps, and I like building software automations.
-          </p>
-        </header>
+          </>
+        )}
 
-        <div className="lede">
-          <p className="label">Education</p>
-          <dl className="rules">
-            <dt>School</dt>
-            <dd>
-              {education.school} · {education.location}
-            </dd>
-            <dt>Degree</dt>
-            <dd>{education.degree}</dd>
-            <dt>Expected</dt>
-            <dd>{education.expected}</dd>
-            <dt>Coursework</dt>
-            <dd>{education.coursework.join(", ")}</dd>
-          </dl>
-
-          <p className="label">Technical Skills</p>
-          <ul className="skills">
-            {skills.map((skill) => (
-              <li key={skill}>{skill}</li>
-            ))}
-          </ul>
-
-          <p className="label">Experience</p>
-          <table className="table">
-            <tbody>
-              {experience.map((exp) => (
-                <tr key={exp.start + exp.title}>
-                  <th scope="row">{exp.period}</th>
-                  <td>
-                    {exp.title} · {exp.company}
-                  </td>
-                  <td>{exp.bullets[0]}</td>
-                </tr>
+        {writings && (
+          <>
+            <p className="label index-label">
+              <span>Recent writing</span>
+              <Link href="/writings">all writing →</Link>
+            </p>
+            <ul className="index">
+              {writings.map((writing) => (
+                <li key={writing.slug}>
+                  <span className="k t">{writing.date}</span>
+                  <span className="v">
+                    <Link href={`/writings/${writing.slug}`}>{writing.title}</Link>
+                  </span>
+                </li>
               ))}
-            </tbody>
-          </table>
+            </ul>
+          </>
+        )}
 
-        </div>
+        <p className="foot">
+          Full resume → <Link href="/resume">Resume</Link>. Also as <a href="/resume.md">resume.md</a> and{" "}
+          <a href="/resume.json">resume.json</a> for agents.
+        </p>
       </main>
     </div>
   );
