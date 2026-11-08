@@ -1,6 +1,8 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 import { Rail, TopNav } from "@/components/Nav";
-import { education, skills, experience, projects } from "@/lib/resume";
+import { resume } from "@/lib/resume";
+
+const { education, skills, experience } = resume;
 
 const socials = [
   { href: "https://github.com/premiumfriedrice", icon: Github, label: "GitHub" },
@@ -54,7 +56,7 @@ export default function Home() {
             <dt>Expected</dt>
             <dd>{education.expected}</dd>
             <dt>Coursework</dt>
-            <dd>{education.coursework}</dd>
+            <dd>{education.coursework.join(", ")}</dd>
           </dl>
 
           <p className="label">Technical Skills</p>
@@ -68,29 +70,17 @@ export default function Home() {
           <table className="table">
             <tbody>
               {experience.map((exp) => (
-                <tr key={exp.time + exp.role}>
-                  <th scope="row">{exp.time}</th>
+                <tr key={exp.start + exp.title}>
+                  <th scope="row">{exp.period}</th>
                   <td>
-                    {exp.role} · {exp.company}
+                    {exp.title} · {exp.company}
                   </td>
-                  <td>{exp.highlight}</td>
+                  <td>{exp.bullets[0]}</td>
                 </tr>
               ))}
             </tbody>
           </table>
 
-          <p className="label">Projects</p>
-          <table className="table">
-            <tbody>
-              {projects.map((project) => (
-                <tr key={project.name}>
-                  <th scope="row">{project.name}</th>
-                  <td>{project.description}</td>
-                  <td>{project.period}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </div>
       </main>
     </div>

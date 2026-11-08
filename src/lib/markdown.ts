@@ -348,3 +348,15 @@ export function renderMarkdown(markdown: string): { html: string; toc: TocEntry[
   const file = processor.processSync(markdown);
   return { html: String(file), toc: (file.data.toc as TocEntry[]) ?? [] };
 }
+
+const inlineProcessor = unified()
+  .use(remarkParse)
+  .use(remarkGfm)
+  .use(remarkRehype)
+  .use(rehypeStringify);
+
+/** One line of markdown (a tagline, a summary) → inline HTML with no <p> wrapper. */
+export function renderInlineMarkdown(markdown: string): string {
+  const html = String(inlineProcessor.processSync(markdown)).trim();
+  return html.replace(/^<p>([\s\S]*)<\/p>$/, "$1");
+}
