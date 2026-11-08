@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Rail, TopNav } from "@/components/Nav";
 import { PostToc } from "@/components/PostToc";
 import { CodeCopy } from "@/components/CodeCopy";
+import { DiagramToggle } from "@/components/DiagramToggle";
 import { getAllProjects, getProjectBySlug, withDiagram } from "@/lib/projects";
 
 export const dynamicParams = false;
@@ -68,6 +69,7 @@ export default async function ProjectPage({
           dangerouslySetInnerHTML={{ __html: withDiagram(project) }}
         />
         <CodeCopy />
+        <DiagramToggle />
       </main>
     </div>
   );

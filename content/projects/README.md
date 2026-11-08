@@ -24,6 +24,7 @@ This README is not published.
       github: https://github.com/...
     diagram: apted.svg
     diagramCaption: From a job page to a tailored PDF
+    diagramTheme: light     # or dark; readers can flip it with the button on the figure
     bullets:                # the resume bullets, verbatim; these feed /resume and resume.json
       - First bullet.
       - Second bullet.

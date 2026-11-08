@@ -2,6 +2,9 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { renderMarkdown, renderInlineMarkdown, type TocEntry } from "@/lib/markdown";
+import { readDiagram, withDiagram, type DiagramTheme } from "@/lib/diagram";
+
+export { withDiagram };
 
 export interface Project {
   slug: string;
@@ -16,6 +19,7 @@ export interface Project {
   links: Record<string, string>;
   diagramSvg: string | null;
   diagramCaption: string;
+  diagramTheme: DiagramTheme;
   bullets: string[];
   html: string;
   toc: TocEntry[];
@@ -27,11 +31,6 @@ function str(v: unknown): string {
   return v == null ? "" : String(v);
 }
 
-function readDiagram(dir: string, file: unknown): string | null {
-  if (!file) return null;
-  const p = path.join(dir, String(file));
-  return fs.existsSync(p) ? fs.readFileSync(p, "utf8").trim() : null;
-}
 
 /** Newest start first; on a tie, the one still running (end null) first, then later end first. */
 function compare(a: Project, b: Project): number {
@@ -60,8 +59,7 @@ export function loadProjects(dir: string): Project[] {
         end: data.end ? String(data.end) : null,
         stack: Array.isArray(data.stack) ? data.stack.map(String) : [],
         links: data.links && typeof data.links === "object" ? (data.links as Record<string, string>) : {},
-        diagramSvg: readDiagram(dir, data.diagram),
-        diagramCaption: str(data.diagramCaption),
+        ...readDiagram(dir, data),
         bullets: Array.isArray(data.bullets) ? data.bullets.map(String) : [],
         html,
         toc,
@@ -78,12 +76,3 @@ export function getProjectBySlug(slug: string): Project | undefined {
   return getAllProjects().find((p) => p.slug === slug);
 }
 
-/** The post HTML with the system diagram inserted before the first section. */
-export function withDiagram(project: Project): string {
-  if (!project.diagramSvg) return project.html;
-  const figure =
-    `<figure id="system" class="diagram">${project.diagramSvg}` +
-    `<figcaption class="diagram-cap">Fig. 1 · ${project.diagramCaption}</figcaption></figure>`;
-  const i = project.html.indexOf("<section");
-  return i === -1 ? project.html + figure : project.html.slice(0, i) + figure + project.html.slice(i);
-}

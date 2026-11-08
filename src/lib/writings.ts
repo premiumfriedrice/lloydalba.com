@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { renderMarkdown, type TocEntry } from "@/lib/markdown";
+import { readDiagram, type DiagramTheme } from "@/lib/diagram";
 
 export interface Writing {
   slug: string;
@@ -11,6 +12,9 @@ export interface Writing {
   html: string;
   toc: TocEntry[];
   readTime: string;
+  diagramSvg: string | null;
+  diagramCaption: string;
+  diagramTheme: DiagramTheme;
 }
 
 const WORDS_PER_MINUTE = 220;
@@ -71,14 +75,18 @@ export function sortWritings(items: Writing[]): Writing[] {
 }
 
 export function getAllWritings(): Writing[] {
-  if (!fs.existsSync(writingsDir)) return [];
+  return loadWritings(writingsDir);
+}
+
+export function loadWritings(dir: string): Writing[] {
+  if (!fs.existsSync(dir)) return [];
 
   const items = fs
-    .readdirSync(writingsDir)
+    .readdirSync(dir)
     .filter((file) => file.endsWith(".md") && file !== "README.md")
     .map((file) => {
       const slug = file.replace(/\.md$/, "");
-      const raw = fs.readFileSync(path.join(writingsDir, file), "utf8");
+      const raw = fs.readFileSync(path.join(dir, file), "utf8");
       const { data, content } = matter(raw);
       const { html, toc } = renderMarkdown(content);
 
@@ -89,6 +97,7 @@ export function getAllWritings(): Writing[] {
         html,
         toc,
         readTime: readTimeFor(content),
+        ...readDiagram(dir, data),
       };
     });
   return sortWritings(items);

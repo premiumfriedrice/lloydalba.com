@@ -34,7 +34,7 @@ describe("loadProjects", () => {
 describe("withDiagram", () => {
   it("inserts the figure between the lede and the first section", () => {
     const html = withDiagram(by("ok"));
-    expect(html).toMatch(/<\/div><figure id="system" class="diagram"><svg/);
+    expect(html).toMatch(/<\/div><figure id="system" class="diagram" data-theme="light"><svg/);
     expect(html).toMatch(/Fig\. 1 · How it flows<\/figcaption><\/figure><section/);
   });
   it("returns the html unchanged without a diagram", () =>

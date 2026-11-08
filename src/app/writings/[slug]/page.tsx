@@ -3,8 +3,10 @@ import { notFound } from "next/navigation";
 import { Rail, TopNav } from "@/components/Nav";
 import { PostToc } from "@/components/PostToc";
 import { CodeCopy } from "@/components/CodeCopy";
+import { DiagramToggle } from "@/components/DiagramToggle";
 import { PrintLink } from "@/components/PrintLink";
 import { getAllWritings, getWritingBySlug } from "@/lib/writings";
+import { withDiagram } from "@/lib/diagram";
 
 export const dynamicParams = false;
 
@@ -31,10 +33,14 @@ export default async function WritingPage({
   const writing = getWritingBySlug(slug);
   if (!writing) notFound();
 
+  const toc = writing.diagramSvg
+    ? [{ id: "system", title: "System", children: [] }, ...writing.toc]
+    : writing.toc;
+
   return (
     <div className="page">
       <Rail current="writings">
-        <PostToc toc={writing.toc} />
+        <PostToc toc={toc} />
       </Rail>
       <main className="column">
         <TopNav current="writings" />
@@ -54,9 +60,10 @@ export default async function WritingPage({
 
         <article
           className="writing post-body"
-          dangerouslySetInnerHTML={{ __html: writing.html }}
+          dangerouslySetInnerHTML={{ __html: withDiagram(writing) }}
         />
         <CodeCopy />
+        <DiagramToggle />
       </main>
     </div>
   );

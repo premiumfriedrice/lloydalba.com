@@ -160,3 +160,21 @@
 .back{display:inline-block;margin:0 0 14px;color:var(--muted);font-size:13px;text-decoration:none}
 .back:hover{color:var(--ink)}
 @media print{.back{display:none}}
+
+/* Diagram style switch — light card or black card; the svg's own colors are remapped for black */
+.diagram{position:relative;padding-top:38px;transition:background-color .2s ease}
+.diagram-toggle{position:absolute;top:10px;right:10px;padding:1px 9px;border-radius:999px;background:var(--well);color:var(--muted);font-size:11.5px;line-height:18px}
+.diagram-toggle:hover{color:var(--ink)}
+.diagram[data-theme=light] .to-light,.diagram[data-theme=dark] .to-dark{display:none}
+.diagram[data-theme=dark]{background:#0a0a0a;box-shadow:0 0 0 1px #0a0a0a}
+.diagram[data-theme=dark] .diagram-toggle{background:#262626;color:#a3a3a3}
+.diagram[data-theme=dark] .diagram-toggle:hover{color:#fafafa}
+.diagram[data-theme=dark] .diagram-cap{color:#8f8f8f}
+.diagram[data-theme=dark] svg [fill="#fff"],.diagram[data-theme=dark] svg [fill="#fff"] rect{fill:#0a0a0a}
+.diagram[data-theme=dark] svg [stroke="#525252"],.diagram[data-theme=dark] svg [stroke="#525252"] rect{stroke:#fafafa}
+.diagram[data-theme=dark] svg [stroke="#8f8f8f"],.diagram[data-theme=dark] svg [stroke="#8f8f8f"] path{stroke:#d4d4d4}
+.diagram[data-theme=dark] svg [stroke="#bdbdbd"]{stroke:#525252}
+.diagram[data-theme=dark] svg [fill="#171717"],.diagram[data-theme=dark] svg [fill="#171717"] text{fill:#fafafa}
+.diagram[data-theme=dark] svg [fill="#8f8f8f"],.diagram[data-theme=dark] svg [fill="#8f8f8f"] text{fill:#a3a3a3}
+.diagram[data-theme=dark] svg [fill="#bdbdbd"],.diagram[data-theme=dark] svg [fill="#bdbdbd"] text{fill:#737373}
+@media print{.diagram-toggle{display:none}}
