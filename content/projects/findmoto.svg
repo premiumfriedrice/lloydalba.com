@@ -1,0 +1,38 @@
+<svg viewBox="0 0 520 134" xmlns="http://www.w3.org/2000/svg" font-family="inherit">
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0.5L7 4L0 7.5" fill="none" stroke="#8f8f8f" stroke-width="1.2"/>
+    </marker>
+  </defs>
+  <g fill="#fff" stroke="#525252" stroke-width="1">
+    <rect x="8" y="16" width="84" height="34" rx="3"/>
+    <rect x="124" y="16" width="100" height="34" rx="3"/>
+    <rect x="124" y="92" width="100" height="34" rx="3" stroke-dasharray="3 3"/>
+    <rect x="256" y="16" width="100" height="34" rx="3"/>
+    <rect x="388" y="16" width="124" height="34" rx="3"/>
+    <rect x="388" y="92" width="124" height="34" rx="3" stroke-dasharray="3 3"/>
+  </g>
+  <g fill="#171717" font-size="12" text-anchor="middle">
+    <text x="50" y="31">Cron</text>
+    <text x="174" y="31">Scraper</text>
+    <text x="174" y="107">Marketplace</text>
+    <text x="306" y="31">Ranker</text>
+    <text x="450" y="31">Notion API</text>
+    <text x="450" y="107">Dashboard</text>
+  </g>
+  <g fill="#8f8f8f" font-size="10.5" text-anchor="middle">
+    <text x="50" y="44">nightly</text>
+    <text x="174" y="44">Python · Selenium</text>
+    <text x="174" y="120">Facebook</text>
+    <text x="306" y="44">price · year · recency</text>
+    <text x="450" y="44">40–80 rows a day</text>
+    <text x="450" y="120">a Notion view</text>
+  </g>
+  <g fill="none" stroke="#8f8f8f" stroke-width="1" marker-end="url(#arrow)">
+    <path d="M92 33H124"/>
+    <path d="M174 50V92" marker-start="url(#arrow)"/>
+    <path d="M224 33H256"/>
+    <path d="M356 33H388"/>
+    <path d="M450 50V92"/>
+  </g>
+</svg>
