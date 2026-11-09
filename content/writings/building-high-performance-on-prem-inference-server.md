@@ -1,7 +1,7 @@
 ---
 title: "Building a Production-Grade MVP of an On-Prem LLM Inference Server"
 date: Nov 5, 2026
-diagram: 2026-11-05-on-prem-inference-what-we-built.svg
+diagram: building-high-performance-on-prem-inference-server.svg
 diagramCaption: The four layers, from a request to the dashboard
 ---
 
