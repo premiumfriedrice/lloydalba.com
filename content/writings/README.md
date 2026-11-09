@@ -1,7 +1,7 @@
-# Writing
+# Writings
 
 Drop a markdown file in this folder to publish a writing. It shows up on the
-Writing list (title, date, read time, a faded preview) and gets its own page
+Writings list (title, date, read time, a faded preview) and gets its own page
 styled like the docs on skills.wheresryan.sh/anatomy.
 
 - Filename: `YYYY-MM-DD-your-title.md`, two-digit month and day. The filename becomes
@@ -22,7 +22,7 @@ This README is not published.
     ---
 
     One or two intro paragraphs. These become the lede, and the start of
-    this is what the Writing list previews.
+    this is what the Writings list previews.
 
     ## First section
 
@@ -65,7 +65,7 @@ Markdown image syntax handles all media types:
     ![Alt text](/media/photo.jpg "Caption here")     add a caption to any of the above
 
 Media on its own line becomes a figure on the post page. The preview on the
-Writing list only shows text.
+Writings list only shows text.
 
 Keep videos small (under ~20 MB). For anything longer, upload to YouTube and embed it.
 

@@ -4,7 +4,7 @@ import { getAllWritings } from "@/lib/writings";
 import { PeekList } from "@/components/PeekList";
 
 export const metadata: Metadata = {
-  title: "Writing — Lloyd Alba",
+  title: "Writings — Lloyd Alba",
   description: "Some stuff I need to write down and let others see.",
 };
 
@@ -20,7 +20,7 @@ export default function WritingsPage() {
         <header className="masthead">
           <div className="title-row">
             <h1 className="title">
-              Writing<span> · {writings.length}</span>
+              Writings<span> · {writings.length}</span>
             </h1>
           </div>
           <p className="statement">

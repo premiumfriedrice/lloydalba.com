@@ -107,7 +107,7 @@ export function resumeMarkdown({ resume, projects, writings }: ExportInput): str
       "",
     );
   }
-  out.push("## Writing");
+  out.push("## Writings");
   for (const w of writings) out.push(`- ${w.dateISO || w.date} · ${w.title} · ${writingUrl(w.slug)}`);
   out.push("");
   return out.join("\n");
@@ -129,7 +129,7 @@ export function llmsTxt({ resume, projects, writings }: ExportInput): string {
     "",
     ...projects.map((p) => `- [${p.title}](${projectUrl(p.slug)}): ${p.tagline.replace(/\*/g, "")}`),
     "",
-    "## Writing",
+    "## Writings",
     "",
     ...writings.map((w) => `- [${w.title}](${writingUrl(w.slug)}): ${w.dateISO || w.date}`),
     "",

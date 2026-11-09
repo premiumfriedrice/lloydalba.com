@@ -50,8 +50,8 @@ export default function Home() {
         {writings && (
           <>
             <p className="label index-label">
-              <span>Recent writing</span>
-              <Link href="/writings">all writing →</Link>
+              <span>Recent writings</span>
+              <Link href="/writings">all writings →</Link>
             </p>
             <PeekList
               items={writings.map((w) => ({
