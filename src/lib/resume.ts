@@ -39,7 +39,7 @@ export const resume: Resume = {
     site: SITE_URL,
   },
   summary:
-    "CS at Texas A&M, graduating December 2027. Right now I'm an agentic AI engineer intern at Fable Innovations, where I [built and run an on-prem inference server](/writings/2026-11-05-on-prem-inference-what-we-built) for a team of twelve. Before that I shipped sales automations at K2United and fixed CI/CD at Arrive Logistics across three summers.",
+    "My name is Lloyd. I study Computer Science at Texas A&M University with an anticipated graduation of December 2027. I like making things, and I am interested in AI and Distributed Systems, and the intersection of the two. There is a shrimp on this website, because I love shrimp.",
   education: {
     school: "Texas A&M University",
     location: "College Station, Texas",

@@ -29,7 +29,9 @@ const writing: Writing = {
   toc: [],
   readTime: "1 min read",
 };
-const input = { resume, projects: [project], writings: [writing] };
+// A summary with a root-relative link, so the link-absolutizing checks don't depend on the real summary's wording.
+const linked = { ...resume, summary: "See [the server](/writings/2026-11-05-on-prem-inference-what-we-built)." };
+const input = { resume: linked, projects: [project], writings: [writing] };
 
 describe("resumeJson", () => {
   it("mirrors the data and builds www urls", () => {

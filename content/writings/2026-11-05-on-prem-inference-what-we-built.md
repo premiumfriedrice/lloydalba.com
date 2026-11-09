@@ -6,15 +6,17 @@ diagramCaption: The four layers, from a request to the dashboard
 diagramTheme: dark
 ---
 
-Handwritten (+ AI revised) notes from my internship project, deploying an on-prem high performance LLM inference server on a single GPU box. This writing documents what we built, the design decisions I made, and the trouble I ran into while working with AI on this project.
+Handwritten (+ AI revised) notes from my internship project, deploying an on-prem high performance LLM inference server on a single GPU box. This writing documents what I built, the design decisions I made, and the trouble I ran into while working with AI on this project.
 
 I'm leaving out the how on purpose. I'm not naming the specific tools, models, or config files, because writing up exactly how a company's internal stack is wired together gives bad actors a head start on exploiting it. So the layers below are described generically.
 
 The purpose of this server is to allow a team of 12 engineers to have access to inference without paying subscriptions to 3rd party providers.
 
-## Why we built it
+## Why I built it
 
-Everyone on the team was either paying for their own API access or not using inference at all. We wanted one shared endpoint that any OpenAI-compatible client could point at, that only people we handed a key to could use, and that we could actually see into. Everything runs on a single GPU machine with no monthly bill.
+My boss asked me to build this. Once we grow, we want to run an inference server not just for our own team but for other clients in the building, and we want to start landing contracts to set up inference servers for our clients. He also pointed out that if we land a data center deal, we'd get about 50% more revenue from that customer. So having this kind of project fleshed out, with a working example we can point to, is really valuable.
+
+Before this, everyone on the team was either paying for their own API access or not using inference at all. We wanted one shared endpoint that any OpenAI-compatible client could point at, that only people we handed a key to could use, and that we could actually see into. Everything runs on a single GPU machine with no monthly bill.
 
 ## The layers
 
