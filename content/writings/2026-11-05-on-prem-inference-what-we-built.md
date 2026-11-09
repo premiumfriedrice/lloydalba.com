@@ -16,7 +16,7 @@ The purpose of this server is to allow a team of 16 engineers to have access to 
 
 My boss asked me to build this. Having this kind of project fleshed out, with a working example we can point to, is valuable for where the company wants to go.
 
-Before this, everyone on the team was either paying for their own API access or not using inference at all. We wanted one shared endpoint that any OpenAI-compatible client could point at, that only people we handed a key to could use, and that we could actually see into. Everything runs on a single GPU machine with no monthly bill.
+Before this, the company was paying third-party providers for everyone's inference. We wanted one shared endpoint that any OpenAI-compatible client could point at, that only people we handed a key to could use, and that we could actually see into. Everything runs on a single GPU machine we own, so there's no subscription to pay.
 
 ## The layers
 
