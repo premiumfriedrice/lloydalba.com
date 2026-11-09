@@ -19,9 +19,6 @@ export const metadata: Metadata = {
   title: "Lloyd Alba",
   description:
     "Lloyd Alba — software engineer. AI agents, iOS apps, and tools that make engineers faster.",
-  icons: {
-    icon: "/fighter.png",
-  },
 };
 
 export default function RootLayout({
