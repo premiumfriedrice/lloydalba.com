@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { renderMarkdown, renderInlineMarkdown, type TocEntry } from "@/lib/markdown";
-import { readDiagram, withDiagram, type DiagramTheme } from "@/lib/diagram";
+import { readDiagram, withDiagram } from "@/lib/diagram";
 
 export { withDiagram };
 
@@ -19,7 +19,6 @@ export interface Project {
   links: Record<string, string>;
   diagramSvg: string | null;
   diagramCaption: string;
-  diagramTheme: DiagramTheme;
   bullets: string[];
   html: string;
   toc: TocEntry[];

@@ -1,9 +1,7 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Rail, TopNav } from "@/components/Nav";
 import { PostToc } from "@/components/PostToc";
 import { CodeCopy } from "@/components/CodeCopy";
-import { DiagramToggle } from "@/components/DiagramToggle";
 import { PrintLink } from "@/components/PrintLink";
 import { getAllWritings, getWritingBySlug } from "@/lib/writings";
 import { withDiagram } from "@/lib/diagram";
@@ -14,15 +12,6 @@ export function generateStaticParams() {
   return getAllWritings().map((t) => ({ slug: t.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const writing = getWritingBySlug(slug);
-  return { title: writing ? `${writing.title} — Lloyd Alba` : "Lloyd Alba" };
-}
 
 export default async function WritingPage({
   params,
@@ -63,7 +52,6 @@ export default async function WritingPage({
           dangerouslySetInnerHTML={{ __html: withDiagram(writing) }}
         />
         <CodeCopy />
-        <DiagramToggle />
       </main>
     </div>
   );

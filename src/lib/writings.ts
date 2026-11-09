@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { renderMarkdown, type TocEntry } from "@/lib/markdown";
-import { readDiagram, type DiagramTheme } from "@/lib/diagram";
+import { readDiagram } from "@/lib/diagram";
 
 export interface Writing {
   slug: string;
@@ -14,7 +14,6 @@ export interface Writing {
   readTime: string;
   diagramSvg: string | null;
   diagramCaption: string;
-  diagramTheme: DiagramTheme;
 }
 
 const WORDS_PER_MINUTE = 220;

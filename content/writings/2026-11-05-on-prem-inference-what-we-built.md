@@ -3,7 +3,6 @@ title: "Building a Production-Grade MVP of an On-Prem LLM Inference Server"
 date: Nov 5, 2026
 diagram: 2026-11-05-on-prem-inference-what-we-built.svg
 diagramCaption: The four layers, from a request to the dashboard
-diagramTheme: dark
 ---
 
 Handwritten (+ AI revised) notes from my internship project, deploying an on-prem high performance LLM inference server on a single GPU box. This writing documents what I built, the design decisions I made, and the trouble I ran into while working with AI on this project.

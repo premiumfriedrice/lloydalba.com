@@ -73,9 +73,7 @@ Keep videos small (under ~20 MB). For anything longer, upload to YouTube and emb
 
 Add a diagram under the intro the same way projects do: put an SVG next to the
 post and name it in the frontmatter. Follow the drawing rules in
-`content/projects/README.md`. Readers can flip it between light and black with
-the button on the figure; `diagramTheme` picks which one shows first.
+`content/projects/README.md`.
 
     diagram: 2026-11-05-my-post.svg
     diagramCaption: What the figure shows
-    diagramTheme: dark      # or light (the default)

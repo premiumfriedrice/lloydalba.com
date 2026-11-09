@@ -1,10 +1,8 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Rail, TopNav } from "@/components/Nav";
 import { PostToc } from "@/components/PostToc";
 import { CodeCopy } from "@/components/CodeCopy";
-import { DiagramToggle } from "@/components/DiagramToggle";
 import { getAllProjects, getProjectBySlug, withDiagram } from "@/lib/projects";
 
 export const dynamicParams = false;
@@ -13,15 +11,6 @@ export function generateStaticParams() {
   return getAllProjects().map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
-  return { title: project ? `${project.title} — Lloyd Alba` : "Lloyd Alba" };
-}
 
 export default async function ProjectPage({
   params,
@@ -69,7 +58,6 @@ export default async function ProjectPage({
           dangerouslySetInnerHTML={{ __html: withDiagram(project) }}
         />
         <CodeCopy />
-        <DiagramToggle />
       </main>
     </div>
   );

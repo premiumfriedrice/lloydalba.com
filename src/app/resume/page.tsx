@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Rail, TopNav } from "@/components/Nav";
 
 export const metadata: Metadata = {
-  title: "Resume — Lloyd Alba",
   description: "Lloyd Alba's resume.",
 };
 

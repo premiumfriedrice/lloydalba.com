@@ -4,7 +4,6 @@ import { getAllProjects } from "@/lib/projects";
 import { PeekList } from "@/components/PeekList";
 
 export const metadata: Metadata = {
-  title: "Projects — Lloyd Alba",
   description: "Things I've built, each with a system diagram.",
 };
 

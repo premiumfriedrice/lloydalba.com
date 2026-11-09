@@ -4,7 +4,6 @@ import { getAllWritings } from "@/lib/writings";
 import { PeekList } from "@/components/PeekList";
 
 export const metadata: Metadata = {
-  title: "Writings — Lloyd Alba",
   description: "Some stuff I need to write down and let others see.",
 };
 
