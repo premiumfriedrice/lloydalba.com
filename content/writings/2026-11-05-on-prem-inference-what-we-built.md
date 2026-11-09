@@ -10,7 +10,7 @@ Handwritten (+ AI revised) notes from my internship project, deploying an on-pre
 
 I'm leaving out the how on purpose. I'm not naming the specific tools, models, or config files, because writing up exactly how a company's internal stack is wired together gives bad actors a head start on exploiting it. So the layers below are described generically.
 
-The purpose of this server is to allow a team of 12 engineers to have access to inference without paying subscriptions to 3rd party providers.
+The purpose of this server is to allow a team of 16 engineers to have access to inference without paying subscriptions to 3rd party providers.
 
 ## Why I built it
 
