@@ -10,13 +10,13 @@ Handwritten (+ AI revised) notes from my internship project, deploying an on-pre
 
 I'm leaving out the how on purpose. I'm not naming the specific tools, models, or config files, because writing up exactly how a company's internal stack is wired together gives bad actors a head start on exploiting it. So the layers below are described generically.
 
-The purpose of this server is to allow a team of 16 engineers to have access to inference without paying subscriptions to 3rd party providers.
+The purpose of this server is to give a team of 16 engineers access to inference that we run ourselves, as a step toward not paying 3rd party providers for it.
 
 ## Why I built it
 
 My boss asked me to build this. Having this kind of project fleshed out, with a working example we can point to, is valuable for where the company wants to go.
 
-Before this, the company was paying third-party providers for everyone's inference. We wanted one shared endpoint that any OpenAI-compatible client could point at, that only people we handed a key to could use, and that we could actually see into. Everything runs on a single GPU machine we own, so there's no subscription to pay.
+Right now the company pays third-party providers for everyone's inference, and we're working toward a future where we don't have to. This project doesn't quite get us there yet, but completing it is how we start. We wanted one shared endpoint that any OpenAI-compatible client could point at, that only people we handed a key to could use, and that we could actually see into. Everything runs on a single GPU machine we own.
 
 ## The layers
 
