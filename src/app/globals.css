@@ -183,7 +183,9 @@
 .shrimp{position:absolute;top:0;left:-46px;width:34px;display:flex;align-items:center;color:var(--ink);visibility:hidden}
 .shrimp[data-ready]{visibility:visible}
 .shrimp[data-moving]{transition:transform .5s var(--ease)}
-.shrimp svg{display:block;width:34px;height:auto;overflow:visible}
+.shrimp svg{display:block;width:100%;height:auto;overflow:visible}
+.shrimp[data-critter=mantis]{width:48px;left:-60px}
+.top .shrimp[data-critter=mantis]{left:0}
 .shrimp .ant{transform-box:fill-box;transform-origin:50% 50%;animation:shrimp-sway 2.8s ease-in-out infinite}
 .shrimp .ant-2{animation-duration:3.4s;animation-delay:-1.2s}
 .shrimp .ant-3{animation-name:shrimp-sway-back;animation-duration:3.9s;animation-delay:-.6s}
@@ -211,3 +213,26 @@
 /* Hover the shrimp and it cycles through colours */
 .shrimp:hover{animation:shrimp-colours 2.4s linear infinite}
 @keyframes shrimp-colours{0%,100%{color:#ff6b6b}17%{color:#ff9f43}33%{color:#f6c445}50%{color:#1dd1a1}67%{color:#2e86de}83%{color:#9b59b6}}
+
+/* Mantis shrimp — bobs like a boxer; on arrival it swings its club and the link it hits wobbles */
+.mantis .m-body{animation:mantis-bob 1s ease-in-out infinite}
+.mantis .m-claw{transform-box:fill-box;transform-origin:50% 50%;animation:mantis-guard 1s ease-in-out infinite}
+.shrimp[data-punch] .m-body{animation:mantis-lunge .5s cubic-bezier(.2,.8,.2,1)}
+.shrimp[data-punch] svg.mantis{animation:mantis-dash .5s cubic-bezier(.2,.8,.2,1)}
+.top .shrimp[data-punch] svg.mantis{animation-name:mantis-dash-down}
+.shrimp[data-punch] .m-claw{animation:mantis-strike .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes mantis-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+@keyframes mantis-guard{0%,100%{transform:rotate(0)}50%{transform:rotate(9deg)}}
+@keyframes mantis-lunge{0%,100%{transform:translateX(0)}30%{transform:translateX(-36px)}50%{transform:translateX(70px)}75%{transform:translateX(40px)}}
+@keyframes mantis-dash{0%,100%{transform:none}30%{transform:translateX(-3px)}50%{transform:translateX(17px)}75%{transform:translateX(12px)}}
+@keyframes mantis-dash-down{0%,100%{transform:none}30%{transform:translateY(-2px)}50%{transform:translateY(8px)}75%{transform:translateY(6px)}}
+@keyframes mantis-strike{0%,100%{transform:rotate(0)}30%{transform:rotate(16deg)}50%{transform:rotate(-125deg)}72%{transform:rotate(-108deg)}}
+.wobble{display:inline-block;transform-origin:0% 60%;animation:link-wobble .55s ease-out}
+@keyframes link-wobble{0%,100%{transform:none}15%{transform:translateX(4px) rotate(5deg)}32%{transform:translateX(-2px) rotate(-4deg)}50%{transform:translateX(1px) rotate(2.5deg)}68%{transform:rotate(-1.2deg)}84%{transform:rotate(.5deg)}}
+@media (prefers-reduced-motion:reduce){.mantis,.mantis .m-body,.mantis .m-claw{animation:none!important}}
+
+/* Shrimp / Mantis switch at the bottom of the side rail */
+.critter-toggle{display:flex;gap:12px;font-size:12px;line-height:18px}
+.critter-toggle button{color:var(--muted);transition:color .15s ease}
+.critter-toggle button:hover,.critter-toggle button[aria-pressed=true]{color:var(--ink)}
+@media print{.critter-toggle{display:none}}
