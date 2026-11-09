@@ -196,10 +196,14 @@
 .shrimp .leg-b{animation-name:shrimp-step;animation-duration:2.4s;animation-delay:-.8s}
 .shrimp .leg-c{animation-name:shrimp-step;animation-duration:2.4s;animation-delay:-1.6s}
 .shrimp .tail{animation-name:shrimp-flick;animation-duration:2.6s}
+.shrimp .seg{transform-box:fill-box;transform-origin:50% 50%;animation:shrimp-flex 3.2s ease-in-out infinite}
+.shrimp .seg-1{animation-delay:-3.2s}.shrimp .seg-2{animation-delay:-2.95s}.shrimp .seg-3{animation-delay:-2.7s}
+.shrimp .seg-4{animation-delay:-2.45s}.shrimp .seg-5{animation-delay:-2.2s}.shrimp .seg-6{animation-delay:-1.95s}.shrimp .seg-7{animation-delay:-1.7s}
+@keyframes shrimp-flex{0%,100%{transform:rotate(-2.6deg)}50%{transform:rotate(2.6deg)}}
 @keyframes shrimp-flick{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(4deg)}}
 @keyframes shrimp-paddle{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(10deg)}}
 @keyframes shrimp-step{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
-@media (prefers-reduced-motion:reduce){.shrimp .ant,.shrimp .leg{animation:none}.shrimp[data-moving]{transition:none}}
+@media (prefers-reduced-motion:reduce){.shrimp .ant,.shrimp .leg,.shrimp .seg{animation:none}.shrimp[data-moving]{transition:none}}
 @media print{.shrimp{display:none}}
 /* On phones the rail is hidden; the shrimp sits in the space above the top nav and slides sideways */
 .top{position:relative}
