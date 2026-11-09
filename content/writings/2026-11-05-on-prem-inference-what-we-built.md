@@ -14,7 +14,7 @@ The purpose of this server is to give a team of 16 engineers access to inference
 
 ## Why I built it
 
-My boss asked me to build this. Having this kind of project fleshed out, with a working example we can point to, is valuable for where the company wants to go.
+My boss asked me to build this. Having this kind of project fleshed out, with a working example we can point to, is valuable for where the company wants to go. I really like this project because it sits right where I want to be: AI platforms, with distributed systems coming next as it grows past one machine.
 
 Right now the company pays third-party providers for everyone's inference, and we're working toward a future where we don't have to. This project doesn't quite get us there yet, but completing it is how we start. We wanted one shared endpoint that any OpenAI-compatible client could point at, that only people we handed a key to could use, and that we could actually see into. Everything runs on a single GPU machine we own.
 
