@@ -66,6 +66,7 @@ export function ShrimpIndicator({ axis = "y" }: { axis?: Axis }) {
   const critterRef = useRef(critter);
   critterRef.current = critter;
   const lastLink = useRef<HTMLElement | null>(null);
+  const lastPunch = useRef<{ link: HTMLElement; at: number } | null>(null);
   const timers = useRef<number[]>([]);
 
   const clearTimers = () => {
@@ -75,8 +76,12 @@ export function ShrimpIndicator({ axis = "y" }: { axis?: Axis }) {
 
   /** After the slide lands, swing at the link and make it wobble. */
   const punchAt = (link: HTMLElement, delay: number) => {
+    // One hit per arrival: scroll-spy can report the same section twice in quick succession.
+    const now = performance.now();
+    if (lastPunch.current?.link === link && now - lastPunch.current.at < 1200) return;
     clearTimers();
     if (critterRef.current !== "mantis") return;
+    lastPunch.current = { link, at: now };
     const el = ref.current;
     if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     timers.current.push(
@@ -108,6 +113,9 @@ export function ShrimpIndicator({ axis = "y" }: { axis?: Axis }) {
     el.dataset.ready = "";
     if (!prev || typeof prev.v !== "number" || prev.page === navPage(el) || prev.v === to) {
       place(el, axis, to);
+      // Same nav item but a different link than before (e.g. a project's section → the Projects link):
+      // no slide, but it still arrived somewhere new, so it still punches.
+      if (prev && typeof prev.v === "number" && prev.v !== to) punchAt(link, 80);
       // Turn sliding on only after this position has been painted, or the browser animates the placement itself.
       const frame = requestAnimationFrame(() => (el.dataset.moving = ""));
       return () => cancelAnimationFrame(frame);
