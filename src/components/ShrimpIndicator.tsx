@@ -3,25 +3,31 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { Shrimp } from "@/components/Shrimp";
 
-const KEY = "shrimp";
+/** "y": beside the side rail's links (desktop). "x": above the top nav's links (phones). */
+type Axis = "x" | "y";
 
-type Saved = { y: number; page: string };
+type Saved = { v: number; page: string };
+
+const key = (axis: Axis) => `shrimp-${axis}`;
 
 /** The section being read (from the page's side links), else the current page in the nav. */
-function activeLink(rail: HTMLElement): HTMLElement | null {
+function activeLink(box: HTMLElement): HTMLElement | null {
   return (
-    rail.querySelector<HTMLElement>('.toc a[aria-current="location"]') ??
-    rail.querySelector<HTMLElement>('.nav a[aria-current="page"]')
+    box.querySelector<HTMLElement>('.toc a[aria-current="location"]') ??
+    box.querySelector<HTMLElement>('.nav a[aria-current="page"]')
   );
 }
 
-/** Where the shrimp should sit, relative to the rail, to line up with the active link. */
-function targetY(el: HTMLElement): number | null {
-  const rail = el.parentElement;
-  const link = rail && activeLink(rail);
-  if (!rail || !link) return null;
+/** Where the shrimp should sit, relative to its container, to line up with the active link. */
+function target(el: HTMLElement, axis: Axis): number | null {
+  const box = el.parentElement;
+  const link = box && activeLink(box);
+  if (!box || !link) return null;
   const r = link.getBoundingClientRect();
-  return Math.round(r.top + r.height / 2 - rail.getBoundingClientRect().top - el.offsetHeight / 2);
+  const b = box.getBoundingClientRect();
+  return axis === "y"
+    ? Math.round(r.top + r.height / 2 - b.top - el.offsetHeight / 2)
+    : Math.round(r.left + r.width / 2 - b.left - el.offsetWidth / 2);
 }
 
 /** The nav item for this page, e.g. "/projects" on /projects and on /projects/apted. */
@@ -29,10 +35,14 @@ function navPage(el: HTMLElement): string {
   return el.parentElement?.querySelector('.nav a[aria-current="page"]')?.getAttribute("href") ?? "";
 }
 
-function place(el: HTMLElement, y: number) {
-  el.style.transform = `translateY(${y}px)`;
+function move(el: HTMLElement, axis: Axis, v: number) {
+  el.style.transform = axis === "y" ? `translateY(${v}px)` : `translateX(${v}px)`;
+}
+
+function place(el: HTMLElement, axis: Axis, v: number) {
+  move(el, axis, v);
   try {
-    sessionStorage.setItem(KEY, JSON.stringify({ y, page: navPage(el) } satisfies Saved));
+    sessionStorage.setItem(key(axis), JSON.stringify({ v, page: navPage(el) } satisfies Saved));
   } catch {}
 }
 
@@ -41,7 +51,7 @@ function place(el: HTMLElement, y: number) {
  * or project page, the section being read. The rail remounts on every page, so the
  * last position is kept in sessionStorage and the shrimp slides on from there.
  */
-export function ShrimpIndicator() {
+export function ShrimpIndicator({ axis = "y" }: { axis?: Axis }) {
   const ref = useRef<HTMLDivElement>(null);
 
   // First placement: if the last page was under a different nav item, start where the
@@ -49,28 +59,28 @@ export function ShrimpIndicator() {
   // list, say) it is already home, so it just appears.
   useLayoutEffect(() => {
     const el = ref.current;
-    const target = el && targetY(el);
-    if (!el || target === null) return;
+    const to = el && target(el, axis);
+    if (!el || to === null) return;
     let prev: Saved | null = null;
     try {
-      prev = JSON.parse(sessionStorage.getItem(KEY) ?? "null") as Saved | null;
+      prev = JSON.parse(sessionStorage.getItem(key(axis)) ?? "null") as Saved | null;
     } catch {}
     el.dataset.ready = "";
-    if (!prev || typeof prev.y !== "number" || prev.page === navPage(el) || prev.y === target) {
-      place(el, target);
+    if (!prev || typeof prev.v !== "number" || prev.page === navPage(el) || prev.v === to) {
+      place(el, axis, to);
       // Turn sliding on only after this position has been painted, or the browser animates the placement itself.
       const frame = requestAnimationFrame(() => (el.dataset.moving = ""));
       return () => cancelAnimationFrame(frame);
     }
-    el.style.transform = `translateY(${prev.y}px)`;
+    move(el, axis, prev.v);
     const frame = requestAnimationFrame(() =>
       requestAnimationFrame(() => {
         el.dataset.moving = "";
-        place(el, target);
+        place(el, axis, to);
       }),
     );
     return () => cancelAnimationFrame(frame);
-  }, []);
+  }, [axis]);
 
   // Follow the side links as the reader scrolls and sections open and close.
   useEffect(() => {
@@ -80,8 +90,8 @@ export function ShrimpIndicator() {
     const follow = () => {
       const el = ref.current;
       if (!el || el.dataset.moving === undefined) return;
-      const y = targetY(el);
-      if (y !== null) place(el, y);
+      const v = target(el, axis);
+      if (v !== null) place(el, axis, v);
     };
     const schedule = () => {
       requestAnimationFrame(follow);
@@ -99,7 +109,7 @@ export function ShrimpIndicator() {
       window.removeEventListener("resize", schedule);
       timers.forEach(clearTimeout);
     };
-  }, []);
+  }, [axis]);
 
   return (
     <div ref={ref} className="shrimp" aria-hidden="true">

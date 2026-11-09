@@ -199,3 +199,6 @@
 @keyframes shrimp-step{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
 @media (prefers-reduced-motion:reduce){.shrimp .ant,.shrimp .leg{animation:none}.shrimp[data-moving]{transition:none}}
 @media print{.shrimp{display:none}}
+/* On phones the rail is hidden; the shrimp sits in the space above the top nav and slides sideways */
+.top{position:relative}
+.top .shrimp{top:-26px;left:0}

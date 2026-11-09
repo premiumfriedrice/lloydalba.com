@@ -40,6 +40,7 @@ export function Rail({
 export function TopNav({ current }: { current: string }) {
   return (
     <nav className="top" aria-label="Site">
+      <ShrimpIndicator axis="x" />
       <ul className="nav">
         {LINKS.map((link) => (
           <li key={link.id}>
