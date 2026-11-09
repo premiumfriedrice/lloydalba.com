@@ -179,33 +179,12 @@
 .diagram[data-theme=dark] svg [fill="#bdbdbd"],.diagram[data-theme=dark] svg [fill="#bdbdbd"] text{fill:#737373}
 @media print{.diagram-toggle{display:none}}
 
-/* Shrimp — marks the active page, or the section being read, in the side rail; antennae sway */
-.shrimp{position:absolute;top:0;left:-46px;width:34px;display:flex;align-items:center;color:var(--ink);visibility:hidden}
+/* Mantis shrimp marker — sits beside the active page, or the section being read, in the side rail */
+.shrimp{position:absolute;top:0;left:-60px;width:48px;display:flex;align-items:center;color:var(--ink);visibility:hidden}
 .shrimp[data-ready]{visibility:visible}
 .shrimp[data-moving]{transition:transform .5s var(--ease)}
 .shrimp svg{display:block;width:100%;height:auto;overflow:visible}
-.shrimp[data-critter=mantis]{width:48px;left:-60px}
-.top .shrimp[data-critter=mantis]{left:0}
-.shrimp .ant{transform-box:fill-box;transform-origin:50% 50%;animation:shrimp-sway 2.8s ease-in-out infinite}
-.shrimp .ant-2{animation-duration:3.4s;animation-delay:-1.2s}
-.shrimp .ant-3{animation-name:shrimp-sway-back;animation-duration:3.9s;animation-delay:-.6s}
-.shrimp .ant-4{animation-name:shrimp-sway-back;animation-duration:3.1s;animation-delay:-2s}
-@keyframes shrimp-sway{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
-@keyframes shrimp-sway-back{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
-.shrimp .leg{transform-box:fill-box;transform-origin:50% 50%;animation:shrimp-paddle 1.5s ease-in-out infinite}
-.shrimp .leg-e{animation-delay:-.3s}
-.shrimp .leg-a{animation-name:shrimp-step;animation-duration:2.4s}
-.shrimp .leg-b{animation-name:shrimp-step;animation-duration:2.4s;animation-delay:-.8s}
-.shrimp .leg-c{animation-name:shrimp-step;animation-duration:2.4s;animation-delay:-1.6s}
-.shrimp .tail{animation-name:shrimp-flick;animation-duration:2.6s}
-.shrimp .seg{transform-box:fill-box;transform-origin:50% 50%;animation:shrimp-flex 3.2s ease-in-out infinite}
-.shrimp .seg-1{animation-delay:-3.2s}.shrimp .seg-2{animation-delay:-2.95s}.shrimp .seg-3{animation-delay:-2.7s}
-.shrimp .seg-4{animation-delay:-2.45s}.shrimp .seg-5{animation-delay:-2.2s}.shrimp .seg-6{animation-delay:-1.95s}.shrimp .seg-7{animation-delay:-1.7s}
-@keyframes shrimp-flex{0%,100%{transform:rotate(-2.6deg)}50%{transform:rotate(2.6deg)}}
-@keyframes shrimp-flick{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(4deg)}}
-@keyframes shrimp-paddle{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(10deg)}}
-@keyframes shrimp-step{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
-@media (prefers-reduced-motion:reduce){.shrimp .ant,.shrimp .leg,.shrimp .seg{animation:none}.shrimp[data-moving]{transition:none}}
+@media (prefers-reduced-motion:reduce){.shrimp[data-moving]{transition:none}}
 @media print{.shrimp{display:none}}
 /* On phones the rail is hidden; the shrimp sits in the space above the top nav and slides sideways */
 .top{position:relative}
@@ -225,14 +204,20 @@
 @keyframes mantis-guard{0%,100%{transform:rotate(0)}50%{transform:rotate(9deg)}}
 @keyframes mantis-lunge{0%,100%{transform:translateX(0)}30%{transform:translateX(-36px)}50%{transform:translateX(70px)}75%{transform:translateX(40px)}}
 @keyframes mantis-dash{0%,100%{transform:none}30%{transform:translateX(-3px)}50%{transform:translateX(17px)}75%{transform:translateX(12px)}}
-@keyframes mantis-dash-down{0%,100%{transform:none}30%{transform:translateY(-2px)}50%{transform:translateY(8px)}75%{transform:translateY(6px)}}
+@keyframes mantis-dash-down{0%,100%{transform:none}30%{transform:translateY(-3px) rotate(18deg)}50%{transform:translate(var(--dive-x,-10px),var(--dive-y,4px)) rotate(var(--dive-angle,48deg))}75%{transform:translate(var(--dive-x,-10px),calc(var(--dive-y,4px) - 2px)) rotate(var(--dive-angle,48deg))}}
 @keyframes mantis-strike{0%,100%{transform:rotate(0)}30%{transform:rotate(16deg)}50%{transform:rotate(-125deg)}72%{transform:rotate(-108deg)}}
 .wobble{display:inline-block;transform-origin:0% 60%;animation:link-wobble .55s ease-out}
 @keyframes link-wobble{0%,100%{transform:none}15%{transform:translateX(4px) rotate(5deg)}32%{transform:translateX(-2px) rotate(-4deg)}50%{transform:translateX(1px) rotate(2.5deg)}68%{transform:rotate(-1.2deg)}84%{transform:rotate(.5deg)}}
-@media (prefers-reduced-motion:reduce){.mantis,.mantis .m-body,.mantis .m-claw{animation:none!important}}
+.mantis .m-part{transform-box:fill-box;transform-origin:50% 50%}
+.mantis .m-antennae{animation:mantis-sway 2.6s ease-in-out infinite}
+.mantis .m-leg-1,.mantis .m-leg-2,.mantis .m-leg-3{animation:mantis-step 1s ease-in-out infinite}
+.mantis .m-leg-2{animation-delay:-.33s}.mantis .m-leg-3{animation-delay:-.66s}
+.mantis .m-pleo-1,.mantis .m-pleo-2,.mantis .m-pleo-3,.mantis .m-pleo-4{animation:mantis-paddle .8s ease-in-out infinite}
+.mantis .m-pleo-2{animation-delay:-.1s}.mantis .m-pleo-3{animation-delay:-.2s}.mantis .m-pleo-4{animation-delay:-.3s}
+.mantis .m-tail{animation:mantis-flick 2s ease-in-out infinite}
+@keyframes mantis-sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+@keyframes mantis-step{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(9deg)}}
+@keyframes mantis-paddle{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(10deg)}}
+@keyframes mantis-flick{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+@media (prefers-reduced-motion:reduce){.mantis,.mantis .m-body,.mantis .m-claw,.mantis .m-part{animation:none!important}}
 
-/* Shrimp / Mantis switch at the bottom of the side rail */
-.critter-toggle{display:flex;gap:12px;font-size:12px;line-height:18px}
-.critter-toggle button{color:var(--muted);transition:color .15s ease}
-.critter-toggle button:hover,.critter-toggle button[aria-pressed=true]{color:var(--ink)}
-@media print{.critter-toggle{display:none}}

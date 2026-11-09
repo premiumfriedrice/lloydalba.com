@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef } from "react";
-import { Shrimp } from "@/components/Shrimp";
 import { Mantis } from "@/components/Mantis";
-import { setCritter, useCritter } from "@/lib/critter";
 
 /** "y": beside the side rail's links (desktop). "x": above the top nav's links (phones). */
 type Axis = "x" | "y";
@@ -57,14 +55,11 @@ function restart(node: HTMLElement, on: () => void, off: () => void) {
 /**
  * Sits beside whatever is active in the side rail: the current page, or on a post
  * or project page, the section being read. The rail remounts on every page, so the
- * last position is kept in sessionStorage and the critter slides on from there.
- * As the mantis shrimp, it punches each new section it arrives at and the link wobbles.
+ * last position is kept in sessionStorage and the mantis shrimp slides on from there,
+ * then punches each new section it arrives at and the link wobbles.
  */
 export function ShrimpIndicator({ axis = "y" }: { axis?: Axis }) {
   const ref = useRef<HTMLDivElement>(null);
-  const critter = useCritter();
-  const critterRef = useRef(critter);
-  critterRef.current = critter;
   const lastLink = useRef<HTMLElement | null>(null);
   const lastPunch = useRef<{ link: HTMLElement; at: number } | null>(null);
   const timers = useRef<number[]>([]);
@@ -80,7 +75,6 @@ export function ShrimpIndicator({ axis = "y" }: { axis?: Axis }) {
     const now = performance.now();
     if (lastPunch.current?.link === link && now - lastPunch.current.at < 1200) return;
     clearTimers();
-    if (critterRef.current !== "mantis") return;
     lastPunch.current = { link, at: now };
     const el = ref.current;
     if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -168,22 +162,9 @@ export function ShrimpIndicator({ axis = "y" }: { axis?: Axis }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [axis]);
 
-  // Swapping animals changes the width, so re-centre on the same link (no punch).
-  useEffect(() => {
-    const el = ref.current;
-    const link = lastLink.current;
-    if (el && link && el.dataset.ready !== undefined) place(el, axis, offsetFor(el, link, axis));
-  }, [critter, axis]);
-
   return (
-    <div
-      ref={ref}
-      className="shrimp"
-      data-critter={critter}
-      aria-hidden="true"
-      onClick={() => setCritter(critter === "shrimp" ? "mantis" : "shrimp")}
-    >
-      {critter === "mantis" ? <Mantis /> : <Shrimp />}
+    <div ref={ref} className="shrimp" aria-hidden="true">
+      <Mantis />
     </div>
   );
 }

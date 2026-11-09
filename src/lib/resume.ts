@@ -39,7 +39,7 @@ export const resume: Resume = {
     site: SITE_URL,
   },
   summary:
-    "My name is Lloyd. I study Computer Science at Texas A&M University with an anticipated graduation of December 2027. I like making things, and I am interested in AI and Distributed Systems, and the intersection of the two. There is a shrimp on this website, because I love shrimp.",
+    "My name is Lloyd. I study Computer Science at Texas A&M University with an anticipated graduation of December 2027. I like making things, and I am interested in AI and Distributed Systems, and the intersection of the two. I love to eat shrimp, and I love combat sports, so I put a mantis shrimp on this website because I feel like it combines two things I enjoy very much.",
   education: {
     school: "Texas A&M University",
     location: "College Station, Texas",

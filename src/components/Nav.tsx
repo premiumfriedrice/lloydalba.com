@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ShrimpIndicator } from "@/components/ShrimpIndicator";
-import { CritterToggle } from "@/components/CritterToggle";
 
 const LINKS = [
   { href: "/", label: "Lloyd Alba", id: "home" },
@@ -34,7 +33,6 @@ export function Rail({
         </ul>
       </nav>
       {children}
-      <CritterToggle />
     </aside>
   );
 }
