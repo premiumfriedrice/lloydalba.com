@@ -180,7 +180,7 @@
 @media print{.diagram-toggle{display:none}}
 
 /* Shrimp — marks the active page, or the section being read, in the side rail; antennae sway */
-.shrimp{position:absolute;top:0;left:-46px;width:34px;display:flex;align-items:center;color:var(--ink);pointer-events:none;visibility:hidden}
+.shrimp{position:absolute;top:0;left:-46px;width:34px;display:flex;align-items:center;color:var(--ink);visibility:hidden}
 .shrimp[data-ready]{visibility:visible}
 .shrimp[data-moving]{transition:transform .5s var(--ease)}
 .shrimp svg{display:block;width:34px;height:auto;overflow:visible}
@@ -208,3 +208,6 @@
 /* On phones the rail is hidden; the shrimp sits in the space above the top nav and slides sideways */
 .top{position:relative}
 .top .shrimp{top:-26px;left:0}
+/* Hover the shrimp and it cycles through colours */
+.shrimp:hover{animation:shrimp-colours 2.4s linear infinite}
+@keyframes shrimp-colours{0%,100%{color:#ff6b6b}17%{color:#ff9f43}33%{color:#f6c445}50%{color:#1dd1a1}67%{color:#2e86de}83%{color:#9b59b6}}
