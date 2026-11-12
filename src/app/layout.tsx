@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, EB_Garamond } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { BottomCat } from "@/components/BottomCat";
 import "./globals.css";
 
 const inter = Inter({
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${ebGaramond.variable}`}>
       <body className="antialiased">
         {children}
+        <BottomCat />
         <Analytics />
         <SpeedInsights />
       </body>
