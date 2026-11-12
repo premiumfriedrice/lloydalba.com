@@ -204,4 +204,4 @@
 @keyframes mantis-flick{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
 @media (prefers-reduced-motion:reduce){.mantis,.mantis .m-body,.mantis .m-claw,.mantis .m-part{animation:none!important}}
 
-.cat{height:107px;overflow:hidden;display:flex;justify-content:center;pointer-events:none}.cat img{display:block;transform:translateY(100%);transition:transform .6s var(--ease)}.cat[data-in] img{transform:none}@media (prefers-reduced-motion:reduce){.cat img{transform:none;transition:none}}@media print{.cat{display:none}}
+.cat{height:107px;pointer-events:none}.cat img{position:fixed;left:50%;bottom:0;z-index:5;display:block;transform:translate(-50%,100%);transition:transform .6s var(--ease)}.cat[data-in] img{transform:translate(-50%,0)}@media (prefers-reduced-motion:reduce){.cat img{transition:none}}@media print{.cat{display:none}}
